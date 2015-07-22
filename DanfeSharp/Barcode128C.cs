@@ -1,5 +1,4 @@
 ﻿using org.pdfclown.documents.contents.composition;
-using org.pdfclown.documents.contents.entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
