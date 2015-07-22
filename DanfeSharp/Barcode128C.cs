@@ -17,8 +17,8 @@ namespace DanfeSharp
     {
         private static byte[][] Dic;
 
-        public static readonly float MargemVertical = Unit.Mm2Pu(1);
-        public static readonly float MargemHorizontal = Unit.Mm2Pu(4);
+        public static readonly float MargemVertical = Utils.Mm2Pu(1);
+        public static readonly float MargemHorizontal = Utils.Mm2Pu(4);
 
         /// <summary>
         /// Tamanho do código de barras, inclui as margens.

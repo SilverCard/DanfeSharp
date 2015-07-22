@@ -10,7 +10,7 @@ namespace DanfeSharp
 {
     class BlocoDadosAdicionais : BlocoDanfe
     {
-        public static readonly float AlturaMinima = Unit.Mm2Pu(20);
+        public static readonly float AlturaMinima = Utils.Mm2Pu(20);
 
         public DanfeCampo ReservadoFisco { get; set; }
         public DanfeCampo InformacoesComplementares { get; set; }
@@ -26,7 +26,7 @@ namespace DanfeSharp
 
         private float CalcularAltura()
         {
-            Double larguraTexto = Danfe.InnerRect.Width - Unit.Mm2Pu(78F);
+            Double larguraTexto = Danfe.InnerRect.Width - Utils.Mm2Pu(78F);
             double alturaTexto = Utils.CountTextLines(Danfe.Font, TamanhoFonteCorpo, larguraTexto, Danfe.Model.InformacoesComplementaresCompleta) * (Danfe.Font.GetLineHeight(TamanhoFonteCorpo) + DanfeCampo.LineSpace);
             alturaTexto += Danfe.FontBold.GetLineHeight(DanfeCampo.TamanhoFonteCabecalho) + DanfeCampo.LineSpace;
             alturaTexto += DanfeCampo.PaddingSuperior + DanfeCampo.PaddingInferior;

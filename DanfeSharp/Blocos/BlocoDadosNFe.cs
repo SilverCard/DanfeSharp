@@ -22,33 +22,35 @@ namespace DanfeSharp
         /// <summary>
         /// Largura do retangulo com a numeração da NFe
         /// </summary>
-        public static readonly float RectNumeracaoW = Unit.Mm2Pu(30);
+        public static readonly float RectNumeracaoW = Utils.Mm2Pu(30);
 
-        public static readonly SizeF BarcodeTamanhoRetangulo = new SizeF(Unit.Mm2Pu(85), Unit.Mm2Pu(10)); 
+        public static readonly SizeF BarcodeTamanhoRetangulo = new SizeF(Utils.Mm2Pu(85), Utils.Mm2Pu(10));
 
-         private RectangleF RetEmitente;
+        private RectangleF RetEmitente;
 
         /// <summary>
         /// Retângulo da descrição do DANFE
         /// </summary>
-         public RectangleF RetDescDanfe { get; private set; }
-        
-         public RectangleF RetCodigoBarras { get; set; }
-         private RectangleF RetCampoVariavel;
+        public RectangleF RetDescDanfe { get; private set; }
 
-         public DanfeCampo NaturezaOperacao { get; set; }
-         public DanfeCampo CampoVariavel2 { get; set; }
+        public RectangleF RetCodigoBarras { get; set; }
+        private RectangleF RetCampoVariavel;
 
-         public DanfeCampo Ie { get; set; }
-         public DanfeCampo IeSt { get; set; }
-         public DanfeCampo Cnpj { get; set; }
+        public DanfeCampo NaturezaOperacao { get; set; }
+        public DanfeCampo CampoVariavel2 { get; set; }
 
-         public DanfeCampo ChaveAcesso { get; set; }
+        public DanfeCampo Ie { get; set; }
+        public DanfeCampo IeSt { get; set; }
+        public DanfeCampo Cnpj { get; set; }
 
-         /// <summary>
-         /// Retângulo da descrição do DANFE
-         /// </summary>
-         public RectangleF RetanguloFolha { get; private set; }
+        public DanfeCampo ChaveAcesso { get; set; }
+
+        /// <summary>
+        /// Retângulo da descrição do DANFE
+        /// </summary>
+        public RectangleF RetanguloFolha { get; private set; }
+
+
 
         public BlocoDadosNFe(DanfeDocumento danfeMaker)
             : base(danfeMaker)
@@ -82,7 +84,7 @@ namespace DanfeSharp
             RetEmitente.Width = InternalRectangle.Width - BarcodeTamanhoRetangulo.Width - RectNumeracaoW;
             RetCodigoBarras = new RectangleF(InternalRectangle.Right - BarcodeTamanhoRetangulo.Width, InternalRectangle.Top, BarcodeTamanhoRetangulo.Width, BarcodeTamanhoRetangulo.Height);
             ChaveAcesso.Retangulo = new RectangleF(RetCodigoBarras.Left, RetCodigoBarras.Bottom, RetCodigoBarras.Width, Danfe.CampoAltura);
-           
+
             RetCampoVariavel = RetCodigoBarras;
             RetCampoVariavel.Y = ChaveAcesso.Retangulo.Bottom;
 
@@ -98,7 +100,7 @@ namespace DanfeSharp
 
             // Retangulo com padding
             RectangleF pRet = area.GetPaddedRectangleMm(1);
-            
+
             // DANFE e descrição
             bComp.SafeBegin(pRet, XAlignmentEnum.Center, YAlignmentEnum.Top);
             comp.SetFont(Danfe.FontBold, 12);
@@ -109,11 +111,11 @@ namespace DanfeSharp
             bComp.End();
 
             // Entrada, Saída
-            RectangleF rEntrasaSaida = new RectangleF(pRet.X, bComp.BoundBox.Bottom + Unit.Mm2Pu(1.5F), pRet.Width, pRet.Bottom - bComp.BoundBox.Bottom);
+            RectangleF rEntrasaSaida = new RectangleF(pRet.X, bComp.BoundBox.Bottom + Utils.Mm2Pu(1.5F), pRet.Width, pRet.Bottom - bComp.BoundBox.Bottom);
             rEntrasaSaida = rEntrasaSaida.GetPaddedRectangleMm(0, 2.5F);
 
             comp.SetFont(Danfe.Font, 8);
-            bComp.SafeBegin(rEntrasaSaida, XAlignmentEnum.Left, YAlignmentEnum.Top);          
+            bComp.SafeBegin(rEntrasaSaida, XAlignmentEnum.Left, YAlignmentEnum.Top);
             bComp.ShowText("0 - Entrada\n1 - Saída");
             bComp.End();
 
@@ -129,10 +131,10 @@ namespace DanfeSharp
 
             // Número Série e Folha  
             RectangleF retEsquerdo = pRet;
-            retEsquerdo.Width = Unit.Mm2Pu(8);
+            retEsquerdo.Width = Utils.Mm2Pu(8);
 
             RectangleF retDireito = pRet;
-            retDireito.X = retEsquerdo.Right + Unit.Mm2Pu(1);
+            retDireito.X = retEsquerdo.Right + Utils.Mm2Pu(1);
             retDireito.Width = pRet.Right - retDireito.Left;
 
             RetanguloFolha = retDireito;
@@ -145,7 +147,7 @@ namespace DanfeSharp
 
             bComp.SafeBegin(retDireito, XAlignmentEnum.Left, YAlignmentEnum.Bottom);
             bComp.ShowText(String.Format("{0}\n{1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
-            bComp.End();  
+            bComp.End();
 
         }
 
@@ -170,80 +172,45 @@ namespace DanfeSharp
             return bestSize;
         }
 
-        private org.pdfclown.documents.contents.xObjects.XObject GetJpegLogo()
-        {
-            org.pdfclown.documents.contents.entities.Image img = org.pdfclown.documents.contents.entities.Image.Get(Danfe.Model.LogoPath);
 
-            if(img == null)
-            {
-                throw new Exception("O logotipo não pode ser carregado.");
-            }
-
-            var logo = img.ToXObject(Danfe.Document);
-            return logo;
-        }
-
-        private org.pdfclown.documents.contents.xObjects.XObject GetPdfLogo()
-        {
-            org.pdfclown.files.File pdfFile = new org.pdfclown.files.File(Danfe.Model.LogoPath);
-
-            var logo = pdfFile.Document.Pages[0].ToXObject(Danfe.Document);
-            return logo;
-        }
 
         private void PrintLogo(PrimitiveComposer comp, RectangleF area)
         {
-
+           
             area = area.GetPaddedRectangleMm(1.5F, 1.5F, 1.5F, 1F);
 
-            org.pdfclown.documents.contents.xObjects.XObject logo = null;
-
-            if(Danfe.Model.LogoPath.EndsWith(".jpg"))
-            {
-                logo = GetJpegLogo();
-            }
-            else if (Danfe.Model.LogoPath.EndsWith(".pdf"))
-            {
-                logo = GetPdfLogo();
-            }
-            else
-            {
-                throw new Exception("Tipo inválido de logo.");
-            }
-
-
-            SizeF bestsize = BestFitSize(logo.Size, area.Size);
+            SizeF bestsize = BestFitSize(Danfe._Logo.Size, area.Size);
             PointF point = PointF.Empty;
             point.X = area.X + Math.Abs(area.Width - bestsize.Width) / 2F;
             point.Y = area.Y + Math.Abs(area.Height - bestsize.Height) / 2F;
 
-            comp.ShowXObject(logo, point, bestsize);
+            comp.ShowXObject(Danfe._Logo, point, bestsize);
         }
 
-        private void PrintIdentificacaoEmitente(RectangleF area,  BlockComposer bComp, PrimitiveComposer comp)
+        private void PrintIdentificacaoEmitente(RectangleF area, BlockComposer bComp, PrimitiveComposer comp)
         {
             comp.SafeDrawRectangle(area);
 
             // Retângulo com padding
             RectangleF pRet = area.GetPaddedRectangleMm(1);
-            
+
             var emitente = Danfe.Model.Emitente;
 
-            var yAlign = Danfe.Model.PossuiLogo ? YAlignmentEnum.Bottom : YAlignmentEnum.Middle;
+            var yAlign = Danfe.PossuiLogo ? YAlignmentEnum.Bottom : YAlignmentEnum.Middle;
 
             bComp.SafeBegin(pRet, XAlignmentEnum.Left, yAlign);
 
-            double bestSize = DanfeCampo.AjustarFonte(emitente.Nome, Danfe.FontBold, pRet.Width, Danfe.Model.PossuiLogo ? 10 : 12);
+            double bestSize = DanfeCampo.AjustarFonte(emitente.Nome, Danfe.FontBold, pRet.Width, Danfe.PossuiLogo ? 10 : 12);
             comp.SetFont(Danfe.FontBold, bestSize);
 
             bComp.ShowText(emitente.Nome);
-            bComp.ShowBreak();    
-            comp.SetFont(Danfe.Font, Danfe.Model.PossuiLogo ? 7 : 8);
+            bComp.ShowBreak();
+            comp.SetFont(Danfe.Font, Danfe.PossuiLogo ? 7 : 8);
             bComp.ShowText(emitente.EnderecoLinha1);
             bComp.ShowBreak();
             bComp.ShowText(emitente.EnderecoBairro);
             bComp.ShowBreak();
-            bComp.ShowText(emitente.EnderecoLinha3);            
+            bComp.ShowText(emitente.EnderecoLinha3);
 
             if (!String.IsNullOrWhiteSpace(emitente.Telefone))
             {
@@ -253,21 +220,19 @@ namespace DanfeSharp
 
             bComp.End();
 
-            if(Danfe.Model.PossuiLogo)
+            if (Danfe.PossuiLogo)
             {
                 RectangleF logoRectangle = area;
                 logoRectangle.Height = bComp.BoundBox.Top - logoRectangle.Y;
                 PrintLogo(comp, logoRectangle);
-            }        
-
-
+            }
         }
 
 
         protected override void ToXObjectInternal(PrimitiveComposer comp)
-        {            
-            BlockComposer bComp = new BlockComposer(comp);                                               
-            
+        {
+            BlockComposer bComp = new BlockComposer(comp);
+
             PrintIdentificacaoEmitente(RetEmitente, bComp, comp);
             PrintDescricaoDanfe(RetDescDanfe, bComp, comp);
 
@@ -279,12 +244,12 @@ namespace DanfeSharp
             comp.SetFont(Danfe.Font, 8);
             bComp.SafeBegin(RetCampoVariavel, XAlignmentEnum.Center, YAlignmentEnum.Middle);
             bComp.ShowText(MensagemConsulta);
-            bComp.End();            
+            bComp.End();
 
             comp.Stroke();
 
             var barcode = new Barcode128C(Danfe.Model.ChaveAcesso, RetCodigoBarras.Size).ToXObject(Danfe.Document);
-            comp.ShowXObject(barcode, new PointF(RetCodigoBarras.X, RetCodigoBarras.Y));  
+            comp.ShowXObject(barcode, new PointF(RetCodigoBarras.X, RetCodigoBarras.Y));
         }
 
     }

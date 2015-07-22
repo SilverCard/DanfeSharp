@@ -177,11 +177,6 @@ namespace DanfeSharp.Model
         /// </summary>
         public List<ProdutoViewModel> Produtos { get; set; }
 
-        /// <summary>
-        /// Caminho do Logotipo para impressão no DANFE
-        /// </summary>
-        public String LogoPath { get; set; }
-
         #region BlocoCalculoIssqn
 
         /// <summary>
@@ -224,15 +219,7 @@ namespace DanfeSharp.Model
                     ValorIssqn.HasValue;
             }
         }
-
-        public Boolean PossuiLogo
-        {
-            get
-            {
-                return !String.IsNullOrWhiteSpace(LogoPath);
-            }
-        }
-        
+                
         /// <summary>
         /// Substitui o ponto e vírgula (;) por uma quebra de linha.
         /// </summary>

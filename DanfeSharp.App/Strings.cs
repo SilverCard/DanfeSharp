@@ -8,6 +8,6 @@ namespace DanfeSharp.App
     public static class Strings
     {
         public const String AppName = "DanfeSharpApp";
-        public const String ProjectUrl = "http://danfesharp.codeplex.com";
+        public const String ProjectUrl = "https://github.com/SilverCard/DanfeSharp";
     }
 }

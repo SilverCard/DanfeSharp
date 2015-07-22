@@ -111,7 +111,7 @@ namespace DanfeSharp
             BlockComposer bComp = new BlockComposer(_Composer);
             RectangleF rect = _Danfe.InnerRect;
 
-            rect.Y = rect.Bottom + Unit.Mm2Pu(0.5F);
+            rect.Y = rect.Bottom + Utils.Mm2Pu(0.5F);
             rect.Height = _Danfe.Size.Height - rect.Y;
 
             _Composer.SetFont(_Danfe.Font, 6);

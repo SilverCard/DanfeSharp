@@ -17,8 +17,8 @@ namespace DanfeSharp
         /// </summary>
         public String[,] Valores { get; set; }
 
-        public readonly float Margem = Unit.Mm2Pu(0.75F);
-        public readonly float AlturaCabecalhoTabela = Unit.Mm2Pu(5);
+        public readonly float Margem = Utils.Mm2Pu(0.75F);
+        public readonly float AlturaCabecalhoTabela = Utils.Mm2Pu(5);
 
         private float CurrentY = 0;
 
@@ -51,7 +51,7 @@ namespace DanfeSharp
             // Converte as larguras para PDF Unit
             for (int i = 0; i < _Colunas.Length; i++)
             {
-                _Colunas[i].Largura = Unit.Mm2Pu(_Colunas[i].Largura);
+                _Colunas[i].Largura = Utils.Mm2Pu(_Colunas[i].Largura);
             }
         }
 

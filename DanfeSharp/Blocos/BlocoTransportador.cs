@@ -84,9 +84,9 @@ namespace DanfeSharp
             PosicionarLadoLado(linha, new float[] { 0, CodigoAntt.Retangulo.Width + PlacaVeiculo.Retangulo.Width, UfVeiculo.Retangulo.Width, CnpjCpf.Retangulo.Width }, Endereco, Municipio, EnderecoUf, IE);
 
             linha.Y = linha.Bottom;
-            float l = (Endereco.Retangulo.Width - Unit.Mm2Pu(20)) / 2F;
+            float l = (Endereco.Retangulo.Width - Utils.Mm2Pu(20)) / 2F;
 
-            PosicionarLadoLado(linha, new float[] { Unit.Mm2Pu(20), l, l, 0, Unit.Mm2Pu(35), Unit.Mm2Pu(35) }, Quantidade, Especie, Marca, Numeracao, PesoBruto, PesoLiquido);
+            PosicionarLadoLado(linha, new float[] { Utils.Mm2Pu(20), l, l, 0, Utils.Mm2Pu(35), Utils.Mm2Pu(35) }, Quantidade, Especie, Marca, Numeracao, PesoBruto, PesoLiquido);
 
         }
 

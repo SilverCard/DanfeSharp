@@ -97,7 +97,7 @@ namespace DanfeSharp
             {
                 if(larguras[i]!=0)
                 {
-                    larguras[i] = Unit.Mm2Pu(larguras[i]);
+                    larguras[i] = Utils.Mm2Pu(larguras[i]);
                 }
             }
 
@@ -190,9 +190,7 @@ namespace DanfeSharp
 
                 foreach (var campo in Campos)
                 {
-                    campo.Fonte = Danfe.Font;
-                    campo.FonteBold = Danfe.FontBold;
-                    campo.Print(composer);
+                    campo.Print(composer, Danfe.Font, Danfe.FontBold);
                 }
 
                 composer.Stroke();

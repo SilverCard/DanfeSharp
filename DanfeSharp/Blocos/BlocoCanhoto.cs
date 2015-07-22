@@ -14,17 +14,17 @@ namespace DanfeSharp
         /// <summary>
         /// Margem vertical da linha pontilhada
         /// </summary>
-        public static readonly float MargemLinhaPontilhada = Unit.Mm2Pu(2F);
+        public static readonly float MargemLinhaPontilhada = Utils.Mm2Pu(2F);
 
         /// <summary>
         /// Largura do campo contendo as numerações da NFe
         /// </summary>
-        public static readonly float NumeracaoWidth = Unit.Mm2Pu(35);
+        public static readonly float NumeracaoWidth = Utils.Mm2Pu(35);
 
         /// <summary>
         /// Altura do Campo Recebemos
         /// </summary>
-        public static readonly float RecebemosHeight = Unit.Mm2Pu(8.5F);
+        public static readonly float RecebemosHeight = Utils.Mm2Pu(8.5F);
 
         public DanfeCampo DataRecebimento { get; set; }
         public DanfeCampo AssinaturaRecebedor { get; set; }

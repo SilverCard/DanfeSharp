@@ -12,6 +12,21 @@ namespace DanfeSharp
     public static class Utils
     {
         /// <summary>
+        /// 1 Pdf Unit equivale a essa constante
+        /// </summary>
+        private const float Mm2PuConst = 127F / 360F;
+
+        /// <summary>
+        /// Converte milímetro para Pdf Unit
+        /// </summary>
+        /// <param name="mm">milímetro</param>
+        /// <returns>Valor convertido</returns>
+        public static float Mm2Pu(float mm)
+        {
+            return mm / Mm2PuConst;
+        }
+
+        /// <summary>
         /// Conta o número de linhas que o texto vai ocupar.
         /// </summary>
         /// <param name="font">Fonte do texto</param>

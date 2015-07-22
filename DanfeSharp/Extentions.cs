@@ -15,19 +15,19 @@ namespace DanfeSharp
 
         public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float padding)
         {
-            padding = Unit.Mm2Pu(padding);
+            padding = Utils.Mm2Pu(padding);
             return rect.GetPaddedRectangle(padding, padding, padding, padding);
         }
 
         public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float pLeft, float pRight, float pTop, float pBottom)
         {
-            return rect.GetPaddedRectangle(Unit.Mm2Pu(pLeft), Unit.Mm2Pu(pRight), Unit.Mm2Pu(pTop), Unit.Mm2Pu(pBottom));
+            return rect.GetPaddedRectangle(Utils.Mm2Pu(pLeft), Utils.Mm2Pu(pRight), Utils.Mm2Pu(pTop), Utils.Mm2Pu(pBottom));
         }
 
         public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float vertical, float horizontal)
         {
-            horizontal = Unit.Mm2Pu(horizontal);
-            vertical = Unit.Mm2Pu(vertical);
+            horizontal = Utils.Mm2Pu(horizontal);
+            vertical = Utils.Mm2Pu(vertical);
             return rect.GetPaddedRectangle(horizontal, horizontal, vertical, vertical);
         }
 

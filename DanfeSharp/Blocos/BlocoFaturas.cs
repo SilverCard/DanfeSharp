@@ -10,7 +10,7 @@ namespace DanfeSharp
 {
     class BlocoFaturas : BlocoDanfe
     {
-        public readonly float RetanguloH = Unit.Mm2Pu(7.8F);
+        public readonly float RetanguloH = Utils.Mm2Pu(7.8F);
 
         public const int Colunas = 7;
 

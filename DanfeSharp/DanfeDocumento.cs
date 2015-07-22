@@ -54,8 +54,8 @@ namespace DanfeSharp
         /// </summary>
         public StandardType1Font FontBold { get; private set; }
 
-        public readonly float CampoAltura = Unit.Mm2Pu(6.75F);
-        public readonly float CabecalhoBlocoAltura = Unit.Mm2Pu(3);
+        public readonly float CampoAltura = Utils.Mm2Pu(6.75F);
+        public readonly float CabecalhoBlocoAltura = Utils.Mm2Pu(3);
 
         /// <summary>
         /// Retângulo do interior
@@ -82,8 +82,10 @@ namespace DanfeSharp
         /// </summary>
         public Boolean FoiGerado { get; private set; }
 
+        internal org.pdfclown.documents.contents.xObjects.XObject _Logo = null;
+
         public DanfeDocumento(DanfeViewModel model)
-            : this(model, Unit.Mm2Pu(5))
+            : this(model, Utils.Mm2Pu(5))
         {            
         }
 
@@ -94,12 +96,12 @@ namespace DanfeSharp
             _File = new org.pdfclown.files.File();
             Document = _File.Document;
             Model = model;
-            Size = new SizeF(Unit.Mm2Pu(A4Tamanho.Width), Unit.Mm2Pu(A4Tamanho.Height));
+            Size = new SizeF(Utils.Mm2Pu(A4Tamanho.Width), Utils.Mm2Pu(A4Tamanho.Height));
 
             Font = new StandardType1Font(Document, StandardType1Font.FamilyEnum.Times, false, false);
             FontBold = new StandardType1Font(Document, StandardType1Font.FamilyEnum.Times, true, false);
 
-            InnerRect = new RectangleF(0, 0, Unit.Mm2Pu(A4Tamanho.Width), Unit.Mm2Pu(A4Tamanho.Height)).GetPaddedRectangleMm(5);
+            InnerRect = new RectangleF(0, 0, Utils.Mm2Pu(A4Tamanho.Width), Utils.Mm2Pu(A4Tamanho.Height)).GetPaddedRectangleMm(5);
             Paginas = new List<DanfePagina>();
 
             AdicionarMetadata();
@@ -111,7 +113,7 @@ namespace DanfeSharp
         {
             var info = Document.Information;
             info.CreationDate = DateTime.Now;
-            info.Creator = String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "http://danfesharp.codeplex.com");
+            info.Creator = String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp" );
             info.Title = "DANFE (Documento auxiliar da NFe)";
         }
 
@@ -145,6 +147,48 @@ namespace DanfeSharp
             _File.Save(path, org.pdfclown.files.SerializationModeEnum.Standard);
         }
 
+        private org.pdfclown.documents.contents.xObjects.XObject GetJpegLogo(String path)
+        {
+            org.pdfclown.documents.contents.entities.Image img = org.pdfclown.documents.contents.entities.Image.Get(path);
+
+            if (img == null)
+            {
+                throw new Exception("O logotipo não pode ser carregado.");
+            }
+
+            var logo = img.ToXObject(this.Document);
+            return logo;
+        }
+
+        private org.pdfclown.documents.contents.xObjects.XObject GetPdfLogo(String path)
+        {
+            org.pdfclown.files.File pdfFile = new org.pdfclown.files.File(path);
+
+            var logo = pdfFile.Document.Pages[0].ToXObject(this.Document);
+            return logo;
+        }
+
+        public void AdicionarLogo(String logoPath)
+        {
+            if(String.IsNullOrWhiteSpace(logoPath))
+            {
+                throw new ArgumentNullException("logoPath");
+            }
+
+            if (logoPath.EndsWith(".jpg"))
+            {
+                _Logo = GetJpegLogo(logoPath);
+            }
+            else if (logoPath.EndsWith(".pdf"))
+            {
+                _Logo = GetPdfLogo(logoPath);
+            }
+            else
+            {
+                throw new Exception("Tipo inválido de logo.");
+            }
+        }
+
         /// <summary>
         /// Salva o DANFE em um stream.
         /// </summary>
@@ -170,13 +214,8 @@ namespace DanfeSharp
         /// </summary>
         public void Gerar()
         {
-            if (FoiGerado) return; 
+            if (FoiGerado) return;          
             
-            if(Model.PossuiLogo && !System.IO.File.Exists(Model.LogoPath))
-            {
-                throw new System.IO.FileNotFoundException("O arquivo do logo não foi encontrado.", Model.LogoPath);
-            }
-
             DanfePagina page = CriarPaginar();
             float y = InnerRect.Top, y2 = InnerRect.Bottom;
 
@@ -229,6 +268,14 @@ namespace DanfeSharp
             RenderizarDocumento();
 
             FoiGerado = true;
+        }
+
+        public Boolean PossuiLogo
+        {
+            get
+            {
+                return _Logo != null;
+            }
         }
 
         /// <summary>

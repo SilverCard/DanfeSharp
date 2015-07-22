@@ -47,22 +47,7 @@ namespace DanfeSharp
         /// Indica se a fonte do corpo está em negrito.
         /// </summary>
         public Boolean IsCorpoNegrito { get; set; }
-
-        /// <summary>
-        /// Fonte normal.
-        /// </summary>
-        public org.pdfclown.documents.contents.fonts.Font Fonte { get; set; }
-
-        /// <summary>
-        /// Fonte em Negrito
-        /// </summary>
-        public org.pdfclown.documents.contents.fonts.Font FonteBold { get; set; }
-
-        /// <summary>
-        /// Verdadeiro caso o campo deverá ser impresso.
-        /// </summary>
-        public Boolean WillPrint { get; set; }
-
+        
         /// <summary>
         /// Se o texto for multilinha, o seu tamanho será ajustado para caber na largura caso haja overflow.
         /// </summary>
@@ -73,9 +58,9 @@ namespace DanfeSharp
         /// </summary>
         public const double TamanhoFonteCabecalho = 6;
 
-        public static readonly float PaddingInferior = Unit.Mm2Pu(0.3F);
-        public static readonly float PaddingSuperior = Unit.Mm2Pu(0.7F);
-        public static readonly float PaddingHorizontal = Unit.Mm2Pu(0.75F);
+        public static readonly float PaddingInferior = Utils.Mm2Pu(0.3F);
+        public static readonly float PaddingSuperior = Utils.Mm2Pu(0.7F);
+        public static readonly float PaddingHorizontal = Utils.Mm2Pu(0.75F);
 
         /// <summary>
         /// Espaço extra entre as linhas de texto
@@ -97,7 +82,6 @@ namespace DanfeSharp
             CorpoTamanhoFonte = corpoTamanhoFonte;
             CorpoAlinhamentoY = corpoAlinhamentoY;
             IsCorpoNegrito = isCorpoNegrito;
-            WillPrint = true;
             MultiLinha = false;
         }
 
@@ -142,15 +126,13 @@ namespace DanfeSharp
         /// Imprime o campo no composer.
         /// </summary>
         /// <param name="comp"></param>
-        public void Print(PrimitiveComposer comp)
+        public void Print(PrimitiveComposer comp, org.pdfclown.documents.contents.fonts.Font fonte, org.pdfclown.documents.contents.fonts.Font fonteBold)
         {
-            if (!WillPrint)
-                return;
 
             BlockComposer bComp = new BlockComposer(comp);
             RectangleF pRect = Retangulo.GetPaddedRectangle(PaddingHorizontal, PaddingHorizontal, PaddingSuperior, PaddingInferior);
 
-            comp.SetFont(FonteBold, TamanhoFonteCabecalho);
+            comp.SetFont(fonteBold, TamanhoFonteCabecalho);
             ValidadeRectangle(pRect, comp);
             bComp.SafeBegin(pRect, XAlignmentEnum.Left, YAlignmentEnum.Top);
             bComp.ShowText(Cabecalho.ToUpper());
@@ -160,14 +142,14 @@ namespace DanfeSharp
 
             if (!String.IsNullOrWhiteSpace(Corpo))
             {
-                org.pdfclown.documents.contents.fonts.Font fonteCorpo = IsCorpoNegrito ? FonteBold : Fonte;                
+                org.pdfclown.documents.contents.fonts.Font fonteCorpo = IsCorpoNegrito ? fonteBold : fonte;                
 
                 double largura = fonteCorpo.GetWidth(Corpo, CorpoTamanhoFonte);
                 double novoTamanho = CorpoTamanhoFonte;
 
                 if (!MultiLinha && largura > pRect.Width)
                 {
-                    novoTamanho = (CorpoTamanhoFonte * pRect.Width) / largura - Unit.Mm2Pu(0.005F);
+                    novoTamanho = (CorpoTamanhoFonte * pRect.Width) / largura - Utils.Mm2Pu(0.005F);
                     comp.SetFont(fonteCorpo, novoTamanho);
                 }
 
@@ -175,7 +157,7 @@ namespace DanfeSharp
 
                 if (CorpoAlinhamentoY == YAlignmentEnum.Top)
                 {
-                    float yOffSet = (float)FonteBold.GetLineHeight(TamanhoFonteCabecalho) + LineSpace;
+                    float yOffSet = (float)fonteBold.GetLineHeight(TamanhoFonteCabecalho) + LineSpace;
                     pRect.Y += yOffSet;
                     pRect.Height -= yOffSet;
                 }

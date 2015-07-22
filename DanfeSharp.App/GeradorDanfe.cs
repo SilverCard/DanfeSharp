@@ -15,8 +15,13 @@ namespace DanfeSharp.App
             try
             {
                 DanfeViewModel model = DanfeViewModel.CreateFromXmlFile(xmlPath);
-                model.LogoPath = logoPath;
                 DanfeDocumento danfe = new DanfeDocumento(model);
+
+                if(!String.IsNullOrWhiteSpace(logoPath))
+                {
+                    danfe.AdicionarLogo(logoPath);
+                }
+
                 danfe.Gerar();
 
                 String outFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(xmlPath), model.ChaveAcesso + ".pdf");

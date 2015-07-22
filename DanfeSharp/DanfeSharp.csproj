@@ -81,7 +81,6 @@
     <Compile Include="Schemas\ProcNFe.cs" />
     <Compile Include="Schemas\Versao.cs" />
     <Compile Include="Strings.cs" />
-    <Compile Include="Unit.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
