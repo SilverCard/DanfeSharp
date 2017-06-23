@@ -1,10 +1,7 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp.Blocos
 {
@@ -14,18 +11,10 @@ namespace DanfeSharp.Blocos
         public Tabela Tabela { get; private set; }
         public DanfeViewModel ViewModel { get; private set; }
 
-        public RectangleF RetanguloTabela
-        {
-            get
-            {
-                return BoundingBox.CutTop(CabecalhoBloco.Height);
-            }
-        }
-
         public TabelaProdutosServicos(DanfeViewModel viewModel, Estilo estilo) : base(estilo)
         {
+            ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
             CabecalhoBloco = new CabecalhoBloco(estilo, "DADOS DOS PRODUTOS / SERVIÇOS");
-            ViewModel = viewModel;
 
             var ad = AlinhamentoHorizontal.Direita;
             var ac = AlinhamentoHorizontal.Centro;
@@ -109,8 +98,9 @@ namespace DanfeSharp.Blocos
             CabecalhoBloco.Draw(gfx);    
         }
 
-        public Boolean CompletamenteDesenhada => Tabela.LinhaAtual == ViewModel.Produtos.Count;
 
+        public RectangleF RetanguloTabela => BoundingBox.CutTop(CabecalhoBloco.Height);
+        public Boolean CompletamenteDesenhada => Tabela.LinhaAtual == ViewModel.Produtos.Count;
         public override bool PossuiContono => false;
     }
 }

@@ -87,9 +87,7 @@ namespace DanfeSharp
         /// <summary>
         /// Faturas da Nota Fiscal
         /// </summary>
-        public List<DuplicataViewModel> Duplicatas { get; set; }
-
-        
+        public List<DuplicataViewModel> Duplicatas { get; set; }        
 
         /// <summary>
         /// Dados da Transportadora

@@ -1,5 +1,5 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp.Blocos
 {
@@ -35,6 +35,7 @@ namespace DanfeSharp.Blocos
 
         public override void Draw(Gfx gfx)
         {
+            base.Draw(gfx);
             MainVerticalStack.SetPosition(X, Y);
             MainVerticalStack.Width = Width;
             MainVerticalStack.Draw(gfx);

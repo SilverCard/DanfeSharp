@@ -39,12 +39,10 @@ namespace DanfeSharp
         public virtual void SetSize(float w, float h)
         {
             Width = w;
-
             if(Height != h)
                 Height = h;
         }
         public virtual void SetSize(SizeF s) => SetSize(s.Width, s.Height);
-
 
         public RectangleF BoundingBox => new RectangleF(X, Y, Width, Height);
     }

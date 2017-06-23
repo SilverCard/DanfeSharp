@@ -1,7 +1,6 @@
 ﻿using DanfeSharp.Graphics;
 using System;
 
-
 namespace DanfeSharp
 {
     internal abstract class ElementoBase : DrawableBase
@@ -17,7 +16,6 @@ namespace DanfeSharp
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
-
             if (PossuiContono)
                 gfx.StrokeRectangle(BoundingBox, 0.25f);
         }

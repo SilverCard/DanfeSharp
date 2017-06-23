@@ -32,9 +32,9 @@ namespace DanfeSharp
 
         public Danfe(DanfeViewModel viewModel)
         {
+            ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+
             _Blocos = new List<BlocoBase>();
-   
-            ViewModel = viewModel;
             File = new File();
             PdfDocument = File.Document;
 
@@ -67,6 +67,8 @@ namespace DanfeSharp
         
         public void AdicionarLogoImagem(System.IO.Stream stream)
         {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
             var img = org.pdfclown.documents.contents.entities.Image.Get(stream);
             if (img == null) throw new InvalidOperationException("O logotipo não pode ser carregado, certifique-se que a imagem esteja no formato JPEG não progressivo.");
             _LogoObject = img.ToXObject(PdfDocument);
@@ -74,6 +76,8 @@ namespace DanfeSharp
 
         public void AdicionarLogoPdf(System.IO.Stream stream)
         {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
             using (var pdfFile = new org.pdfclown.files.File(new org.pdfclown.bytes.Stream(stream)))
             {
                 _LogoObject = pdfFile.Document.Pages[0].ToXObject(PdfDocument);
@@ -81,7 +85,9 @@ namespace DanfeSharp
         }
 
         public void AdicionarLogoImagem(String path)
-        {        
+        {
+            if (String.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
+
             using(var fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
                 AdicionarLogoImagem(fs);
@@ -90,6 +96,8 @@ namespace DanfeSharp
 
         public void AdicionarLogoPdf(String path)
         {
+            if (String.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
+
             using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
                 AdicionarLogoPdf(fs);
@@ -173,7 +181,6 @@ namespace DanfeSharp
             _Blocos.Add(bloco);
         }
 
-
         internal void PreencherNumeroFolhas()
         {
             int nFolhas = Paginas.Count;
@@ -185,11 +192,15 @@ namespace DanfeSharp
 
         public void Salvar(String path)
         {
+            if (String.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
+
             File.Save(path, SerializationModeEnum.Incremental);
         }
 
         public void Salvar(System.IO.Stream stream)
         {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));
+
             File.Save(new org.pdfclown.bytes.Stream(stream), SerializationModeEnum.Incremental);            
         }
 

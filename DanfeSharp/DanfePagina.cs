@@ -1,9 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Linq;
 using DanfeSharp.Blocos;
+using DanfeSharp.Graphics;
 using org.pdfclown.documents;
 using org.pdfclown.documents.contents.composition;
-using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
@@ -20,7 +21,7 @@ namespace DanfeSharp
 
         public DanfePagina(Danfe danfe)
         {
-            Danfe = danfe;
+            Danfe = danfe ?? throw new ArgumentNullException(nameof(danfe));
             PdfPage = new Page(Danfe.PdfDocument);
             Danfe.PdfDocument.Pages.Add(PdfPage);
          
@@ -33,10 +34,7 @@ namespace DanfeSharp
                 Retangulo = new RectangleF(0, 0, Constantes.A4Altura, Constantes.A4Largura);
             
             RetanguloDesenhavel = Retangulo.InflatedRetangle(Constantes.Margem);
-            PdfPage.Size = new SizeF(Retangulo.Width.ToPoint(), Retangulo.Height.ToPoint());       
-
-           
-
+            PdfPage.Size = new SizeF(Retangulo.Width.ToPoint(), Retangulo.Height.ToPoint());    
         }
 
         private void DesenharCanhoto()
@@ -66,6 +64,10 @@ namespace DanfeSharp
 
         public void DesenhaNumeroPaginas(int n, int total)
         {
+            if (n <= 0) throw new ArgumentOutOfRangeException(nameof(n));
+            if (total <= 0) throw new ArgumentOutOfRangeException(nameof(n));
+            if (n > total) throw new ArgumentOutOfRangeException("O número da página atual deve ser menor que o total.");
+
             Gfx.DrawString($"Folha {n}/{total}", RetanguloNumeroFolhas, Danfe.EstiloPadrao.FonteNumeroFolhas, AlinhamentoHorizontal.Centro);
             Gfx.Flush();
         }
