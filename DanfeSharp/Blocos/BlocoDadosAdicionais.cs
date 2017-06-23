@@ -1,57 +1,52 @@
-﻿using org.pdfclown.documents.contents.composition;
+﻿using DanfeSharp.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DanfeSharp
+namespace DanfeSharp.Blocos
 {
-    class BlocoDadosAdicionais : BlocoDanfe
+    internal class BlocoDadosAdicionais : BlocoBase
     {
-        public static readonly float AlturaMinima = Utils.Mm2Pu(20);
+        public const float AlturaMinima = 25;
+        private CampoMultilinha _cInfComplementares;
+        private FlexibleLine _Linha;
+        private Campo _cReservadoFisco;
+        public const float InfComplementaresLarguraPorcentagem = 75;
 
-        public DanfeCampo ReservadoFisco { get; set; }
-        public DanfeCampo InformacoesComplementares { get; set; }
-        public const Double TamanhoFonteCorpo = 6;
-
-        public BlocoDadosAdicionais(DanfeDocumento danfe)
-            : base(danfe)
+        public BlocoDadosAdicionais(DanfeViewModel viewModel, Estilo estilo) : base(viewModel, estilo)
         {
-            float altura = CalcularAltura();
-            Size = new SizeF(danfe.InnerRect.Width, Danfe.CabecalhoBlocoAltura + DanfeDocumento.LineWidth + altura);
-            Initialize();
+            _cInfComplementares = new CampoMultilinha("Informações Complementares", ViewModel.TextoAdicional(), estilo);
+            _cReservadoFisco = new Campo("Reservado ao fisco", null, estilo);
+
+            _Linha = new FlexibleLine() { Height = _cInfComplementares.Height }
+            .ComElemento(_cInfComplementares)
+            .ComElemento(_cReservadoFisco)
+            .ComLarguras(InfComplementaresLarguraPorcentagem, 0);
+                        
+            MainVerticalStack.Add(_Linha);           
         }
 
-        private float CalcularAltura()
+        public override float Width
         {
-            Double larguraTexto = Danfe.InnerRect.Width - Utils.Mm2Pu(78F);
-            double alturaTexto = Utils.CountTextLines(Danfe.Font, TamanhoFonteCorpo, larguraTexto, Danfe.Model.InformacoesComplementaresCompleta) * (Danfe.Font.GetLineHeight(TamanhoFonteCorpo) + DanfeCampo.LineSpace);
-            alturaTexto += Danfe.FontBold.GetLineHeight(DanfeCampo.TamanhoFonteCabecalho) + DanfeCampo.LineSpace;
-            alturaTexto += DanfeCampo.PaddingSuperior + DanfeCampo.PaddingInferior;
-            return (float)Math.Max(alturaTexto, AlturaMinima);
-        }
-        
-        protected override void CriarCampos()
-        {
-
-            ReservadoFisco = CriarCampo("Reservado ao Fisco", null);
-            InformacoesComplementares = CriarCampo("Informações Complementares", Danfe.Model.InformacoesComplementaresCompleta, RectangleF.Empty, XAlignmentEnum.Left, TamanhoFonteCorpo, false, YAlignmentEnum.Top);
-            InformacoesComplementares.MultiLinha = true;
-        }
-
-        protected override void PosicionarCampos()
-        {
-            PosicionarLadoLadoMm(InternalRectangle, new float[] { 0, 76.2F }, InformacoesComplementares, ReservadoFisco);
-        }
-
-        public override string Cabecalho
-        {
-            get
+            get => base.Width;
+            set
             {
-                return "Dados Adicionais";
+                base.Width = value;
+                // Força o ajuste da altura do InfComplementares
+                if (_cInfComplementares != null && _Linha != null)
+                {
+                    _Linha.Width = value;
+                    _Linha.Posicionar();
+                    _cInfComplementares.Height = AlturaMinima;
+                    _Linha.Height = _cInfComplementares.Height;
+                }
             }
         }
+
+        public override void Draw(Gfx gfx)
+        {
+            base.Draw(gfx);
+        }
+
+        public override PosicaoBloco Posicao => PosicaoBloco.Base;
+        public override string Cabecalho => "Dados adicionais";
     }
 }

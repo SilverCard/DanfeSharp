@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace DanfeSharp.Schemas.NFe
+namespace DanfeSharp.Esquemas.NFe
 {
     /// <summary>
     /// NF-e processada
@@ -392,27 +389,92 @@ namespace DanfeSharp.Schemas.NFe
 
 
     /// <summary>
-    /// Totais referentes ao ICMS
+    /// Grupo de Valores Totais referentes ao ICMS
     /// </summary>
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ICMSTotal
     {
-
+        /// <summary>
+        /// Base de Cálculo do ICMS 
+        /// </summary>
         public Double vBC;
+
+        /// <summary>
+        /// Valor Total do ICMS 
+        /// </summary>
         public Double vICMS;
+
+        /// <remarks/>
+        public double? vICMSUFDest;
+
+        /// <remarks/>
+        public double? vICMSUFRemet;
+
+        /// <remarks/>
+        public double? vFCP;
+
+        /// <summary>
+        /// Base de Cálculo do ICMS ST 
+        /// </summary>
         public Double vBCST;
+
+        /// <summary>
+        /// Valor Total do ICMS ST 
+        /// </summary>
         public Double vST;
+
+        /// <summary>
+        /// Valor Total dos produtos e serviços
+        /// </summary>
         public Double vProd;
+
+        /// <summary>
+        /// Valor Total do Frete 
+        /// </summary>
         public Double vFrete;
+
+        /// <summary>
+        /// Valor Total do Seguro
+        /// </summary>
         public Double vSeg;
+
+        /// <summary>
+        /// Valor Total do Desconto
+        /// </summary>
         public Double vDesc;
-        public string vII;
-        public Double vIPI;
-        public string vPIS;
-        public string vCOFINS;
+
+        /// <summary>
+        /// Valor Total do II 
+        /// </summary>
+        public double vII;
+
+        /// <summary>
+        /// Valor Total do IPI 
+        /// </summary>
+        public double vIPI;
+
+        /// <summary>
+        /// Valor do PIS 
+        /// </summary>
+        public double vPIS;
+
+        /// <summary>
+        /// Valor do COFINS 
+        /// </summary>
+        public double vCOFINS;
+
+        /// <summary>
+        /// Outras Despesas acessórias 
+        /// </summary>
         public Double vOutro;
+
+        /// <summary>
+        /// Valor Total da NF-e 
+        /// </summary>
         public Double vNF;
+
+
         public Double? vTotTrib;
     }
 
@@ -553,6 +615,11 @@ namespace DanfeSharp.Schemas.NFe
         [XmlAttribute]
         public string versao;
 
+        /// <summary>
+        /// Informação adicional de compra
+        /// </summary>
+        public InfCompra compra { get; set; }
+
         [XmlAttribute(DataType = "ID")]
         public string Id;
 
@@ -569,6 +636,29 @@ namespace DanfeSharp.Schemas.NFe
                 return Versao.Parse(versao);
             }
         }
+    }
+
+    /// <summary>
+    /// Informações de Compras
+    /// </summary>
+    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
+    public partial class InfCompra
+    {
+
+        /// <summary>
+        /// Nota de Empenho
+        /// </summary>
+        public string xNEmp { get; set; }
+
+        /// <summary>
+        /// Pedido
+        /// </summary>
+        public string xPed { get; set; }
+
+        /// <summary>
+        /// Contrato
+        /// </summary>
+        public string xCont { get; set; }
     }
 
     /// <summary>
@@ -647,8 +737,7 @@ namespace DanfeSharp.Schemas.NFe
         /// </summary>
         public FormaEmissao tpEmis;
 
-
-        public TAmb tpAmb;
+        public TAmb tpAmb;        
 
     }
 

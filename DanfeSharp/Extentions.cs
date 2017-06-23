@@ -1,142 +1,120 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using org.pdfclown.documents.contents.composition;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace DanfeSharp
 {
-    /// <summary>
-    /// Essa classe contém métodos de extenção
-    /// </summary>
-    public static class Extentions
+    internal static class Extentions
     {
-
-        public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float padding)
-        {
-            padding = Utils.Mm2Pu(padding);
-            return rect.GetPaddedRectangle(padding, padding, padding, padding);
-        }
-
-        public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float pLeft, float pRight, float pTop, float pBottom)
-        {
-            return rect.GetPaddedRectangle(Utils.Mm2Pu(pLeft), Utils.Mm2Pu(pRight), Utils.Mm2Pu(pTop), Utils.Mm2Pu(pBottom));
-        }
-
-        public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float vertical, float horizontal)
-        {
-            horizontal = Utils.Mm2Pu(horizontal);
-            vertical = Utils.Mm2Pu(vertical);
-            return rect.GetPaddedRectangle(horizontal, horizontal, vertical, vertical);
-        }
-
+        private const float PointFactor = 72F / 25.4F;
 
         /// <summary>
-        /// Pega um retângulo interno com determinado padding.
+        /// Converts Millimeters to Point
         /// </summary>
-        /// <param name="rect">Retângulo.</param>
-        /// <param name="padding">Padding.</param>
-        /// <returns>Retângulo interno.</returns>
-        public static RectangleF GetPaddedRectangle(this RectangleF rect, float padding)
+        /// <param name="mm"></param>
+        /// <returns></returns>
+        public static float ToPoint(this float mm)
         {
-            return rect.GetPaddedRectangle(padding, padding, padding, padding);
-        }
-
-        public static RectangleF GetPaddedRectangle(this RectangleF rect, float vertical, float horizontal)
-        {
-            return rect.GetPaddedRectangle(horizontal, horizontal, vertical, vertical);
-        }
-
-        public static RectangleF GetPaddedRectangle(this RectangleF rect, float pLeft, float pRight, float pTop, float pBottom )
-        {
-            RectangleF rect2 = new RectangleF(rect.X + pLeft, rect.Y + pTop, rect.Width - pLeft - pRight, rect.Height - pTop - pBottom);
-            return rect2;
-        }
-
-        public static RectangleF GetLeftRectangle(this RectangleF rect, float width)
-        {
-            return new RectangleF(rect.Left - width, rect.Y, width, rect.Height);
-        }
-
-        public static RectangleF GetRightRectangle(this RectangleF rect, float width)
-        {
-            return new RectangleF(rect.Right + width, rect.Y, width, rect.Height);
+            return PointFactor * mm;
         }
 
         /// <summary>
-        /// Verifica se a posição e os tamanhos do retângulo possuem um valor negativo.
+        /// Converts Point to Millimeters
         /// </summary>
-        /// <param name="rect">Retânngulo.</param>
-        public static Boolean IsNegative(this RectangleF rect)
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static float ToMm(this float point)
         {
-            if(rect.X < 0 || rect.Y < 0 || rect.Width <= 0 || rect.Height <= 0)
+            return point / PointFactor;
+        }
+
+        /// <summary>
+        /// Converts Point to Millimeters
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static SizeF ToMm(this SizeF s)
+        {
+            return new SizeF(s.Width.ToMm(), s.Height.ToMm());
+        }
+
+        /// <summary>
+        /// Converts Point to Millimeters
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static SizeF ToPointMeasure(this SizeF s)
+        {
+            return new SizeF(s.Width.ToPoint(), s.Height.ToPoint());
+        }
+
+        /// <summary>
+        /// Converts Millimeters to Point
+        /// </summary>
+        /// <param name="mm"></param>
+        /// <returns></returns>
+        public static double ToPoint(this double mm)
+        {
+            return PointFactor * mm;
+        }
+
+        /// <summary>
+        /// Converts Point to Millimeters
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static double ToMm(this double point)
+        {
+            return point / PointFactor;
+        }
+
+        public static RectangleF InflatedRetangle(this RectangleF rect, float top, float button, float horizontal)
+        {
+            return new RectangleF(rect.X + horizontal, rect.Y + top, rect.Width - 2 * horizontal, rect.Height - top - button);
+        }
+
+        public static RectangleF InflatedRetangle(this RectangleF rect, float value) => rect.InflatedRetangle(value, value, value);
+
+        public static RectangleF ToPointMeasure(this RectangleF r) => new RectangleF(r.X.ToPoint(), r.Y.ToPoint(), r.Width.ToPoint(), r.Height.ToPoint());
+
+        public static RectangleF CutTop(this RectangleF r, float height) => new RectangleF(r.X, r.Y + height, r.Width, r.Height - height);
+        public static RectangleF CutBottom(this RectangleF r, float height) => new RectangleF(r.X, r.Y, r.Width, r.Height - height);
+        public static RectangleF CutLeft(this RectangleF r, float width) => new RectangleF(r.X + width, r.Y, r.Width - width, r.Height);
+
+        public static PointF ToPointMeasure(this PointF r) => new PointF(r.X.ToPoint(), r.Y.ToPoint());
+
+
+        public static XAlignmentEnum ToPdfClownAlignment(this AlinhamentoHorizontal ah)
+        {
+            switch (ah)
             {
-                return true;
+                case AlinhamentoHorizontal.Esquerda:
+                    return XAlignmentEnum.Left;
+                case AlinhamentoHorizontal.Centro:
+                    return XAlignmentEnum.Center;
+                case AlinhamentoHorizontal.Direita:
+                    return XAlignmentEnum.Right;
             }
 
-            return false;
+            throw new InvalidOperationException();
         }
 
-        /// <summary>
-        /// Divide um retângulo em n partes iguais.
-        /// </summary>
-        /// <param name="rect">Retângulo a ser dividido</param>
-        /// <param name="n">Número de partes</param>
-        /// <returns>Divisões do retângulo</returns>
-        public static RectangleF[] SplitRectangle(this RectangleF rect, int n)
+        public static YAlignmentEnum ToPdfClownAlignment(this AlinhamentoVertical av)
         {
-            RectangleF[] result = new RectangleF[n];
-
-            float w = rect.Width / (float)n;
-
-            result[0] = rect;
-            result[0].Width = w;
-
-            for (int i = 1; i < n; i++)
+            switch (av)
             {
-                result[i] = result[0];
-                result[i].X = result[i - 1].Right;
+                case AlinhamentoVertical.Topo:
+                    return YAlignmentEnum.Top;
+                case AlinhamentoVertical.Centro:
+                    return YAlignmentEnum.Middle;
+                case AlinhamentoVertical.Base:
+                    return YAlignmentEnum.Bottom;
             }
 
-            return result;
+            throw new InvalidOperationException();
         }
 
-        [DebuggerStepThrough] 
-        private static void VerificarRetangulo(RectangleF frame, SizeF size)
-        {
-            if (frame.IsNegative())
-            {
-                throw new ArgumentException("O retângulo não é válido.", "frame");
-            }
 
-            if (frame.Y + frame.Height > size.Height ||
-              frame.X + frame.Width > size.Width)
-            {
-                throw new ArgumentException("O retângulo esta posicionado fora da área desenhável.", "frame");
-            }
-        }
 
-        /// <summary>
-        /// Extende a funcionalidade do Begin, adicionando uma verificação do retângulo.
-        /// </summary>
-        [DebuggerStepThrough] 
-        internal static void SafeBegin(this org.pdfclown.documents.contents.composition.BlockComposer blockComposer, RectangleF frame,
-            org.pdfclown.documents.contents.composition.XAlignmentEnum xAlignment = org.pdfclown.documents.contents.composition.XAlignmentEnum.Left,
-            org.pdfclown.documents.contents.composition.YAlignmentEnum yAlignment = org.pdfclown.documents.contents.composition.YAlignmentEnum.Top)
-        {
-            VerificarRetangulo(frame, blockComposer.BaseComposer.Scanner.CanvasSize);
-            blockComposer.Begin(frame, xAlignment, yAlignment);
-        }
-
-        /// <summary>
-        /// Estende a funcionalidade do DrawRectangle, adicionando uma verificação do retângulo.
-        /// </summary>
-        [DebuggerStepThrough] 
-        internal static void SafeDrawRectangle(this org.pdfclown.documents.contents.composition.PrimitiveComposer composer, RectangleF frame)
-        {
-            VerificarRetangulo(frame, composer.Scanner.CanvasSize);
-            composer.DrawRectangle(frame);
-        }
     }
 }

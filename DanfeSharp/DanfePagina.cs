@@ -1,163 +1,107 @@
-﻿using org.pdfclown.documents;
-using org.pdfclown.documents.contents.composition;
-using org.pdfclown.documents.contents.xObjects;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DanfeSharp.Blocos;
+using org.pdfclown.documents;
+using org.pdfclown.documents.contents.composition;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
-    public class DanfePagina
+    internal class DanfePagina
     {
-        /// <summary>
-        /// Blocos superiores
-        /// </summary>
-        public List<BlocoDanfe> BlocosSuperiores { get; private set; }
+        public Danfe Danfe { get; private set; }
+        public Page PdfPage { get; private set; }
+        public PrimitiveComposer PrimitiveComposer { get; private set; }
+        public Gfx Gfx { get; private set; }
+        public RectangleF RetanguloNumeroFolhas { get;  set; }
+        public RectangleF RetanguloCorpo { get; private set; }
+        public RectangleF RetanguloDesenhavel { get; private set; }
+        public RectangleF Retangulo { get; private set; }
 
-        /// <summary>
-        /// Blocos inferiores
-        /// </summary>
-        public List<BlocoDanfe> BlocosInferiores { get; private set; }
+        public DanfePagina(Danfe danfe)
+        {
+            Danfe = danfe;
+            PdfPage = new Page(Danfe.PdfDocument);
+            Danfe.PdfDocument.Pages.Add(PdfPage);
+         
+            PrimitiveComposer = new PrimitiveComposer(PdfPage);
+            Gfx = new Gfx(PrimitiveComposer);
 
-        private DanfeDocumento _Danfe;
-        private PrimitiveComposer _Composer;
-        internal Page _Page;
+            if (Danfe.ViewModel.Orientacao == Orientacao.Retrato)            
+                Retangulo = new RectangleF(0, 0, Constantes.A4Largura, Constantes.A4Altura);            
+            else            
+                Retangulo = new RectangleF(0, 0, Constantes.A4Altura, Constantes.A4Largura);
+            
+            RetanguloDesenhavel = Retangulo.InflatedRetangle(Constantes.Margem);
+            PdfPage.Size = new SizeF(Retangulo.Width.ToPoint(), Retangulo.Height.ToPoint());       
 
-        public DanfePagina(DanfeDocumento danfe)
-        {       
-            _Danfe = danfe;
-            _Page = new Page(_Danfe.Document, _Danfe.Size);
-            _Composer = new PrimitiveComposer(_Page);
-            BlocosInferiores = new List<BlocoDanfe>();
-            BlocosSuperiores = new List<BlocoDanfe>();
+           
+
         }
 
-
-        public void AdicionarBlocoSuperior(BlocoDanfe bloco)
+        private void DesenharCanhoto()
         {
-            BlocosSuperiores.Add(bloco);
-        }
+            var c = Danfe.Canhoto;
+            c.SetPosition(RetanguloDesenhavel.Location);
 
-        public void AdicionarBlocoInferior(BlocoDanfe bloco)
-        {
-            BlocosInferiores.Add(bloco);
-        }
-
-        private RectangleF GetFolhaRect()
-        {
-            BlocoDadosNFe bloco = BlocosSuperiores.FirstOrDefault(x => x is BlocoDadosNFe) as BlocoDadosNFe;
-
-            if(bloco == null)
+            if (Danfe.ViewModel.Orientacao == Orientacao.Retrato)
             {
-                throw new Exception("O bloco BlocoDadosNFe não foi encontrado.");
-            }
-
-            RectangleF r = bloco.RetanguloFolha;
-            r.X += bloco.Posicao.X;
-            r.Y += bloco.Posicao.Y;
-
-            return r;
-        }
-
-        private void PosicionarBlocos()
-        {
-            float y = _Danfe.InnerRect.Top;
-
-            foreach (var bloco in BlocosSuperiores)
-            {
-                bloco.Posicao = new PointF(_Danfe.InnerRect.Left, y);
-                y += bloco.Size.Height;
-            }
-
-            y = _Danfe.InnerRect.Bottom;
-
-            foreach (var bloco in Enumerable.Reverse(BlocosInferiores))
-            {
-                y -= bloco.Size.Height;
-                bloco.Posicao = new PointF(_Danfe.InnerRect.Left, y);
-            }
-        }
-
-        private void PrintMarcaDAgua(String text)
-        {
-            PointF p = PointF.Empty;
-
-            var blocoProdutos = BlocosSuperiores.FirstOrDefault(x => x is BlocoProdutos);
-
-            if (blocoProdutos == null)
-            {
-                p = new PointF(_Danfe.Size.Width / 2f, _Danfe.Size.Height / 2f);
+                c.Width = RetanguloDesenhavel.Width;
+                c.Draw(Gfx);
+                RetanguloDesenhavel = RetanguloDesenhavel.CutTop(c.Height);
             }
             else
             {
-                p.X = blocoProdutos.Posicao.X + blocoProdutos.Size.Width / 2F;
-                p.Y = blocoProdutos.Posicao.Y + blocoProdutos.Size.Height / 2F;
+                c.Width = RetanguloDesenhavel.Height;
+
+                Gfx.PrimitiveComposer.BeginLocalState();
+                Gfx.PrimitiveComposer.Rotate(90, new PointF(c.Y - c.X, c.Width + c.X + c.Y).ToPointMeasure());
+                c.Draw(Gfx);
+                Gfx.PrimitiveComposer.End();
+
+                RetanguloDesenhavel = RetanguloDesenhavel.CutLeft(c.Height);
             }
 
-            _Composer.BeginLocalState();
-            _Composer.SetFont(_Danfe.FontBold, 50);
-            org.pdfclown.documents.contents.ExtGState state = new org.pdfclown.documents.contents.ExtGState(_Danfe.Document);
-            state.FillAlpha = 0.3F;
-            _Composer.ApplyState(state);
-            _Composer.ShowText(text, p, XAlignmentEnum.Center, YAlignmentEnum.Middle, 0);
-            _Composer.End();
         }
 
-        public void PrintCreditos()
+        public void DesenhaNumeroPaginas(int n, int total)
         {
-            BlockComposer bComp = new BlockComposer(_Composer);
-            RectangleF rect = _Danfe.InnerRect;
-
-            rect.Y = rect.Bottom + Utils.Mm2Pu(0.5F);
-            rect.Height = _Danfe.Size.Height - rect.Y;
-
-            _Composer.SetFont(_Danfe.Font, 6);
-            bComp.SafeBegin(rect, XAlignmentEnum.Right, YAlignmentEnum.Top);
-            bComp.ShowText("Gerado com DanfeSharp");
-            bComp.End(); 
+            Gfx.DrawString($"Folha {n}/{total}", RetanguloNumeroFolhas, Danfe.EstiloPadrao.FonteNumeroFolhas, AlinhamentoHorizontal.Centro);
+            Gfx.Flush();
         }
 
-        private void PrintNumeroFolhas(int pagina, int nPaginas)
+        public void DesenharBlocos(bool isPrimeirapagina = false)
         {
-            // Número de folhas
-            var rFolhas = GetFolhaRect();
-            BlockComposer bComp = new BlockComposer(_Composer);
-            bComp.SafeBegin(rFolhas, XAlignmentEnum.Left, YAlignmentEnum.Bottom);
-            _Composer.SetFont(_Danfe.FontBold, BlocoDadosNFe.TamanhoFonteNumeracao);
-            bComp.ShowText(String.Format("{0}/{1}", pagina, nPaginas));
-            bComp.End();
-        }
+            if (isPrimeirapagina) DesenharCanhoto();
 
-        public void Renderizar(int pagina, int nPaginas)
-        {
-            PosicionarBlocos();
+            var blocos = isPrimeirapagina ? Danfe._Blocos : Danfe._Blocos.Where(x => x.VisivelSomentePrimeiraPagina == false);
 
-            foreach (var bloco in BlocosSuperiores.Union(BlocosInferiores))
+            foreach (var bloco in blocos)
             {
-                _Composer.ShowXObject(bloco.ToXObject(), bloco.Posicao);
+                bloco.Width = RetanguloDesenhavel.Width;
+
+                if (bloco.Posicao == PosicaoBloco.Topo)
+                {
+                    bloco.SetPosition(RetanguloDesenhavel.Location);
+                    RetanguloDesenhavel = RetanguloDesenhavel.CutTop(bloco.Height);
+                }
+                else
+                {
+                    bloco.SetPosition(RetanguloDesenhavel.X, RetanguloDesenhavel.Bottom - bloco.Height);
+                    RetanguloDesenhavel = RetanguloDesenhavel.CutBottom(bloco.Height);
+                }
+
+                bloco.Draw(Gfx);
+
+                if (bloco is BlocoIdentificacaoEmitente)
+                {
+                    var rf = (bloco as BlocoIdentificacaoEmitente).RetanguloNumeroFolhas;
+                    RetanguloNumeroFolhas = rf;
+                }
             }
 
-            PrintNumeroFolhas(pagina, nPaginas);           
-         
-            if(_Danfe.Model.TipoAmbiente != 1)
-            {
-                PrintMarcaDAgua("SEM VALOR FISCAL");
-            }
-
-            PrintCreditos();
-
-            _Composer.Flush();
+            RetanguloCorpo = RetanguloDesenhavel;
+            Gfx.Flush();
         }
-
-
-        public float GetAlturaCorpo(RectangleF innerRectangle)
-        {
-            return innerRectangle.Height - BlocosSuperiores.Sum(x => x.Size.Height) - BlocosInferiores.Sum(x => x.Size.Height);
-        }
-       
-
     }
 }

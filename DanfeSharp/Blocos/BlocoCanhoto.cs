@@ -1,102 +1,33 @@
-﻿using DanfeSharp.Model;
-using org.pdfclown.documents.contents.composition;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DanfeSharp
+﻿namespace DanfeSharp.Blocos
 {
-    public class BlocoCanhoto : BlocoDanfe
+    internal class BlocoCanhoto : BlocoBase
     {
-        /// <summary>
-        /// Margem vertical da linha pontilhada
-        /// </summary>
-        public static readonly float MargemLinhaPontilhada = Utils.Mm2Pu(2F);
+        public const float TextoRecebimentoAltura = 10;
+        public const float AlturaLinha2 = 9;
 
-        /// <summary>
-        /// Largura do campo contendo as numerações da NFe
-        /// </summary>
-        public static readonly float NumeracaoWidth = Utils.Mm2Pu(35);
-
-        /// <summary>
-        /// Altura do Campo Recebemos
-        /// </summary>
-        public static readonly float RecebemosHeight = Utils.Mm2Pu(8.5F);
-
-        public DanfeCampo DataRecebimento { get; set; }
-        public DanfeCampo AssinaturaRecebedor { get; set; }
-
-        public RectangleF RetRecebemos { get; set; }
-        public RectangleF RetNumeracao { get; set; }
-
-        public BlocoCanhoto(DanfeDocumento danfeMaker)
-            : base(danfeMaker)
+        public BlocoCanhoto(DanfeViewModel viewModel, Estilo estilo) : base(viewModel, estilo)
         {
-            Size = new SizeF(Danfe.InnerRect.Width, RecebemosHeight + danfeMaker.CampoAltura + 2 * MargemLinhaPontilhada);
-            Initialize();
+            var textoRecebimento = new TextoSimples(estilo, viewModel.TextoRecebimento) { Height = TextoRecebimentoAltura, TamanhoFonte = 8 };
+            var nfe = new NumeroNfSerie(estilo, viewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), viewModel.NfSerie.ToString()) { Height = AlturaLinha2 + TextoRecebimentoAltura, Width = 30 };
+
+            var campos = new LinhaCampos(Estilo) { Height = AlturaLinha2 }
+               .ComCampo("Data de Recebimento", null)
+               .ComCampo("Identificação e assinatura do recebedor", null)
+               .ComLarguras(50, 0);
+
+            var coluna1 = new VerticalStack();
+            coluna1.Add(textoRecebimento, campos);
+
+            var linha = new FlexibleLine() {Height = coluna1.Height }
+            .ComElemento(coluna1)
+            .ComElemento(nfe)
+            .ComLarguras(0, 16);
+
+            MainVerticalStack.Add(linha, new CutLine(2));
+
         }
 
-        protected override void CriarCampos()
-        {
-            DataRecebimento = CriarCampo("Data de Recebimento", null);
-            AssinaturaRecebedor = CriarCampo("Assinatura recebedor", null);
-        }
+        public override PosicaoBloco Posicao => PosicaoBloco.Topo;
 
-        protected override void PosicionarCampos()
-        {
-            RetNumeracao = new RectangleF(InternalRectangle.Right - NumeracaoWidth, InternalRectangle.Top, NumeracaoWidth, Danfe.CampoAltura + RecebemosHeight);
-            RetRecebemos = new RectangleF(InternalRectangle.Left, InternalRectangle.Top, InternalRectangle.Width - RetNumeracao.Width, RecebemosHeight);
-
-            RectangleF ret = new RectangleF(InternalRectangle.Left, RetRecebemos.Bottom, InternalRectangle.Width - RetNumeracao.Width, Danfe.CampoAltura);
-            PosicionarLadoLadoMm(ret, new float[] { 41, 0 }, DataRecebimento, AssinaturaRecebedor);
-        }
-
-        protected override void ToXObjectInternal(PrimitiveComposer composer)
-        {
-            EmpresaViewModel empresa = null;
-
-            if(Danfe.Model.TipoNF == 1)
-            {
-                empresa = Danfe.Model.Emitente;
-            }
-            else if(Danfe.Model.TipoNF == 0)
-            {
-                empresa = Danfe.Model.Destinatario;
-            }
-            else
-            {
-                throw new Exception("Tipo de NF não suportado.");
-            }
-
-            BlockComposer bComp = new BlockComposer(composer);
-
-            composer.SafeDrawRectangle(RetNumeracao);
-            composer.SafeDrawRectangle(RetRecebemos);   
-
-            composer.SetFont(Danfe.Font, 6);
-            bComp.SafeBegin(RetRecebemos.GetPaddedRectangleMm(1), XAlignmentEnum.Left, YAlignmentEnum.Middle);
-            bComp.ShowText(String.Format("RECEBEMOS DE {0} OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO.", empresa.Nome));
-            bComp.End();
-
-            // Numeração da NFe
-            composer.SafeDrawRectangle(RetNumeracao);
-            composer.SetFont(Danfe.FontBold, 12);
-            bComp.SafeBegin(RetNumeracao, XAlignmentEnum.Center, YAlignmentEnum.Middle);
-            bComp.ShowText(String.Format("NF-e\nNº {0}\nSérie {1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
-            bComp.End();
-
-            composer.Stroke();
-
-            // Linha pontilhada
-            composer.BeginLocalState();
-            composer.SetLineDash(new org.pdfclown.documents.contents.LineDash(new double[] { 3, 2 }));
-            composer.DrawLine(new PointF(InternalRectangle.Left, Size.Height - MargemLinhaPontilhada), new PointF(InternalRectangle.Right, Size.Height - MargemLinhaPontilhada));
-            composer.Stroke();
-            composer.End();
-
-        }
     }
 }

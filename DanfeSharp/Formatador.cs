@@ -12,7 +12,7 @@ namespace DanfeSharp
     /// </summary>
     public static class Formatador
     {
-        public static readonly CultureInfo Culture = new CultureInfo("pt-BR");
+        public static readonly CultureInfo Cultura = new CultureInfo(1046);
 
         public const String FormatoNumeroNF = @"000\.000\.000";
 
@@ -183,12 +183,12 @@ namespace DanfeSharp
 
         public static String Formatar(this Double number, String formato = FormatoMoeda)
         {
-            return number.ToString(formato, Culture);
+            return number.ToString(formato, Cultura);
         }
 
         public static String Formatar(this int number, String formato = FormatoMoeda)
         {
-            return number.ToString(formato, Culture);
+            return number.ToString(formato, Cultura);
         }
 
         public static String Formatar(this int? number, String formato = FormatoMoeda)

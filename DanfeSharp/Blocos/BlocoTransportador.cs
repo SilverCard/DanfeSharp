@@ -1,104 +1,46 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DanfeSharp
+﻿namespace DanfeSharp.Blocos
 {
-    public class BlocoTransportador : BlocoDanfe
+    internal class BlocoTransportador : BlocoBase
     {
-        #region CamposLinhas1
+        public const float LarguraCampoPlacaVeiculo = 24F/200F * 100;
+        public const float LarguraCampoCodigoAntt = 30F / 200F * 100;
+        public const float LarguraCampoCnpj = 35F / 200F * 100;
+        public const float LarguraCampoUf = 10F / 200F * 100;
 
-        public DanfeCampo RazaoSocial { get; private set; }
-        public DanfeCampo FreteConta { get; private set; }
-        public DanfeCampo CodigoAntt { get; private set; }
-        public DanfeCampo PlacaVeiculo { get; private set; }
-        public DanfeCampo UfVeiculo { get; private set; }
-        public DanfeCampo CnpjCpf { get; private set; }
-
-        #endregion
-
-        #region CamposLinhas2
-
-        public DanfeCampo Endereco { get; private set; }
-        public DanfeCampo Municipio { get; private set; }
-        public DanfeCampo EnderecoUf { get; private set; }
-        public DanfeCampo IE { get; private set; }
-
-        #endregion
-
-        #region CamposLinhas3
-
-        public DanfeCampo Quantidade { get; private set; }
-        public DanfeCampo Especie { get; private set; }
-        public DanfeCampo Marca { get; private set; }
-        public DanfeCampo Numeracao { get; private set; }
-        public DanfeCampo PesoBruto { get; private set; }
-        public DanfeCampo PesoLiquido { get; private set; }
-
-        #endregion
-
-        public BlocoTransportador(DanfeDocumento danfeMaker)
-            : base(danfeMaker)
+        public BlocoTransportador(DanfeViewModel viewModel, Estilo campoEstilo) : base(viewModel, campoEstilo)
         {
-            Size = new SizeF(Danfe.InnerRect.Width, danfeMaker.CabecalhoBlocoAltura + 3 * danfeMaker.CampoAltura + DanfeDocumento.LineWidth);
-            Initialize();
-        }
+            var transportadora = viewModel.Transportadora;
 
-        protected override void CriarCampos()
-        {
-            var transportadora = Danfe.Model.Transportadora;
+            AdicionarLinhaCampos()
+                .ComCampo(Strings.RazaoSocial, transportadora.Nome)
+                .ComCampo("Frete por conta", transportadora.ModalidadeFreteString, AlinhamentoHorizontal.Centro)
+                .ComCampo("Código ANTT", transportadora.CodigoAntt, AlinhamentoHorizontal.Centro)
+                .ComCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), AlinhamentoHorizontal.Centro)
+                .ComCampo(Strings.UF, transportadora.VeiculoUf, AlinhamentoHorizontal.Centro)
+                .ComCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(transportadora.CnpjCpf), AlinhamentoHorizontal.Centro)
+                .ComLarguras(0, 25F / 200F * 100, LarguraCampoCodigoAntt, LarguraCampoPlacaVeiculo, LarguraCampoUf, LarguraCampoCnpj);
 
-            //Campos Linha 1
-            RazaoSocial = CriarCampo(Strings.RazaoSocial, transportadora.Nome);
-            FreteConta = CriarCampo("Frete port Conta", transportadora.ModalidadeFreteString, XAlignmentEnum.Center);
-            CodigoAntt = CriarCampo("Código ANTT", transportadora.CodigoAntt, XAlignmentEnum.Center);
-            PlacaVeiculo = CriarCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), XAlignmentEnum.Center);
-            UfVeiculo = CriarCampo(Strings.UF, transportadora.VeiculoUf, XAlignmentEnum.Center);
-            CnpjCpf = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(transportadora.CnpjCpf), XAlignmentEnum.Center);
+            AdicionarLinhaCampos()
+                .ComCampo(Strings.Endereco, transportadora.EnderecoLogadrouro)
+                .ComCampo(Strings.Municipio, transportadora.Municipio)
+                .ComCampo(Strings.UF, transportadora.EnderecoUf, AlinhamentoHorizontal.Centro)
+                .ComCampo(Strings.InscricaoEstadual, transportadora.Ie, AlinhamentoHorizontal.Centro)
+                .ComLarguras(0, LarguraCampoPlacaVeiculo + LarguraCampoCodigoAntt, LarguraCampoUf, LarguraCampoCnpj);
 
-            //Campos Linha 2
-            Endereco = CriarCampo(Strings.Endereco, transportadora.EnderecoLogadrouro);
-            Municipio = CriarCampo(Strings.Municipio, transportadora.Municipio);
-            EnderecoUf = CriarCampo(Strings.UF, transportadora.EnderecoUf, XAlignmentEnum.Center);
-            IE = CriarCampo(Strings.InscricaoEstadual, transportadora.Ie, XAlignmentEnum.Center);
+            var l = (float)(LarguraCampoCodigoAntt + LarguraCampoPlacaVeiculo + LarguraCampoUf + LarguraCampoCnpj) / 3F;
 
-            //Campos Linha 3
-            Quantidade = CriarCampo(Strings.Quantidade, transportadora.QuantidadeVolumes.Formatar(Formatador.FormatoNumero), XAlignmentEnum.Right);
-            Especie = CriarCampo("Espécie", transportadora.Especie);
-            Marca = CriarCampo("Marca", transportadora.Marca);
-            Numeracao = CriarCampo("Numeração", transportadora.Numeracao);
-            PesoBruto = CriarCampo("Peso Bruto", transportadora.PesoBruto.Formatar(), XAlignmentEnum.Right);
-            PesoLiquido = CriarCampo("Peso Líquido", transportadora.PesoLiquido.Formatar(), XAlignmentEnum.Right);
-        }
-
-        protected override void PosicionarCampos()
-        {
-            RectangleF linha = new RectangleF(InternalRectangle.Left, InternalRectangle.Top, InternalRectangle.Width, Danfe.CampoAltura);
-            PosicionarLadoLadoMm(linha, new float[] { 0, 25, 30, 24, 10, 35 }, RazaoSocial, FreteConta, CodigoAntt, PlacaVeiculo, UfVeiculo, CnpjCpf);
-
-            linha.Y = linha.Bottom;
-            PosicionarLadoLado(linha, new float[] { 0, CodigoAntt.Retangulo.Width + PlacaVeiculo.Retangulo.Width, UfVeiculo.Retangulo.Width, CnpjCpf.Retangulo.Width }, Endereco, Municipio, EnderecoUf, IE);
-
-            linha.Y = linha.Bottom;
-            float l = (Endereco.Retangulo.Width - Utils.Mm2Pu(20)) / 2F;
-
-            PosicionarLadoLado(linha, new float[] { Utils.Mm2Pu(20), l, l, 0, Utils.Mm2Pu(35), Utils.Mm2Pu(35) }, Quantidade, Especie, Marca, Numeracao, PesoBruto, PesoLiquido);
+            AdicionarLinhaCampos()
+                .ComCampo(Strings.Quantidade, transportadora.QuantidadeVolumes.Formatar(Formatador.FormatoNumero), AlinhamentoHorizontal.Direita)
+                .ComCampo("Espécie", transportadora.Especie)
+                .ComCampo("Marca", transportadora.Marca)
+                .ComCampo("Numeração", transportadora.Numeracao)
+                .ComCampo("Peso Bruto", transportadora.PesoBruto.Formatar("N3"), AlinhamentoHorizontal.Direita)
+                .ComCampo("Peso Líquido", transportadora.PesoLiquido.Formatar("N3"), AlinhamentoHorizontal.Direita)
+                .ComLarguras(20F / 200F * 100, 0, 0, l, l, l);
 
         }
 
-
-        public override string Cabecalho
-        {
-            get
-            {
-                return "TRANSPORTADOR / VOLUMES TRANSPORTADOS";
-            }
-        }
+        public override PosicaoBloco Posicao => PosicaoBloco.Topo;
+        public override string Cabecalho => "Transportador / Volumes Transportados";
     }
-
-
 }

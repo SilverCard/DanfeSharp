@@ -1,1 +1,0 @@
-Coloque aqui os xml de NFe processada a serem testados.
