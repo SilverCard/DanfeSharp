@@ -34,8 +34,8 @@
                 .ComCampo("Espécie", transportadora.Especie)
                 .ComCampo("Marca", transportadora.Marca)
                 .ComCampo("Numeração", transportadora.Numeracao)
-                .ComCampo("Peso Bruto", transportadora.PesoBruto.Formatar("N3"), AlinhamentoHorizontal.Direita)
-                .ComCampo("Peso Líquido", transportadora.PesoLiquido.Formatar("N3"), AlinhamentoHorizontal.Direita)
+                .ComCampoNumerico("Peso Bruto", transportadora.PesoBruto, 3)
+                .ComCampoNumerico("Peso Líquido", transportadora.PesoLiquido, 3)
                 .ComLarguras(20F / 200F * 100, 0, 0, l, l, l);
 
         }

@@ -1,4 +1,6 @@
-﻿namespace DanfeSharp.Blocos
+﻿using DanfeSharp.Elementos;
+
+namespace DanfeSharp.Blocos
 {
     internal class BlocoCanhoto : BlocoBase
     {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DanfeSharp
+namespace DanfeSharp.Elementos
 {
     internal class LinhaCampos : FlexibleLine
     {
@@ -16,7 +12,6 @@ namespace DanfeSharp
             SetSize(width, height);
         }
 
-
         public LinhaCampos(Estilo estilo) : base()
         {
             Estilo = estilo;
@@ -25,6 +20,13 @@ namespace DanfeSharp
         public virtual LinhaCampos ComCampo(String cabecalho, String conteudo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda)
         {
             var campo = new Campo(cabecalho, conteudo, Estilo, alinhamentoHorizontalConteudo);
+            Elementos.Add(campo);
+            return this;
+        }
+
+        public virtual LinhaCampos ComCampoNumerico(String cabecalho, double? conteudoNumerico, int casasDecimais = 2)
+        {
+            var campo = new CampoNumerico(cabecalho, conteudoNumerico, Estilo, casasDecimais);
             Elementos.Add(campo);
             return this;
         }

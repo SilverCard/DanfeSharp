@@ -16,7 +16,7 @@ namespace DanfeSharp
         public Campo(String cabecalho, String conteudo, Estilo estilo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda) : base(estilo)
         {
             Cabecalho = cabecalho;
-            Conteudo = conteudo;
+            this.Conteudo = conteudo;
             AlinhamentoHorizontalConteudo = alinhamentoHorizontalConteudo;
             IsConteudoNegrito = true;
             Height = Constantes.CampoAltura;

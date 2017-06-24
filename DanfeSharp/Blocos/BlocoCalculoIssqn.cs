@@ -8,9 +8,9 @@
 
             AdicionarLinhaCampos()
                 .ComCampo("INSCRIÇÃO MUNICIPAL", m.InscricaoMunicipal, AlinhamentoHorizontal.Centro)
-                .ComCampo("VALOR TOTAL DOS SERVIÇOS", m.ValorTotalServicos.Formatar(), AlinhamentoHorizontal.Direita)
-                .ComCampo("BASE DE CÁLCULO DO ISSQN", m.BaseIssqn.Formatar(), AlinhamentoHorizontal.Direita)
-                .ComCampo("VALOR TOTAL DO ISSQN", m.ValorIssqn.Formatar(), AlinhamentoHorizontal.Direita)
+                .ComCampoNumerico("VALOR TOTAL DOS SERVIÇOS", m.ValorTotalServicos)
+                .ComCampoNumerico("BASE DE CÁLCULO DO ISSQN", m.BaseIssqn)
+                .ComCampoNumerico("VALOR TOTAL DO ISSQN", m.ValorIssqn)
                 .ComLargurasIguais();
         }
 
