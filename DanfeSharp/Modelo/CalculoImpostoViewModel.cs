@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DanfeSharp.Modelo
+﻿namespace DanfeSharp.Modelo
 {
     public class CalculoImpostoViewModel
     {
@@ -8,64 +6,64 @@ namespace DanfeSharp.Modelo
         /// <para>Base de Cálculo do ICMS</para>
         /// <para>Tag vBC</para>
         /// </summary>
-        public Double BaseCalculoIcms { get; set; }
+        public double BaseCalculoIcms { get; set; }
 
         /// <summary>
         /// <para>Valor Total do ICMS</para>
         /// <para>Tag vICMS</para>
         /// </summary>
-        public Double ValorIcms { get; set; }
+        public double ValorIcms { get; set; }
 
         /// <remarks/>
-        public double? vICMSUFDest;
+        public double? vICMSUFDest { get; set; }
 
         /// <remarks/>
-        public double? vICMSUFRemet;
+        public double? vICMSUFRemet { get; set; }
 
         /// <remarks/>
-        public double? vFCP;
+        public double? vFCP { get; set; }
 
         /// <summary>
         /// <para>Base de Cálculo do ICMS ST</para>
         /// <para>Tag vBCST</para>
         /// </summary>
-        public Double BaseCalculoIcmsSt { get; set; }
+        public double BaseCalculoIcmsSt { get; set; }
 
         /// <summary>
         /// <para>Valor Total do ICMS ST</para>
         /// <para>Tag vST</para>
         /// </summary>
-        public Double ValorIcmsSt { get; set; }
+        public double ValorIcmsSt { get; set; }
 
         /// <summary>
         /// <para>Valor Total dos produtos e serviços</para>
         /// <para>Tag vProd</para>
         /// </summary>
-        public Double? ValorTotalProdutos { get; set; }
+        public double? ValorTotalProdutos { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Frete</para>
         /// <para>Tag vFrete</para>
         /// </summary>
-        public Double ValorFrete { get; set; }
+        public double ValorFrete { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Seguro</para>
         /// <para>Tag vSeg</para>
         /// </summary>
-        public Double ValorSeguro { get; set; }
+        public double ValorSeguro { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Desconto </para>
         /// <para>Tag vDesc</para>
         /// </summary>
-        public Double Desconto { get; set; }
+        public double Desconto { get; set; }
 
         /// <summary>
         /// <para>Outras Despesas acessórias</para>
         /// <para>Tag vOutro</para>
         /// </summary>
-        public Double OutrasDespesas { get; set; }
+        public double OutrasDespesas { get; set; }
 
         /// <summary>
         /// Valor do imposto de importação.
@@ -76,23 +74,23 @@ namespace DanfeSharp.Modelo
         /// <para>Valor Total do IPI</para>
         /// <para>Tag vIPI</para>
         /// </summary>
-        public Double ValorIpi { get; set; }
+        public double ValorIpi { get; set; }
 
         /// <summary>
         /// Valor do PIS
         /// </summary>
-        public Double ValorPis { get; set; }
+        public double ValorPis { get; set; }
 
         /// <summary>
         /// Valor do COFINS
         /// </summary>
-        public Double ValorCofins { get; set; }
+        public double ValorCofins { get; set; }
 
         /// <summary>
         /// <para>Valor Total da NF-e </para>
         /// <para>Tag vNF</para>
         /// </summary>
-        public Double ValorTotalNota { get; set; }
+        public double ValorTotalNota { get; set; }
 
 
         /// <summary>

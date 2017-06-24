@@ -27,18 +27,18 @@ namespace DanfeSharp.Blocos
                 Tabela
                 .ComColuna(8.5f, ac, "CÓDIGO PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")
-                .ComColuna(6F, ac, "NCM/SH")
+                .ComColuna(5.6F, ac, "NCM/SH")
                 .ComColuna(3.5F, ac, "O/CST")
                 .ComColuna(3.5F, ac, "CFOP")
-                .ComColuna(3.1F, ac, "UN")
-                .ComColuna(5.3F, ad, "QUANTI.")
+                .ComColuna(3.25F, ac, "UN")
+                .ComColuna(6F, ad, "QUANTI.")
                 .ComColuna(5.3F, ad, "VALOR", "UNIT.")
                 .ComColuna(5, ad, "VALOR", "TOTAL")
                 .ComColuna(5, ad, "B CÁLC", "ICMS")
                 .ComColuna(5, ad, "VALOR", "ICMS")
                 .ComColuna(5, ad, "VALOR", "IPI")
-                .ComColuna(3.6F, ad, "ALIQ.", "ICMS")
-                .ComColuna(3.6F, ad, "ALIQ.", "IPI");
+                .ComColuna(3.5F, ad, "ALIQ.", "ICMS")
+                .ComColuna(3.5F, ad, "ALIQ.", "IPI");
             }
             else
             {
@@ -71,8 +71,8 @@ namespace DanfeSharp.Blocos
                     p.OCst,
                     p.Cfop.Formatar("N0"),
                     p.Unidade,
-                    p.ValorUnitario.Formatar(),
                     p.Quantidade.Formatar(),
+                    p.ValorUnitario.Formatar(),
                     p.ValorTotal.Formatar(),
                     p.BaseIcms.Formatar(),
                     p.ValorIcms.Formatar(),
