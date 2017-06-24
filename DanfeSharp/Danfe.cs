@@ -149,6 +149,7 @@ namespace DanfeSharp
             DanfePagina p = new DanfePagina(this);
             Paginas.Add(p);
             p.DesenharBlocos(Paginas.Count == 1);
+            p.DesenharCreditos();
             return p;
         }
 

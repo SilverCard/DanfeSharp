@@ -162,16 +162,16 @@ namespace DanfeSharp
             //Todo NF-e Referenciadas?
 
             if (!String.IsNullOrEmpty(InformacoesComplementares))
-                sb.Append("Inf. Contribuinte: ").Append(InformacoesComplementares.Trim()).Replace(";", "\r\n");
+                sb.Append("Inf. Contribuinte: ").Append(InformacoesComplementares).Replace(";", "\r\n").Append(' ');
 
             if (!String.IsNullOrWhiteSpace(InformacaoCompra))
-                sb.Append(" ").Append(InformacaoCompra);
+                sb.Append(InformacaoCompra).Append(' ');
 
             if (!String.IsNullOrEmpty(Destinatario.Email))
-                sb.Append(" Email do Destinatário: ").Append(Destinatario.Email);
+                sb.Append("Email do Destinatário: ").Append(Destinatario.Email).Append(' ');
 
             if (!String.IsNullOrEmpty(InformacoesAdicionaisFisco))
-                sb.Append(" Inf. fisco: ").Append(InformacoesAdicionaisFisco);
+                sb.Append("Inf. fisco: ").Append(InformacoesAdicionaisFisco).Append(' ');
 
             //Todo NT 2013.003 Lei da Transparência
 

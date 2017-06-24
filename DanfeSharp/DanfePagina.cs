@@ -17,6 +17,7 @@ namespace DanfeSharp
         public RectangleF RetanguloNumeroFolhas { get;  set; }
         public RectangleF RetanguloCorpo { get; private set; }
         public RectangleF RetanguloDesenhavel { get; private set; }
+        public RectangleF RetanguloCreditos { get; private set; }
         public RectangleF Retangulo { get; private set; }
 
         public DanfePagina(Danfe danfe)
@@ -34,7 +35,13 @@ namespace DanfeSharp
                 Retangulo = new RectangleF(0, 0, Constantes.A4Altura, Constantes.A4Largura);
             
             RetanguloDesenhavel = Retangulo.InflatedRetangle(Constantes.Margem);
+            RetanguloCreditos = new RectangleF(RetanguloDesenhavel.X, RetanguloDesenhavel.Bottom + Danfe.EstiloPadrao.PaddingSuperior, RetanguloDesenhavel.Width, Retangulo.Height - RetanguloDesenhavel.Height - Danfe.EstiloPadrao.PaddingSuperior);
             PdfPage.Size = new SizeF(Retangulo.Width.ToPoint(), Retangulo.Height.ToPoint());    
+        }
+
+        public void DesenharCreditos()
+        {
+            Gfx.DrawString("Gerado com DanfeSharp", RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(5), AlinhamentoHorizontal.Direita);
         }
 
         private void DesenharCanhoto()

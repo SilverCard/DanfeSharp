@@ -59,7 +59,7 @@ namespace DanfeSharp.Test
                 ChaveAcesso = new String('0', 44),
                 Emitente = new EmpresaViewModel()
                 {
-                    CnpjCpf = new String('0', 11),
+                    CnpjCpf = new String('0', 14),
                     Nome = "Abstergo Ltda",
                     Email = "fake@mail.123",
                     EnderecoBairro = "Bairro",
@@ -76,7 +76,7 @@ namespace DanfeSharp.Test
                 },
                 Destinatario = new EmpresaViewModel()
                 {
-                    CnpjCpf = new String('1', 11),
+                    CnpjCpf = new String('1', 14),
                     Nome = "Umbrella Corp Ltda",
                     Email = "fake@mail.123",
                     EnderecoBairro = "Bairro",
@@ -90,10 +90,46 @@ namespace DanfeSharp.Test
                     IeSt = "87878",
                     IM = "45454",
                     Telefone = "0000000000"
-                }
+                },
+                Transportadora = new TransportadoraViewModel()
+                {
+                    Nome = "Correios",
+                    CnpjCpf = new String('1', 14),
+                    VeiculoUf = "RS",
+                    QuantidadeVolumes = 123.1234,
+                    CodigoAntt = "1234",
+                    EnderecoBairro = "Bairoo",
+                    EnderecoCep = "00000",
+                    EnderecoComplemento = "Com",
+                    Especie = "Especie",
+                    Placa = "ABC1234",
+                    EnderecoLogadrouro = "Logadrouro",
+                    Ie = "12334",
+                    EnderecoUf = "RS",
+                    PesoLiquido = 456.7794,
+                    Marca = "DanfeSharp",
+                    EnderecoNumero = "101",
+                    ModalidadeFrete = 1,
+                    PesoBruto = 101.1234
+                },
+                InformacoesComplementares = "Aqui vai as informações complementares."
             };
             m.CalculoImposto = CalculoImpostoViewModel();
             m.CalculoIssqn = CalculoIssqnViewModel();
+
+            m.Duplicatas = new List<DuplicataViewModel>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                var d = new DuplicataViewModel()
+                {
+                    Numero = i.ToString(),
+                    Valor = i * Math.PI,
+                    Vecimento = new DateTime(9999, 12, 30)
+                };
+
+                m.Duplicatas.Add(d);
+            }
 
             m.Produtos = new List<ProdutoViewModel>();
 

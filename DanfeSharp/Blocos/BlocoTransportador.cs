@@ -30,7 +30,7 @@
             var l = (float)(LarguraCampoCodigoAntt + LarguraCampoPlacaVeiculo + LarguraCampoUf + LarguraCampoCnpj) / 3F;
 
             AdicionarLinhaCampos()
-                .ComCampo(Strings.Quantidade, transportadora.QuantidadeVolumes.Formatar(Formatador.FormatoNumero), AlinhamentoHorizontal.Direita)
+                .ComCampoNumerico(Strings.Quantidade, transportadora.QuantidadeVolumes, 3)
                 .ComCampo("Espécie", transportadora.Especie)
                 .ComCampo("Marca", transportadora.Marca)
                 .ComCampo("Numeração", transportadora.Numeracao)

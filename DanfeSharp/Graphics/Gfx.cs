@@ -25,7 +25,7 @@ namespace DanfeSharp.Graphics
             if (av == AlinhamentoVertical.Base)
                 p.Y = rect.Bottom - fonte.AlturaLinha;
             else if (av == AlinhamentoVertical.Centro)
-                p.Y += (rect.Height - fonte.AlturaLinha) / 2F;
+                p.Y += (rect.Height - fonte.AlturaLinha) / 2F ;
 
             if (ah == AlinhamentoHorizontal.Direita)
                 p.X = rect.Right - fonte.MedirLarguraTexto(str);
