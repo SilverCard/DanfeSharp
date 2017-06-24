@@ -12,6 +12,9 @@ namespace DanfeSharp
     /// </summary>
     public static class Formatador
     {
+        /// <summary>
+        /// Cultura pt-BR
+        /// </summary>
         public static readonly CultureInfo Cultura = new CultureInfo(1046);
 
         public const String FormatoNumeroNF = @"000\.000\.000";

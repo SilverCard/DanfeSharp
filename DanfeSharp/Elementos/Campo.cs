@@ -13,12 +13,12 @@ namespace DanfeSharp
 
         public Boolean IsConteudoNegrito { get; set; }
 
-        public Campo(String cabecalho, String conteudo, Estilo estilo, bool isConteudoNegrito = true, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda) : base(estilo)
+        public Campo(String cabecalho, String conteudo, Estilo estilo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda) : base(estilo)
         {
             Cabecalho = cabecalho;
             Conteudo = conteudo;
             AlinhamentoHorizontalConteudo = alinhamentoHorizontalConteudo;
-            IsConteudoNegrito = isConteudoNegrito;
+            IsConteudoNegrito = true;
             Height = Constantes.CampoAltura;
         }
 

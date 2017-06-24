@@ -22,7 +22,7 @@ namespace DanfeSharp.Blocos
                 TamanhoFonte = 9
             };
 
-            var campoChaveAcesso = new Campo("Chave de Acesso", Formatador.FormatarChaveAcesso(ViewModel.ChaveAcesso), estilo, false, AlinhamentoHorizontal.Centro) { Height = Constantes.CampoAltura };
+            var campoChaveAcesso = new Campo("Chave de Acesso", Formatador.FormatarChaveAcesso(ViewModel.ChaveAcesso), estilo, AlinhamentoHorizontal.Centro) { Height = Constantes.CampoAltura };
             var codigoBarras = new Barcode128C(viewModel.ChaveAcesso, Estilo) { Height = AlturaLinha1 - textoConsulta.Height - campoChaveAcesso.Height };
 
             var coluna3 = new VerticalStack();

@@ -7,10 +7,11 @@ namespace DanfeSharp
     {   
         TextBlock _tbConteudo;
 
-        public CampoMultilinha(String cabecalho, String conteudo, Estilo estilo, bool isConteudoNegrito = false, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda)
-              : base(cabecalho, conteudo, estilo, isConteudoNegrito, alinhamentoHorizontalConteudo)
+        public CampoMultilinha(String cabecalho, String conteudo, Estilo estilo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda)
+              : base(cabecalho, conteudo, estilo, alinhamentoHorizontalConteudo)
         {
             _tbConteudo = new TextBlock(conteudo, estilo.FonteCampoConteudo);
+            IsConteudoNegrito = false;
         }
 
         protected override void DesenharConteudo(Gfx gfx)

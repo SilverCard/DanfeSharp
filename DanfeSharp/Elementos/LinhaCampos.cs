@@ -22,9 +22,9 @@ namespace DanfeSharp
             Estilo = estilo;
         }
 
-        public virtual LinhaCampos ComCampo(String cabecalho, String conteudo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda, bool isConteudoNegrito = true)
+        public virtual LinhaCampos ComCampo(String cabecalho, String conteudo, AlinhamentoHorizontal alinhamentoHorizontalConteudo = AlinhamentoHorizontal.Esquerda)
         {
-            var campo = new Campo(cabecalho, conteudo, Estilo, isConteudoNegrito, alinhamentoHorizontalConteudo);
+            var campo = new Campo(cabecalho, conteudo, Estilo, alinhamentoHorizontalConteudo);
             Elementos.Add(campo);
             return this;
         }

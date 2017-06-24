@@ -18,7 +18,7 @@ namespace DanfeSharp.Test
         public void DanfePaisagemKabum()
         {
 
-            var model = (DanfeViewModel.CreateFromXmlFile(@""));
+            var model = (DanfeViewModel.CreateFromXmlFile(@"C:\Users\ricar\Downloads\nfe.xml"));
             model.Orientacao = Orientacao.Retrato;
 
 
@@ -39,7 +39,7 @@ namespace DanfeSharp.Test
 
           
 
-            d.AdicionarLogoPdf(@"C: \Users\ricar\Desktop\logo.pdf");
+          //  d.AdicionarLogoPdf(@"C: \Users\ricar\Desktop\logo.pdf");
 
             d.Gerar();
 
