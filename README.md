@@ -1,8 +1,11 @@
 # DanfeSharp
 
-DanfeSharp é uma biblioteca com um aplicativo de exemplo escritos em C# que permite a geração do DANFE em formato PDF através do arquivo Xml da NF-e processada.
-Atualmente somente o formato retrato e NFe com emissão normal estão implementados.
+DanfeSharp é uma biblioteca em C# que permite a geração do DANFE em formato PDF.
+
+A biblioteca PDF Clown é utilizada para a escrita dos arquivos em PDF.
+
+Esse branch é uma nova versão em desenvolvimento, compatível com o Visual Studio 2017 ou superior.
 
 
-Esse projeto utiliza o PDF Clown para a geração do arquivo pdf.<br />
-Requer o .NET Framework 4.0.
+
+
