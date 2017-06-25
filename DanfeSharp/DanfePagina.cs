@@ -79,6 +79,18 @@ namespace DanfeSharp
             Gfx.Flush();
         }
 
+        public void DesenharAvisoHomologacao()
+        {
+            TextStack ts = new TextStack(RetanguloCorpo) { AlinhamentoVertical = AlinhamentoVertical.Centro, AlinhamentoHorizontal = AlinhamentoHorizontal.Centro }
+                        .AddLine("SEM VALOR FISCAL", Danfe.EstiloPadrao.CriarFonteRegular(48))
+                        .AddLine("AMBIENTE DE HOMOLOGAÇÃO", Danfe.EstiloPadrao.CriarFonteRegular(30));
+
+            Gfx.PrimitiveComposer.BeginLocalState();
+            Gfx.PrimitiveComposer.SetFillColor(new org.pdfclown.documents.contents.colorSpaces.DeviceRGBColor(0.35, 0.35, 0.35));
+            ts.Draw(Gfx);
+            Gfx.PrimitiveComposer.End();
+        }
+
         public void DesenharBlocos(bool isPrimeirapagina = false)
         {
             if (isPrimeirapagina) DesenharCanhoto();

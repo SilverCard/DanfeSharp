@@ -25,5 +25,27 @@ namespace DanfeSharp.Test
             d.SalvarTestPdf();
         }
 
+        [TestMethod]
+        public void RetratoHomologacao()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.TipoAmbiente = 2;
+            model.Orientacao = Orientacao.Retrato;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void PaisagemHomologacao()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.TipoAmbiente = 2;
+            model.Orientacao = Orientacao.Paisagem;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
     }
 }

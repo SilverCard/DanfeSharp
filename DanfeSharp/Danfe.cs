@@ -126,8 +126,8 @@ namespace DanfeSharp
                     
             while (true)
             {
-                DanfePagina p = CriarPagina();          
-
+                DanfePagina p = CriarPagina();                   
+               
                 tabela.SetPosition(p.RetanguloCorpo.Location);
                 tabela.SetSize(p.RetanguloCorpo.Size);
                 tabela.Draw(p.Gfx);
@@ -150,6 +150,11 @@ namespace DanfeSharp
             Paginas.Add(p);
             p.DesenharBlocos(Paginas.Count == 1);
             p.DesenharCreditos();
+
+            // Ambiente de homologação
+            if (ViewModel.TipoAmbiente == 2)
+                p.DesenharAvisoHomologacao();
+
             return p;
         }
 

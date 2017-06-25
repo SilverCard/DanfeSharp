@@ -45,7 +45,7 @@
       <HintPath>..\packages\MSTest.TestFramework.1.1.11\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="PDFClown">
-      <HintPath>..\PDFClown\PDFClown.dll</HintPath>
+      <HintPath>..\DanfeSharp\bin\Debug\PDFClown.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
