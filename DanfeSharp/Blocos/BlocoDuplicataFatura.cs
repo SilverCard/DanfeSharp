@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using DanfeSharp.Modelo;
+using System.Linq;
 
 namespace DanfeSharp.Blocos
 {

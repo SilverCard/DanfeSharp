@@ -4,6 +4,7 @@ using DanfeSharp.Blocos;
 using org.pdfclown.documents;
 using org.pdfclown.documents.contents.fonts;
 using org.pdfclown.files;
+using DanfeSharp.Modelo;
 
 namespace DanfeSharp
 {

@@ -1,4 +1,5 @@
 ﻿using DanfeSharp.Graphics;
+using DanfeSharp.Modelo;
 using org.pdfclown.documents.contents.xObjects;
 using System;
 using System.Drawing;

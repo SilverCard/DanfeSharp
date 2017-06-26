@@ -1,4 +1,6 @@
-﻿namespace DanfeSharp.Blocos
+﻿using DanfeSharp.Modelo;
+
+namespace DanfeSharp.Blocos
 {
     internal class BlocoCalculoIssqn : BlocoBase
     {

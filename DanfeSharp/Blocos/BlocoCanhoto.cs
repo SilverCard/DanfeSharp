@@ -1,4 +1,5 @@
 ﻿using DanfeSharp.Elementos;
+using DanfeSharp.Modelo;
 
 namespace DanfeSharp.Blocos
 {

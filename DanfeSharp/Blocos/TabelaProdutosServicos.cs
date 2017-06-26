@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using DanfeSharp.Graphics;
+using DanfeSharp.Modelo;
 
 namespace DanfeSharp.Blocos
 {
@@ -33,8 +34,8 @@ namespace DanfeSharp.Blocos
                 .ComColuna(3.5F, ac, "CFOP")
                 .ComColuna(3.25F, ac, "UN")
                 .ComColuna(6F, ad, "QUANTI.")
-                .ComColuna(5.3F, ad, "VALOR", "UNIT.")
-                .ComColuna(5, ad, "VALOR", "TOTAL")
+                .ComColuna(6F, ad, "VALOR", "UNIT.")
+                .ComColuna(6F, ad, "VALOR", "TOTAL")
                 .ComColuna(5, ad, "B CÁLC", "ICMS")
                 .ComColuna(5, ad, "VALOR", "ICMS")
                 .ComColuna(5, ad, "VALOR", "IPI")
