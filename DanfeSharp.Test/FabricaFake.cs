@@ -87,7 +87,8 @@ namespace DanfeSharp.Test
                     Ie = "87787",
                     IeSt = "87878",
                     IM = "45454",
-                    Telefone = "0000000000"            
+                    Telefone = "0000000000",
+                    CRT = "3"
                 },
                 Destinatario = new EmpresaViewModel()
                 {

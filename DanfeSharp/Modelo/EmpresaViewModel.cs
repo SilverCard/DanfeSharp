@@ -90,6 +90,11 @@ namespace DanfeSharp.Modelo
         public String Email { get; set; }
 
         /// <summary>
+        /// Código de Regime Tributário
+        /// </summary>
+        public String CRT { get; set; }
+
+        /// <summary>
         /// Linha 1 do Endereço
         /// </summary>
         public String EnderecoLinha1

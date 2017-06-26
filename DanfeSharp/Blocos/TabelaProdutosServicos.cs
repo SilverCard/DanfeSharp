@@ -21,6 +21,7 @@ namespace DanfeSharp.Blocos
             var ae = AlinhamentoHorizontal.Esquerda;
 
             Tabela = new Tabela(Estilo);
+            String cabecalho4 = ViewModel.Emitente.CRT == "3" ? "O/CST" : "O/CSOSN";
 
             if (ViewModel.IsRetrato)
             { 
@@ -28,7 +29,7 @@ namespace DanfeSharp.Blocos
                 .ComColuna(8.5f, ac, "CÓDIGO PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")
                 .ComColuna(5.6F, ac, "NCM/SH")
-                .ComColuna(3.5F, ac, "O/CST")
+                .ComColuna(3.5F, ac, cabecalho4)
                 .ComColuna(3.5F, ac, "CFOP")
                 .ComColuna(3.25F, ac, "UN")
                 .ComColuna(6F, ad, "QUANTI.")
@@ -46,7 +47,7 @@ namespace DanfeSharp.Blocos
                 .ComColuna(8.1f, ac, "CÓDIGO PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")
                 .ComColuna(5.5F, ac, "NCM/SH")
-                .ComColuna(3.1F, ac, "O/CST")
+                .ComColuna(3.1F, ac, cabecalho4)
                 .ComColuna(3.1F, ac, "CFOP")
                 .ComColuna(3F, ac, "UN")
                 .ComColuna(5.25F, ad, "QUANTI.")

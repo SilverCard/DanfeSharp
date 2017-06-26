@@ -38,6 +38,7 @@ namespace DanfeSharp
             {
                 var emit = empresa as Emitente;
                 model.IM = emit.IM;
+                model.CRT = emit.CRT;
             }
 
             return model;

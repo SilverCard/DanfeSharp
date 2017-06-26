@@ -153,6 +153,11 @@ namespace DanfeSharp.Esquemas.NFe
                 Endereco = value;
             }
         }
+
+        /// <summary>
+        /// Código de Regime Tributário
+        /// </summary>
+        public String CRT { get; set; }
     }
 
 
