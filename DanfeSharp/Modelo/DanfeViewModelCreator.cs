@@ -64,7 +64,7 @@ namespace DanfeSharp
             }
         }
 
-        internal static DanfeViewModel CreateFromXmlFile(String path)
+        public static DanfeViewModel CriarDeArquivoXml(String path)
         {
             if (String.IsNullOrWhiteSpace(path))
             {
@@ -100,7 +100,7 @@ namespace DanfeSharp
             }
         }
 
-        public static void ExtrairDatas(DanfeViewModel model, InfNFe infNfe)
+        internal static void ExtrairDatas(DanfeViewModel model, InfNFe infNfe)
         {
             var ide = infNfe.ide;
 
@@ -127,7 +127,7 @@ namespace DanfeSharp
             }
         }
 
-        public static CalculoImpostoViewModel CriarCalculoImpostoViewModel(ICMSTotal i)
+        internal static CalculoImpostoViewModel CriarCalculoImpostoViewModel(ICMSTotal i)
         {
             return new CalculoImpostoViewModel()
             {

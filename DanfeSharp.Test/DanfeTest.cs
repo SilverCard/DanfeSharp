@@ -19,7 +19,7 @@ namespace DanfeSharp.Test
 
             foreach (var pathXml in Directory.EnumerateFiles(pasta, "*.xml"))
             {
-                var model = DanfeViewModelCreator.CreateFromXmlFile(pathXml);
+                var model = DanfeViewModelCreator.CriarDeArquivoXml(pathXml);
                 using (Danfe danfe = new Danfe(model))
                 {
                     danfe.Gerar();

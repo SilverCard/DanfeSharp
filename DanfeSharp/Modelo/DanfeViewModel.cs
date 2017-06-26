@@ -173,7 +173,7 @@ namespace DanfeSharp
        
         public static DanfeViewModel CreateFromXmlFile(String path)
         {
-            return DanfeViewModelCreator.CreateFromXmlFile(path);
+            return DanfeViewModelCreator.CriarDeArquivoXml(path);
         }
 
         public static DanfeViewModel CreateFromXmlString(String xml)
