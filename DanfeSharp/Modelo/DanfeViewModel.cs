@@ -113,6 +113,15 @@ namespace DanfeSharp
 
         public CalculoIssqnViewModel CalculoIssqn { get; set; }
 
+        #region Opções de exibição
+
+        /// <summary>
+        /// Exibi os valores do ICMS Interestadual e Valor Total dos Impostos no bloco Cálculos do Imposto.
+        /// </summary>
+        public bool ExibirIcmsInterestadual { get; set; }
+
+        #endregion
+
         public DanfeViewModel ()
 	    {
             Orientacao = Orientacao.Paisagem;
@@ -123,6 +132,8 @@ namespace DanfeSharp
             Produtos = new List<ProdutoViewModel>();
             Transportadora = new TransportadoraViewModel();
             CalculoIssqn = new CalculoIssqnViewModel();
+
+            ExibirIcmsInterestadual = true;
         }
 
         

@@ -6,6 +6,28 @@ namespace DanfeSharp.Test
     public class DanfeTest
     {
         [TestMethod]
+        public void RetratoSemIcmsInterestadual()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Retrato;
+            model.ExibirIcmsInterestadual = false;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void PaisagemSemIcmsInterestadual()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Paisagem;
+            model.ExibirIcmsInterestadual = false;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
         public void Retrato()
         {
             var model = FabricaFake.DanfeViewModel_1();

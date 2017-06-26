@@ -6,27 +6,37 @@
         {        
             var m = ViewModel.CalculoImposto;
 
-            AdicionarLinhaCampos()
+            var l = AdicionarLinhaCampos()
             .ComCampoNumerico("BASE DE CÁLC. DO ICMS", m.BaseCalculoIcms)
             .ComCampoNumerico("VALOR DO ICMS", m.ValorIcms)
             .ComCampoNumerico("BASE DE CÁLC. ICMS S.T.", m.BaseCalculoIcmsSt)
             .ComCampoNumerico("VALOR DO ICMS SUBST.", m.ValorIcmsSt)
-            .ComCampoNumerico("V. IMP. IMPORTAÇÃO", m.ValorII)
-            .ComCampoNumerico("V. ICMS UF REMET.", m.vICMSUFRemet)
-            .ComCampoNumerico("VALOR DO FCP", m.vFCPUFDest)
-            .ComCampoNumerico("VALOR DO PIS", m.ValorPis)
+            .ComCampoNumerico("V. IMP. IMPORTAÇÃO", m.ValorII);
+
+            if (ViewModel.ExibirIcmsInterestadual)
+            {
+                l.ComCampoNumerico("V. ICMS UF REMET.", m.vICMSUFRemet)
+                 .ComCampoNumerico("VALOR DO FCP", m.vFCPUFDest);
+            }
+
+            l.ComCampoNumerico("VALOR DO PIS", m.ValorPis)
             .ComCampoNumerico("V. TOTAL PRODUTOS", m.ValorTotalProdutos)
             .ComLargurasIguais();
 
-            AdicionarLinhaCampos()
+            l = AdicionarLinhaCampos()
             .ComCampoNumerico("Valor do Frete", m.ValorFrete)
             .ComCampoNumerico("Valor do Seguro", m.ValorSeguro)
             .ComCampoNumerico("Desconto", m.Desconto)
             .ComCampoNumerico("Outras Despesas", m.OutrasDespesas)
-            .ComCampoNumerico("Valor Ipi", m.ValorIpi)
-            .ComCampoNumerico("V. ICMS UF DEST.", m.vICMSUFDest)
-            .ComCampoNumerico("V. TOT. TRIB.", m.ValorAproximadoTributos)
-            .ComCampoNumerico("VALOR DO COFINS", m.ValorCofins)
+            .ComCampoNumerico("Valor Ipi", m.ValorIpi);
+
+            if (ViewModel.ExibirIcmsInterestadual)
+            {
+                l.ComCampoNumerico("V. ICMS UF DEST.", m.vICMSUFDest)
+                .ComCampoNumerico("V. TOT. TRIB.", m.ValorAproximadoTributos);
+            }
+
+            l.ComCampoNumerico("VALOR DO COFINS", m.ValorCofins)
             .ComCampoNumerico("Valor Total da Nota", m.ValorTotalNota)
             .ComLargurasIguais();
         }
