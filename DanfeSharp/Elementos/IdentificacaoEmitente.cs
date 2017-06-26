@@ -20,7 +20,7 @@ namespace DanfeSharp
         {
             base.Draw(gfx);
             var rp = BoundingBox.InflatedRetangle(0.75F);
-            float lh = 12.5F;
+            float alturaMaximaLogoHorizontal = 12.5F; 
 
             Fonte f2, f3;
             
@@ -35,10 +35,21 @@ namespace DanfeSharp
             }
             else
             {
-                float lw = (lh * Logo.Size.Width) / Logo.Size.Height;
-                var rl = new RectangleF(rp.X, rp.Y, rp.Width, lh);
-                gfx.ShowXObject(Logo, rl);
-                rp = rp.CutTop(12.5F);
+                RectangleF rLogo;
+
+                if(Logo.Size.Width >= Logo.Size.Height)
+                {
+                    rLogo = new RectangleF(rp.X, rp.Y, rp.Width, alturaMaximaLogoHorizontal);
+                    rp = rp.CutTop(alturaMaximaLogoHorizontal);
+                }
+                else
+                {
+                    float lw = rp.Height * Logo.Size.Width / Logo.Size.Height;
+                    rLogo = new RectangleF(rp.X, rp.Y, lw, rp.Height);
+                    rp = rp.CutLeft(lw);
+                }
+        
+                gfx.ShowXObject(Logo, rLogo);         
 
                 f2 = Estilo.CriarFonteNegrito(9);
                 f3 = Estilo.CriarFonteRegular(8);

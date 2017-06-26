@@ -86,8 +86,8 @@ namespace DanfeSharp.Graphics
                 }
             }
 
-            p.X = r.X + (r.Width - s.Width) / 2F;
-            p.Y = r.Y + (r.Height - s.Height) / 2F;
+            p.X = r.X + Math.Abs(r.Width - s.Width) / 2F;
+            p.Y = r.Y + Math.Abs(r.Height - s.Height) / 2F;
 
             PrimitiveComposer.ShowXObject(xobj, p.ToPointMeasure(), s.ToPointMeasure());
         }

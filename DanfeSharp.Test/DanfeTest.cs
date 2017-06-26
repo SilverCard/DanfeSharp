@@ -57,7 +57,7 @@ namespace DanfeSharp.Test
             var model = FabricaFake.DanfeViewModel_1();
             model.Orientacao = Orientacao.Retrato;
             DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
-            d.AdicionarLogoImagem(FabricaFake.FakeLogo(100, 50));
+            d.AdicionarLogoImagem(FabricaFake.FakeLogo(420, 193));
             d.Gerar();
             d.SalvarTestPdf();
         }
@@ -68,7 +68,7 @@ namespace DanfeSharp.Test
             var model = FabricaFake.DanfeViewModel_1();
             model.Orientacao = Orientacao.Retrato;
             DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
-            d.AdicionarLogoImagem(FabricaFake.FakeLogo(50, 100));
+            d.AdicionarLogoImagem(FabricaFake.FakeLogo(838, 1024));
             d.Gerar();
             d.SalvarTestPdf();
         }

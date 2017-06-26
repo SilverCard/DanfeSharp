@@ -19,7 +19,7 @@ namespace DanfeSharp.Test
             using (Bitmap bmp = new Bitmap(w, h))            
             using (var graph = System.Drawing.Graphics.FromImage(bmp))
             {
-                Rectangle ImageSize = new Rectangle(0, 0, 100, 100);
+                Rectangle ImageSize = new Rectangle(0, 0, w, h);
                 graph.FillRectangle(Brushes.Cyan, ImageSize);
                 bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
