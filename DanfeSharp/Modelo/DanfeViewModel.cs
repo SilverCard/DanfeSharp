@@ -120,6 +120,11 @@ namespace DanfeSharp
         /// </summary>
         public bool ExibirIcmsInterestadual { get; set; }
 
+        /// <summary>
+        /// Exibi os valores do PIS e COFINS no bloco Cálculos do Imposto.
+        /// </summary>
+        public bool ExibirPisConfins { get; set; }
+
         #endregion
 
         public DanfeViewModel ()
@@ -134,6 +139,7 @@ namespace DanfeSharp
             CalculoIssqn = new CalculoIssqnViewModel();
 
             ExibirIcmsInterestadual = true;
+            ExibirPisConfins = true;
         }
 
         

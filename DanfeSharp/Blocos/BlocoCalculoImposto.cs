@@ -3,7 +3,7 @@
     class BlocoCalculoImposto : BlocoBase
     {
         public BlocoCalculoImposto(DanfeViewModel viewModel, Estilo estilo) : base(viewModel, estilo)
-        {        
+        {
             var m = ViewModel.CalculoImposto;
 
             var l = AdicionarLinhaCampos()
@@ -19,9 +19,13 @@
                  .ComCampoNumerico("VALOR DO FCP", m.vFCPUFDest);
             }
 
-            l.ComCampoNumerico("VALOR DO PIS", m.ValorPis)
-            .ComCampoNumerico("V. TOTAL PRODUTOS", m.ValorTotalProdutos)
-            .ComLargurasIguais();
+            if (ViewModel.ExibirPisConfins)
+            {
+                l.ComCampoNumerico("VALOR DO PIS", m.ValorPis);
+            }
+
+            l.ComCampoNumerico("V. TOTAL PRODUTOS", m.ValorTotalProdutos)
+           .ComLargurasIguais();
 
             l = AdicionarLinhaCampos()
             .ComCampoNumerico("Valor do Frete", m.ValorFrete)
@@ -36,8 +40,12 @@
                 .ComCampoNumerico("V. TOT. TRIB.", m.ValorAproximadoTributos);
             }
 
-            l.ComCampoNumerico("VALOR DO COFINS", m.ValorCofins)
-            .ComCampoNumerico("Valor Total da Nota", m.ValorTotalNota)
+            if (ViewModel.ExibirPisConfins)
+            {
+                l.ComCampoNumerico("VALOR DO COFINS", m.ValorCofins);
+            }
+
+            l.ComCampoNumerico("Valor Total da Nota", m.ValorTotalNota)
             .ComLargurasIguais();
         }
 
