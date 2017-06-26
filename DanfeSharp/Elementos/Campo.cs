@@ -35,21 +35,21 @@ namespace DanfeSharp
             var rDesenhavel = RetanguloDesenhvael;
             var texto = Conteudo;
 
-            var f = IsConteudoNegrito ? Estilo.FonteCampoConteudoNegrito : Estilo.FonteCampoConteudo;
-            f = f.Clonar();
+            var fonte = IsConteudoNegrito ? Estilo.FonteCampoConteudoNegrito : Estilo.FonteCampoConteudo;
+            fonte = fonte.Clonar();
 
             if (!String.IsNullOrWhiteSpace(Conteudo))
             {
-                var textWidth = f.MedirLarguraTexto(Conteudo);
+                var textWidth = fonte.MedirLarguraTexto(Conteudo);
 
                 // Trata o overflown
                 if (textWidth > rDesenhavel.Width)
                 {
-                    f.Tamanho = rDesenhavel.Width * f.Tamanho / textWidth;
+                    fonte.Tamanho = rDesenhavel.Width * fonte.Tamanho / textWidth;
 
-                    if (f.Tamanho < Estilo.FonteTamanhoMinimo)
+                    if (fonte.Tamanho < Estilo.FonteTamanhoMinimo)
                     {
-                        f.Tamanho = Estilo.FonteTamanhoMinimo;
+                        fonte.Tamanho = Estilo.FonteTamanhoMinimo;
 
                         texto = "...";
                         String texto2;
@@ -57,7 +57,7 @@ namespace DanfeSharp
                         for (int i = 1; i <= Conteudo.Length; i++)
                         {
                             texto2 = Conteudo.Substring(0, i) + "...";
-                            if (f.MedirLarguraTexto(texto2) < rDesenhavel.Width)
+                            if (fonte.MedirLarguraTexto(texto2) < rDesenhavel.Width)
                             {
                                 texto = texto2;
                             }
@@ -70,7 +70,7 @@ namespace DanfeSharp
                     }
                 }
 
-                gfx.DrawString(texto, rDesenhavel, f, AlinhamentoHorizontalConteudo, AlinhamentoVertical.Base);
+                gfx.DrawString(texto, rDesenhavel, fonte, AlinhamentoHorizontalConteudo, AlinhamentoVertical.Base);
 
             }
         }

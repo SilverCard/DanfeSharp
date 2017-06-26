@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 using System.IO;
 
 namespace DanfeSharp.Test
@@ -6,6 +7,8 @@ namespace DanfeSharp.Test
     [TestClass]
     public class DanfeTest
     {
+      
+
         [TestMethod]
         public void GerarDanfeXml()
         {
@@ -43,6 +46,29 @@ namespace DanfeSharp.Test
             model.Orientacao = Orientacao.Paisagem;
             model.ExibirIcmsInterestadual = false;
             DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+
+        [TestMethod]
+        public void RetratoComLogoHorizontal()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Retrato;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.AdicionarLogoImagem(FabricaFake.FakeLogo(100, 50));
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void RetratoComLogoVertical()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Retrato;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.AdicionarLogoImagem(FabricaFake.FakeLogo(50, 100));
             d.Gerar();
             d.SalvarTestPdf();
         }
