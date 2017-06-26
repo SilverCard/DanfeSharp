@@ -1,10 +1,30 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace DanfeSharp.Test
 {
     [TestClass]
     public class DanfeTest
     {
+        [TestMethod]
+        public void GerarDanfeXml()
+        {
+            string pasta = @"D:\NFe";
+            string caminhoOut = "DanfesDeXml";
+
+            if (!Directory.Exists(caminhoOut)) Directory.CreateDirectory(caminhoOut);
+
+            foreach (var pathXml in Directory.EnumerateFiles(pasta, "*.xml"))
+            {
+                var model = DanfeViewModelCreator.CreateFromXmlFile(pathXml);
+                using (Danfe danfe = new Danfe(model))
+                {
+                    danfe.Gerar();
+                    danfe.Salvar($"{caminhoOut}/{model.ChaveAcesso}.pdf");
+                }
+            }
+        }
+
         [TestMethod]
         public void RetratoSemIcmsInterestadual()
         {
