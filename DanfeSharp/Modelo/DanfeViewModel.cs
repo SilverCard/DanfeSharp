@@ -94,12 +94,20 @@ namespace DanfeSharp
         /// </summary>
         public TransportadoraViewModel Transportadora { get; set; }
 
+        /// <summary>
+        /// View Model do bloco Cálculo do Imposto
+        /// </summary>
         public CalculoImpostoViewModel CalculoImposto { get; set; }
 
         /// <summary>
         /// Produtos da Nota Fiscal
         /// </summary>
         public List<ProdutoViewModel> Produtos { get; set; }
+
+        /// <summary>
+        /// View Model do Bloco Cálculo do Issqn
+        /// </summary>
+        public CalculoIssqnViewModel CalculoIssqn { get; set; }
 
         /// <summary>
         /// Tipo de Ambiente
@@ -111,7 +119,16 @@ namespace DanfeSharp
         /// </summary>
         public String InformacaoCompra { get; set; }
 
-        public CalculoIssqnViewModel CalculoIssqn { get; set; }
+        /// <summary>
+        /// Código do status da resposta, cStat, do elemento infProt.
+        /// </summary>
+        public int? CodigoStatusReposta { get; set; }
+
+        /// <summary>
+        /// Descrição do status da resposta, xMotivo, do elemento infProt.
+        /// </summary>
+        public String DescricaoStatusReposta { get; set; }
+
 
         #region Opções de exibição
 

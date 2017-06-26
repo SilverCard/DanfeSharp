@@ -169,6 +169,10 @@ namespace DanfeSharp
                 throw new Exception("Somente o tpEmis==1 está implementado.");
             }
 
+            var infProt = procNfe.protNFe.infProt;
+            model.CodigoStatusReposta = infProt.cStat;
+            model.DescricaoStatusReposta = infProt.xMotivo;
+
             model.TipoAmbiente = (int)ide.tpAmb;
             model.NfNumero = ide.nNF;
             model.NfSerie = ide.serie;

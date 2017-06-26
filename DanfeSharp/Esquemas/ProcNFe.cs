@@ -52,7 +52,7 @@ namespace DanfeSharp.Esquemas.NFe
         public string chNFe;
         public System.DateTime dhRecbto;
         public string nProt;
-        public string cStat;
+        public int cStat;
         public string xMotivo;
 
         [XmlAttribute(DataType = "ID")]
