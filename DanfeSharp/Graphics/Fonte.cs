@@ -57,6 +57,7 @@ namespace DanfeSharp.Graphics
         /// </summary>
         public float AlturaLinha => (float)FonteInterna.GetLineHeight(Tamanho).ToMm();
 
+        public Fonte Clonar() => new Fonte(FonteInterna, Tamanho);
 
     }
 }

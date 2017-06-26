@@ -113,7 +113,19 @@ namespace DanfeSharp.Modelo
         /// <summary>
         /// Linha 3 do Endereço
         /// </summary>
-        public String EnderecoLinha3 => $"{Municipio} - {EnderecoUf} Fone: {Formatador.FormatarTelefone(Telefone)}";
+        public String EnderecoLinha3
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder()
+                    .Append(Municipio).Append(" - ").Append(EnderecoUf);
+
+                if (!String.IsNullOrWhiteSpace(Telefone))
+                    sb.Append(" Fone: ").Append(Formatador.FormatarTelefone(Telefone));
+
+                return sb.ToString();               
+            }
+        }
 
 
         

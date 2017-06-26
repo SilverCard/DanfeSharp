@@ -35,7 +35,8 @@ namespace DanfeSharp
             var rDesenhavel = RetanguloDesenhvael;
             var texto = Conteudo;
 
-            var f = IsConteudoNegrito ? Estilo.FonteCampoConteudoNegrito : Estilo.FonteCampoConteudo;  
+            var f = IsConteudoNegrito ? Estilo.FonteCampoConteudoNegrito : Estilo.FonteCampoConteudo;
+            f = f.Clonar();
 
             if (!String.IsNullOrWhiteSpace(Conteudo))
             {

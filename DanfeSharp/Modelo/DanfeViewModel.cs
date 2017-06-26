@@ -146,7 +146,7 @@ namespace DanfeSharp
 
         public DanfeViewModel ()
 	    {
-            Orientacao = Orientacao.Paisagem;
+            Orientacao = Orientacao.Retrato;
             CalculoImposto = new CalculoImpostoViewModel();
             Emitente = new EmpresaViewModel();
             Destinatario = new EmpresaViewModel();
