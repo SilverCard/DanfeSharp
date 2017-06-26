@@ -21,7 +21,7 @@
         public double? vICMSUFRemet { get; set; }
 
         /// <remarks/>
-        public double? vFCP { get; set; }
+        public double? vFCPUFDest { get; set; }
 
         /// <summary>
         /// <para>Base de Cálculo do ICMS ST</para>

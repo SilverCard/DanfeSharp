@@ -412,7 +412,7 @@ namespace DanfeSharp.Esquemas.NFe
         public double? vICMSUFRemet;
 
         /// <remarks/>
-        public double? vFCP;
+        public double? vFCPUFDest;
 
         /// <summary>
         /// Base de Cálculo do ICMS ST 

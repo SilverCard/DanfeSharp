@@ -13,7 +13,7 @@
             .ComCampoNumerico("VALOR DO ICMS SUBST.", m.ValorIcmsSt)
             .ComCampoNumerico("V. IMP. IMPORTAÇÃO", m.ValorII)
             .ComCampoNumerico("V. ICMS UF REMET.", m.vICMSUFRemet)
-            .ComCampoNumerico("VALOR DO FCP", m.vFCP)
+            .ComCampoNumerico("VALOR DO FCP", m.vFCPUFDest)
             .ComCampoNumerico("VALOR DO PIS", m.ValorPis)
             .ComCampoNumerico("V. TOTAL PRODUTOS", m.ValorTotalProdutos)
             .ComLargurasIguais();

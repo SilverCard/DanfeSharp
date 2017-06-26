@@ -32,7 +32,7 @@ namespace DanfeSharp.Test
                 ValorSeguro = v,
                 ValorTotalNota = v,
                 ValorTotalProdutos = v,
-                vFCP = v,
+                vFCPUFDest = v,
                 vICMSUFDest = v,
                 vICMSUFRemet = v
             };
