@@ -1,13 +1,12 @@
-﻿using DanfeSharp.Esquemas.NFe;
-using DanfeSharp.Modelo;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using DanfeSharp.Esquemas.NFe;
 
-namespace DanfeSharp
+namespace DanfeSharp.Modelo
 {
     public static class DanfeViewModelCreator
     {

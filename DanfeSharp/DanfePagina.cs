@@ -41,7 +41,7 @@ namespace DanfeSharp
 
         public void DesenharCreditos()
         {
-            Gfx.DrawString("Gerado com DanfeSharp", RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(5), AlinhamentoHorizontal.Direita);
+            Gfx.DrawString("Gerado com DanfeSharp", RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Direita);
         }
 
         private void DesenharCanhoto()

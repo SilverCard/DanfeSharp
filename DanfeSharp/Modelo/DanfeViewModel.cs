@@ -1,10 +1,12 @@
-﻿using DanfeSharp.Modelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DanfeSharp
+namespace DanfeSharp.Modelo
 {
+    /// <summary>
+    /// Modelo de dados utilizado para o DANFE.
+    /// </summary>
     public class DanfeViewModel
     {
         /// <summary>
