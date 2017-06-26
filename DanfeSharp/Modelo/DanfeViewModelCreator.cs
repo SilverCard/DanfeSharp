@@ -63,28 +63,42 @@ namespace DanfeSharp.Modelo
             }
         }
 
-        public static DanfeViewModel CriarDeArquivoXml(String path)
+        /// <summary>
+        /// Cria o modelo a partir de um arquivo xml.
+        /// </summary>
+        /// <param name="caminho"></param>
+        /// <returns></returns>
+        public static DanfeViewModel CriarDeArquivoXml(String caminho)
         {
-            if (String.IsNullOrWhiteSpace(path))
+            using (StreamReader sr = new StreamReader(caminho, true))
             {
-                throw new ArgumentException("O arquivo Xml precisa ser especificado.");
+                return CriarDeArquivoXmlInternal(sr);
             }
+        }
 
-            if (!File.Exists(path))
+        /// <summary>
+        /// Cria o modelo a partir de um arquivo xml contido num stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns>Modelo</returns>
+        public static DanfeViewModel CriarDeArquivoXml(Stream stream)
+        {
+            if (stream == null) throw new ArgumentNullException(nameof(stream));     
+
+            using (StreamReader sr = new StreamReader(stream, true))
             {
-                throw new FileNotFoundException("O arquivo Xml não foi encontrado.", path);
+                return CriarDeArquivoXmlInternal(sr);
             }
+        }
 
+        private static DanfeViewModel CriarDeArquivoXmlInternal(StreamReader reader)
+        {
             ProcNFe nfe = null;
             XmlSerializer serializer = new XmlSerializer(typeof(ProcNFe));
 
             try
             {
-                using (StreamReader reader = new StreamReader(path, true))
-                {
-                    nfe = (ProcNFe)serializer.Deserialize(reader);
-                }
-
+                nfe = (ProcNFe)serializer.Deserialize(reader);
                 return CreateFromXml(nfe);
             }
             catch (System.InvalidOperationException e)
@@ -157,7 +171,7 @@ namespace DanfeSharp.Modelo
 
             var nfe = procNfe.NFe;
             var infNfe = nfe.infNFe;
-            var ide = infNfe.ide;     
+            var ide = infNfe.ide;
 
             if (ide.mod != 55)
             {
@@ -184,7 +198,7 @@ namespace DanfeSharp.Modelo
             model.Destinatario = CreateEmpresaFrom(infNfe.dest);
 
             // Informações adicionais de compra
-            if(infNfe.compra != null)
+            if (infNfe.compra != null)
             {
                 StringBuilder sb = new StringBuilder();
 
@@ -256,10 +270,10 @@ namespace DanfeSharp.Modelo
 
                     model.Duplicatas.Add(duplicata);
                 }
-            }   
-            
-            model.CalculoImposto = CriarCalculoImpostoViewModel(infNfe.total.ICMSTot);           
-            
+            }
+
+            model.CalculoImposto = CriarCalculoImpostoViewModel(infNfe.total.ICMSTot);
+
             var issqnTotal = infNfe.total.ISSQNtot;
 
             if (issqnTotal != null)
