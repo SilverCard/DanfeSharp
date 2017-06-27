@@ -136,7 +136,7 @@ namespace DanfeSharp
 
             for (int i = 0; i < lines.Length; i++)
             {
-                var line = lines[i];
+                var line = lines[i].Trim();
                 var blocks = Regex.Split(line, @"(\s)");
                 var blocksW = new float[blocks.Length];
 
