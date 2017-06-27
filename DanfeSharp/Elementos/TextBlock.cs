@@ -7,6 +7,9 @@ using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Define um bloco de texto de largura fixa e altura dinâmica.
+    /// </summary>
     internal class TextBlock : DrawableBase
     {
         private String _Text;

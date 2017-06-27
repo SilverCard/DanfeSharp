@@ -3,6 +3,9 @@ using System;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Elemento básico no DANFE.
+    /// </summary>
     internal abstract class ElementoBase : DrawableBase
     {
         public Estilo Estilo { get; protected set; }

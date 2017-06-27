@@ -62,7 +62,7 @@
     <Compile Include="Elementos\Campo.cs" />
     <Compile Include="Elementos\CampoMultilinha.cs" />
     <Compile Include="Elementos\CampoNumerico.cs" />
-    <Compile Include="Elementos\CutLine.cs" />
+    <Compile Include="Elementos\LinhaTracejada.cs" />
     <Compile Include="Elementos\DrawableBase.cs" />
     <Compile Include="Elementos\ElementoBase.cs" />
     <Compile Include="Elementos\ElementoVazio.cs" />

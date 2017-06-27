@@ -3,6 +3,9 @@ using DanfeSharp.Graphics;
 
 namespace DanfeSharp.Elementos
 {
+    /// <summary>
+    /// Campo para valores numéricos.
+    /// </summary>
     internal class CampoNumerico : Campo
     {
         private double? ConteudoNumerico { get; set; }

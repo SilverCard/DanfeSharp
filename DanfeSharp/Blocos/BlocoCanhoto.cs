@@ -26,7 +26,7 @@ namespace DanfeSharp.Blocos
             .ComElemento(nfe)
             .ComLarguras(0, 16);
 
-            MainVerticalStack.Add(linha, new CutLine(2));
+            MainVerticalStack.Add(linha, new LinhaTracejada(2));
 
         }
 

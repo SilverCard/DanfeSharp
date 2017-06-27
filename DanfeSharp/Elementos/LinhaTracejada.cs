@@ -1,20 +1,15 @@
-﻿using DanfeSharp.Graphics;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
-    internal class CutLine : DrawableBase
+    internal class LinhaTracejada : DrawableBase
     {
-
         public float Margin { get; set; }
         public double[] DashPattern { get; set; }
 
-        public CutLine(float margin)
+        public LinhaTracejada(float margin)
         {
             Margin = margin;
         }

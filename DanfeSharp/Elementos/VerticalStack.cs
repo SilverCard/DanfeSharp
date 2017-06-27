@@ -1,12 +1,13 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Define uma pilha vertical de elementos, de forma que todos eles fiquem com a mesma largura.
+    /// </summary>
     internal class VerticalStack : DrawableBase
     {
         public List<DrawableBase> Drawables { get; private set; }
@@ -20,7 +21,6 @@ namespace DanfeSharp
         {
             Width = width;
         }
-
 
         public void Add(params DrawableBase[] db)
         {
@@ -48,7 +48,14 @@ namespace DanfeSharp
             }
         }
 
+        /// <summary>
+        /// Soma das alturas de todos os elementos.
+        /// </summary>
         public override float Height { get => Drawables.Sum(x => x.Height); set => throw new NotSupportedException(); }
+
+        /// <summary>
+        /// Somente é possível mudar a largura.
+        /// </summary>
         public override void SetSize(float w, float h) => throw new NotSupportedException();
 
 

@@ -1,9 +1,12 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
 using System.Drawing;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Define um objeto desenhável.
+    /// </summary>
     internal abstract class DrawableBase
     {
         public virtual float X { get; set; }

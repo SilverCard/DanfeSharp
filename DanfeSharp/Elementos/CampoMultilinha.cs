@@ -3,6 +3,9 @@ using System;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Campo multilinha.
+    /// </summary>
     internal class CampoMultilinha : Campo
     {   
         TextBlock _tbConteudo;

@@ -5,14 +5,25 @@ using DanfeSharp.Modelo;
 
 namespace DanfeSharp.Blocos
 {
+    /// <summary>
+    /// Define um bloco básico do DANFE.
+    /// </summary>
     internal abstract class BlocoBase : ElementoBase
     {
         public DanfeViewModel ViewModel { get; private set; }
 
         public abstract PosicaoBloco Posicao { get; }
+
+        /// <summary>
+        /// Pilha principal.
+        /// </summary>
         public VerticalStack MainVerticalStack { get; private set; }
 
+        /// <summary>
+        /// Quando verdadeiro, o bloco é mostrado apenas na primeira página, caso contário é mostrado em todas elas.
+        /// </summary>
         public virtual Boolean VisivelSomentePrimeiraPagina => true;
+
         public virtual String Cabecalho => null;
 
         public BlocoBase(DanfeViewModel viewModel, Estilo estilo) : base(estilo)

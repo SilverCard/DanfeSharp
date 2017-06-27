@@ -1,8 +1,11 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Cabeçalho do bloco, normalmente um texto em caixa alta.
+    /// </summary>
     internal class CabecalhoBloco : ElementoBase
     {
         public const float MargemSuperior = 0.8F;

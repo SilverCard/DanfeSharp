@@ -4,6 +4,9 @@ using System.Drawing;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Campo de única linha.
+    /// </summary>
     internal class Campo : ElementoBase
     {
         public virtual String Cabecalho { get; set; }

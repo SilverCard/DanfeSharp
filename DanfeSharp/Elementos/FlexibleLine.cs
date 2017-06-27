@@ -5,12 +5,18 @@ using System.Linq;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Linha flexível que posiciona e muda a largura dos seus elementos de forma proporcional.
+    /// </summary>
     internal class FlexibleLine : DrawableBase
     {
+        /// <summary>
+        /// Elementos em ordem da linha.
+        /// </summary>
         public List<DrawableBase> Elementos { get; private set; }
 
         /// <summary>
-        /// Largura dos elementos, em porcentagem
+        /// Largura dos elementos, em porcentagem.
         /// </summary>
         public List<float> ElementosLargurasP { get; private set; }
 

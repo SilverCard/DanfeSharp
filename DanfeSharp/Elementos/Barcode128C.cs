@@ -1,13 +1,13 @@
-﻿using DanfeSharp.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using DanfeSharp.Graphics;
 
 namespace DanfeSharp
 {
     /// <summary>
-    /// Classes para gerar o código de barras Code 128C 
+    /// Desenha o Código de Barras Code 128C 
     /// </summary>
     internal class Barcode128C : ElementoBase
     {
@@ -20,6 +20,9 @@ namespace DanfeSharp
         /// </summary>
         public String Code { get; private set; }
 
+        /// <summary>
+        /// Largura do código de barras.
+        /// </summary>
         public float Largura { get; set; }
 
         static Barcode128C()

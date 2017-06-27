@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace DanfeSharp
 {
+    /// <summary>
+    /// Define uma pilha de texto.
+    /// </summary>
     internal class TextStack : DrawableBase
     {
         public const float DefaultLineHeightScale = 1.25F;
