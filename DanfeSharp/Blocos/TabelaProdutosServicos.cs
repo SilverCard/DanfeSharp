@@ -30,7 +30,7 @@ namespace DanfeSharp.Blocos
                 .ComColuna(8.5f, ac, "CÓDIGO PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")
                 .ComColuna(5.6F, ac, "NCM/SH")
-                .ComColuna(3.5F, ac, cabecalho4)
+                .ComColuna(3.9F, ac, cabecalho4)
                 .ComColuna(3.5F, ac, "CFOP")
                 .ComColuna(3.25F, ac, "UN")
                 .ComColuna(6F, ad, "QUANTI.")
