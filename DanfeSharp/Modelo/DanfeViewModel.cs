@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DanfeSharp.Modelo
 {
@@ -209,7 +210,17 @@ namespace DanfeSharp.Modelo
             if (!String.IsNullOrEmpty(InformacoesAdicionaisFisco))
                 sb.Append("Inf. fisco: ").Append(InformacoesAdicionaisFisco).Append(' ');
 
-            //Todo NT 2013.003 Lei da Transparência
+            #region NT 2013.003 Lei da Transparência
+
+            if(CalculoImposto.ValorAproximadoTributos.HasValue && (String.IsNullOrEmpty(InformacoesComplementares) ||
+               !Regex.IsMatch(InformacoesComplementares, @"(valor|vlr?\.?)\s+(aprox\.?|aproximado)\s+(dos\s+)?(trib\.?|tributos)", RegexOptions.IgnoreCase)))
+            {
+                if (sb.Length > 0) sb.Append("\r\n");
+                sb.Append("Valor Aproximado dos Tributos : R$ ");
+                sb.Append(CalculoImposto.ValorAproximadoTributos.Formatar());
+            }
+
+            #endregion
 
 
             return sb.ToString();
