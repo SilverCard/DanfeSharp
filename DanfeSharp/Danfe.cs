@@ -108,6 +108,8 @@ namespace DanfeSharp
         private void AdicionarMetadata()
         {
             var info = PdfDocument.Information;
+            info[new org.pdfclown.objects.PdfName("ChaveAcesso")] = ViewModel.ChaveAcesso;
+            info[new org.pdfclown.objects.PdfName("TipoDocumento")] = "DANFE";
             info.CreationDate = DateTime.Now;
             info.Creator = String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
             info.Title = "DANFE (Documento auxiliar da NFe)";
