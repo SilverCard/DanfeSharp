@@ -118,11 +118,6 @@ namespace DanfeSharp.Modelo
         public int TipoAmbiente { get; set; }
 
         /// <summary>
-        /// Informação adicional de compra formatada, Nota de Empenho, Pedido e Contrato
-        /// </summary>
-        public String InformacaoCompra { get; set; }
-
-        /// <summary>
         /// Código do status da resposta, cStat, do elemento infProt.
         /// </summary>
         public int? CodigoStatusReposta { get; set; }
@@ -131,6 +126,25 @@ namespace DanfeSharp.Modelo
         /// Descrição do status da resposta, xMotivo, do elemento infProt.
         /// </summary>
         public String DescricaoStatusReposta { get; set; }
+
+        #region Informações adicionais de compra
+
+        /// <summary>
+        /// Tag xNEmp
+        /// </summary>
+        public String NotaEmpenho { get; set; }
+
+        /// <summary>
+        /// Tag xPed
+        /// </summary>
+        public String Pedido { get; set; }
+
+        /// <summary>
+        /// Tag xCont
+        /// </summary>
+        public String Contrato { get; set; }
+
+        #endregion
 
 
         #region Opções de exibição
@@ -196,23 +210,29 @@ namespace DanfeSharp.Modelo
         {
             StringBuilder sb = new StringBuilder();
 
-            //Todo NF-e Referenciadas?
+            //ToDo NF-e Referenciadas?
 
             if (!String.IsNullOrEmpty(InformacoesComplementares))
-                sb.Append("Inf. Contribuinte: ").Append(InformacoesComplementares).Replace(";", "\r\n").Append(' ');
-
-            if (!String.IsNullOrWhiteSpace(InformacaoCompra))
-                sb.Append(InformacaoCompra).Append(' ');
+                sb.AppendChaveValor("Inf. Contribuinte", InformacoesComplementares).Replace(";", "\r\n");
 
             if (!String.IsNullOrEmpty(Destinatario.Email))
-                sb.Append("Email do Destinatário: ").Append(Destinatario.Email).Append(' ');
+                sb.AppendChaveValor("Email do Destinatário", Destinatario.Email);
 
             if (!String.IsNullOrEmpty(InformacoesAdicionaisFisco))
-                sb.Append("Inf. fisco: ").Append(InformacoesAdicionaisFisco).Append(' ');
+                sb.AppendChaveValor("Inf. fisco", InformacoesAdicionaisFisco);
+            
+            if (!String.IsNullOrEmpty(Pedido) && !Utils.StringContemChaveValor(InformacoesComplementares, "Pedido", Pedido))
+                sb.AppendChaveValor("Pedido", Pedido);
+
+            if (!String.IsNullOrEmpty(Contrato) && !Utils.StringContemChaveValor(InformacoesComplementares, "Contrato", Contrato))
+                sb.AppendChaveValor("Contrato", Contrato);
+
+            if (!String.IsNullOrEmpty(NotaEmpenho))
+                sb.AppendChaveValor("Nota de Empenho", NotaEmpenho);
 
             #region NT 2013.003 Lei da Transparência
 
-            if(CalculoImposto.ValorAproximadoTributos.HasValue && (String.IsNullOrEmpty(InformacoesComplementares) ||
+            if (CalculoImposto.ValorAproximadoTributos.HasValue && (String.IsNullOrEmpty(InformacoesComplementares) ||
                !Regex.IsMatch(InformacoesComplementares, @"(valor|vlr?\.?)\s+(aprox\.?|aproximado)\s+(dos\s+)?(trib\.?|tributos)", RegexOptions.IgnoreCase)))
             {
                 if (sb.Length > 0) sb.Append("\r\n");

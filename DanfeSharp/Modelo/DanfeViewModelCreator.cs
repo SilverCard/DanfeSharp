@@ -200,18 +200,9 @@ namespace DanfeSharp.Modelo
             // Informações adicionais de compra
             if (infNfe.compra != null)
             {
-                StringBuilder sb = new StringBuilder();
-
-                if (!String.IsNullOrWhiteSpace(infNfe.compra.xNEmp))
-                    sb.Append("Nota de Empenho: ").Append(infNfe.compra.xNEmp);
-
-                if (!String.IsNullOrWhiteSpace(infNfe.compra.xPed))
-                    sb.Append("Pedido: ").Append(infNfe.compra.xPed);
-
-                if (!String.IsNullOrWhiteSpace(infNfe.compra.xCont))
-                    sb.Append("Contrato: ").Append(infNfe.compra.xCont);
-
-                if (sb.Length > 0) model.InformacaoCompra = sb.ToString();
+                model.Contrato = infNfe.compra.xCont;
+                model.NotaEmpenho = infNfe.compra.xNEmp;
+                model.Pedido = infNfe.compra.xPed;
             }
 
             foreach (var det in infNfe.det)

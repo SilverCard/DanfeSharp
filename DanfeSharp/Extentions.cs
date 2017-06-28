@@ -1,6 +1,7 @@
 ﻿using org.pdfclown.documents.contents.composition;
 using System;
 using System.Drawing;
+using System.Text;
 
 namespace DanfeSharp
 {
@@ -82,7 +83,12 @@ namespace DanfeSharp
         public static RectangleF CutLeft(this RectangleF r, float width) => new RectangleF(r.X + width, r.Y, r.Width - width, r.Height);
 
         public static PointF ToPointMeasure(this PointF r) => new PointF(r.X.ToPoint(), r.Y.ToPoint());
-
+        
+        public static StringBuilder AppendChaveValor(this StringBuilder sb, String chave, String valor)
+        {
+            if (sb.Length > 0) sb.Append(' ');
+            return sb.Append(chave).Append(": ").Append(valor);
+        }
 
         public static XAlignmentEnum ToPdfClownAlignment(this AlinhamentoHorizontal ah)
         {
