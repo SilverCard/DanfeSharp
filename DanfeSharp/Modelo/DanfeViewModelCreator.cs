@@ -91,7 +91,21 @@ namespace DanfeSharp.Modelo
             }
         }
 
-        private static DanfeViewModel CriarDeArquivoXmlInternal(StreamReader reader)
+        /// <summary>
+        /// Cria o modelo a partir de uma string xml.
+        /// </summary>
+        public static DanfeViewModel CriarDeStringXml(string str)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
+            using (StringReader sr = new StringReader(str))
+            {
+                return CriarDeArquivoXmlInternal(sr);
+            }
+        }
+
+
+        private static DanfeViewModel CriarDeArquivoXmlInternal(TextReader reader)
         {
             ProcNFe nfe = null;
             XmlSerializer serializer = new XmlSerializer(typeof(ProcNFe));
