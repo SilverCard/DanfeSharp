@@ -36,7 +36,7 @@ namespace DanfeSharp.Blocos
                 .ComColuna(6F, ad, "QUANTI.")
                 .ComColuna(6F, ad, "VALOR", "UNIT.")
                 .ComColuna(6F, ad, "VALOR", "TOTAL")
-                .ComColuna(5, ad, "B CÁLC", "ICMS")
+                .ComColuna(6F, ad, "B CÁLC", "ICMS")
                 .ComColuna(5, ad, "VALOR", "ICMS")
                 .ComColuna(5, ad, "VALOR", "IPI")
                 .ComColuna(3.5F, ad, "ALIQ.", "ICMS")
