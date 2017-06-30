@@ -197,6 +197,9 @@ namespace DanfeSharp.Modelo
                 throw new Exception("Somente o tpEmis==1 está implementado.");
             }
 
+
+            model.Orientacao = ide.tpImp == 1 ? Orientacao.Retrato : Orientacao.Paisagem;
+
             var infProt = procNfe.protNFe.infProt;
             model.CodigoStatusReposta = infProt.cStat;
             model.DescricaoStatusReposta = infProt.xMotivo;

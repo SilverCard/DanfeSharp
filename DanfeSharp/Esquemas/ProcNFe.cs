@@ -704,45 +704,50 @@ namespace DanfeSharp.Esquemas.NFe
     public partial class Identificacao
     {
 
-        public string natOp;
+        public string natOp { get; set; }
 
         /// <summary>
         /// Código do modelo do Documento Fiscal. 55 = NF-e; 65 = NFC-e.
         /// </summary>
-        public int mod;
+        public int mod { get; set; }
 
-        public short serie;
-        public int nNF;
-        public DateTime? dEmi;
+        public short serie { get; set; }
+        public int nNF { get; set; }
+        public DateTime? dEmi { get; set; }
 
         /// <summary>
         /// Data de Saída/Entrada, NFe2
         /// </summary>
-        public DateTime? dSaiEnt;
+        public DateTime? dSaiEnt { get; set; }
 
         /// <summary>
         /// Hora de Saída/Entrada, NFe2
         /// </summary>
-        public String hSaiEnt;
+        public String hSaiEnt { get; set; }
 
         /// <summary>
         /// Data e Hora de Emissão, NFe v3
         /// </summary>
-        public DateTime? dhEmi;
+        public DateTime? dhEmi { get; set; }
 
         /// <summary>
         /// Data e Hora de Saída/Entrada, NFe v3
         /// </summary>
-        public DateTime? dhSaiEnt;
+        public DateTime? dhSaiEnt { get; set; }
 
-        public Tipo tpNF;
+        public Tipo tpNF { get; set; }
+
+        /// <summary>
+        /// Tipo de Impressao
+        /// </summary>
+        public int tpImp { get; set; } 
 
         /// <summary>
         /// Forma de emissão da NF-e
         /// </summary>
-        public FormaEmissao tpEmis;
+        public FormaEmissao tpEmis { get; set; }
 
-        public TAmb tpAmb;        
+        public TAmb tpAmb { get; set; }
 
     }
 
