@@ -39,6 +39,7 @@ namespace DanfeSharp
             File = new File();
             PdfDocument = File.Document;
 
+            // De acordo com o item 7.7, a fonte deve ser Times New Roman ou Courier New.
             _FonteFamilia = StandardType1Font.FamilyEnum.Times;
             _FonteRegular = new StandardType1Font(PdfDocument, _FonteFamilia, false, false);
             _FonteNegrito = new StandardType1Font(PdfDocument, _FonteFamilia, true, false);
@@ -155,6 +156,9 @@ namespace DanfeSharp
             p.DesenharCreditos();
 
             // Ambiente de homologação
+            // 7. O DANFE emitido para representar NF-e cujo uso foi autorizado em ambiente de
+            // homologação sempre deverá conter a frase “SEM VALOR FISCAL” no quadro “Informações
+            // Complementares” ou em marca d’água destacada.
             if (ViewModel.TipoAmbiente == 2)
                 p.DesenharAvisoHomologacao();
 

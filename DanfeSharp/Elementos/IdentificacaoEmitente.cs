@@ -24,15 +24,16 @@ namespace DanfeSharp
             float alturaMaximaLogoHorizontal = 12.5F; 
 
             Fonte f2, f3;
-            
+
+            f3 = Estilo.CriarFonteRegular(8);
+
             if (Logo == null)
             {
                 var f1 = Estilo.CriarFonteRegular(6);
                 gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp, f1, AlinhamentoHorizontal.Centro);
                 rp = rp.CutTop(f1.AlturaLinha);
 
-                f2 = Estilo.CriarFonteNegrito(10);
-                f3 = Estilo.CriarFonteRegular(9);
+                f2 = Estilo.CriarFonteNegrito(10);              
             }
             else
             {
@@ -52,8 +53,7 @@ namespace DanfeSharp
         
                 gfx.ShowXObject(Logo, rLogo);         
 
-                f2 = Estilo.CriarFonteNegrito(9);
-                f3 = Estilo.CriarFonteRegular(8);
+                f2 = Estilo.CriarFonteNegrito(9);     
             }          
             
             var ts = new TextStack(rp) {  LineHeightScale = 1 }
