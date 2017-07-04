@@ -88,7 +88,7 @@ namespace DanfeSharp
                 AlinhamentoVertical = AlinhamentoVertical.Topo,
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro
             }
-            .AddLine("N.°: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
+            .AddLine("Nº.: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
             .AddLine($"Série: {ViewModel.NfSerie}", f4);
 
             ts.Draw(gfx);
