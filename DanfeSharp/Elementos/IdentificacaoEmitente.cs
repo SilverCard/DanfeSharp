@@ -20,20 +20,23 @@ namespace DanfeSharp
         public override void Draw(Gfx gfx)
         {
             base.Draw(gfx);
+
+            // 7.7.6 Conteúdo do Quadro Dados do Emitente
+            // Deverá estar impresso em negrito.A razão social e/ ou nome fantasia deverá ter tamanho
+            // mínimo de doze(12) pontos, ou 17 CPP e os demais dados do emitente, endereço,
+            // município, CEP, fone / fax deverão ter tamanho mínimo de oito(8) pontos, ou 17 CPP.
+
             var rp = BoundingBox.InflatedRetangle(0.75F);
-            float alturaMaximaLogoHorizontal = 12.5F; 
+            float alturaMaximaLogoHorizontal = 14F;
 
-            Fonte f2, f3;
-
-            f3 = Estilo.CriarFonteRegular(8);
+            Fonte f2 = Estilo.CriarFonteNegrito(12);
+            Fonte f3 = Estilo.CriarFonteRegular(8);
 
             if (Logo == null)
             {
                 var f1 = Estilo.CriarFonteRegular(6);
                 gfx.DrawString("IDENTIFICAÇÃO DO EMITENTE", rp, f1, AlinhamentoHorizontal.Centro);
-                rp = rp.CutTop(f1.AlturaLinha);
-
-                f2 = Estilo.CriarFonteNegrito(10);              
+                rp = rp.CutTop(f1.AlturaLinha);                          
             }
             else
             {
@@ -51,16 +54,17 @@ namespace DanfeSharp
                     rp = rp.CutLeft(lw);
                 }
         
-                gfx.ShowXObject(Logo, rLogo);         
+                gfx.ShowXObject(Logo, rLogo);      
+          
+            }
 
-                f2 = Estilo.CriarFonteNegrito(9);     
-            }          
-            
+            var emitente = ViewModel.Emitente;
+            var nome = !String.IsNullOrWhiteSpace(emitente.NomeFantasia) ? emitente.NomeFantasia : emitente.RazaoSocial;
             var ts = new TextStack(rp) {  LineHeightScale = 1 }
-                .AddLine(ViewModel.Emitente.Nome, f2)
-                .AddLine(ViewModel.Emitente.EnderecoLinha1.Trim(), f3)
-                .AddLine(ViewModel.Emitente.EnderecoLinha2.Trim(), f3)
-                .AddLine(ViewModel.Emitente.EnderecoLinha3.Trim(), f3);
+                .AddLine(nome, f2)
+                .AddLine(emitente.EnderecoLinha1.Trim(), f3)
+                .AddLine(emitente.EnderecoLinha2.Trim(), f3)
+                .AddLine(emitente.EnderecoLinha3.Trim(), f3);
              
             ts.AlinhamentoHorizontal = AlinhamentoHorizontal.Centro;
             ts.AlinhamentoVertical = AlinhamentoVertical.Centro;

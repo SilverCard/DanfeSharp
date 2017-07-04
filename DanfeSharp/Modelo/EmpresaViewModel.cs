@@ -7,9 +7,15 @@ namespace DanfeSharp.Modelo
     {
         /// <summary>
         /// <para>Razão Social ou Nome</para>
-        /// <para>Tag nNF</para>
+        /// <para>Tag xNome</para>
         /// </summary>
-        public String Nome { get; set; }
+        public String RazaoSocial { get; set; }
+
+        /// <summary>
+        /// <para>Nome fantasia</para>
+        /// <para>Tag xFant</para>
+        /// </summary>
+        public String NomeFantasia { get; set; }
 
         /// <summary>
         /// <para>Logradouro</para>
@@ -131,9 +137,6 @@ namespace DanfeSharp.Modelo
                 return sb.ToString();               
             }
         }
-
-
         
-
     }
 }

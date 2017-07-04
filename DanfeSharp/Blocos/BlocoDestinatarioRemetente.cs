@@ -14,7 +14,7 @@ namespace DanfeSharp.Blocos
             var destinatario = viewModel.Destinatario;
 
             AdicionarLinhaCampos()
-            .ComCampo(Strings.RazaoSocial, destinatario.Nome)
+            .ComCampo(Strings.RazaoSocial, destinatario.RazaoSocial)
             .ComCampo(Strings.CnpjCpf, Formatador.FormatarCpfCnpj(destinatario.CnpjCpf), AlinhamentoHorizontal.Centro)
             .ComCampo("Data de Emissão", viewModel.DataHoraEmissao.Formatar(), AlinhamentoHorizontal.Centro)
             .ComLarguras(0, 45F/200F * 100, 30F/200F * 100);

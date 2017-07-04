@@ -14,7 +14,7 @@ namespace DanfeSharp.Modelo
         {
             EmpresaViewModel model = new EmpresaViewModel();
 
-            model.Nome = empresa.xNome;
+            model.RazaoSocial = empresa.xNome;
             model.CnpjCpf = !String.IsNullOrWhiteSpace(empresa.CNPJ) ? empresa.CNPJ : empresa.CPF;
             model.Ie = empresa.IE;
             model.IeSt = empresa.IEST;
@@ -38,6 +38,7 @@ namespace DanfeSharp.Modelo
                 var emit = empresa as Emitente;
                 model.IM = emit.IM;
                 model.CRT = emit.CRT;
+                model.NomeFantasia = emit.xFant;
             }
 
             return model;
@@ -309,7 +310,7 @@ namespace DanfeSharp.Modelo
 
             if (transportadora != null)
             {
-                transportadoraModel.Nome = transportadora.xNome;
+                transportadoraModel.RazaoSocial = transportadora.xNome;
                 transportadoraModel.EnderecoUf = transportadora.UF;
                 transportadoraModel.CnpjCpf = !String.IsNullOrWhiteSpace(transportadora.CNPJ) ? transportadora.CNPJ : transportadora.CPF;
                 transportadoraModel.EnderecoLogadrouro = transportadora.xEnder;

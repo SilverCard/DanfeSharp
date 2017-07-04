@@ -75,7 +75,7 @@ namespace DanfeSharp.Test
                 Emitente = new EmpresaViewModel()
                 {
                     CnpjCpf = new String('0', 14),
-                    Nome = "Abstergo Ltda",
+                    RazaoSocial = "Abstergo Ltda",
                     Email = "fake@mail.123",
                     EnderecoBairro = "Bairro",
                     EnderecoCep = "12345678",
@@ -93,7 +93,7 @@ namespace DanfeSharp.Test
                 Destinatario = new EmpresaViewModel()
                 {
                     CnpjCpf = new String('1', 14),
-                    Nome = "Umbrella Corp Ltda",
+                    RazaoSocial = "Umbrella Corp Ltda",
                     Email = "fake@mail.123",
                     EnderecoBairro = "Bairro",
                     EnderecoCep = "12345678",
@@ -109,7 +109,7 @@ namespace DanfeSharp.Test
                 },
                 Transportadora = new TransportadoraViewModel()
                 {
-                    Nome = "Correios",
+                    RazaoSocial = "Correios",
                     CnpjCpf = new String('1', 14),
                     VeiculoUf = "RS",
                     QuantidadeVolumes = 123.1234,

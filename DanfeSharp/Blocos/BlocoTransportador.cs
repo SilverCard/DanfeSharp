@@ -14,7 +14,7 @@ namespace DanfeSharp.Blocos
             var transportadora = viewModel.Transportadora;
 
             AdicionarLinhaCampos()
-                .ComCampo(Strings.RazaoSocial, transportadora.Nome)
+                .ComCampo(Strings.RazaoSocial, transportadora.RazaoSocial)
                 .ComCampo("Frete por conta", transportadora.ModalidadeFreteString, AlinhamentoHorizontal.Centro)
                 .ComCampo("Código ANTT", transportadora.CodigoAntt, AlinhamentoHorizontal.Centro)
                 .ComCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), AlinhamentoHorizontal.Centro)
