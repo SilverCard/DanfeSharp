@@ -17,6 +17,12 @@ namespace DanfeSharp
         /// </summary>
         public static readonly CultureInfo Cultura = new CultureInfo(1046);
 
+        static Formatador()
+        {
+            Cultura.NumberFormat.CurrencyPositivePattern = 2;
+            Cultura.NumberFormat.CurrencyNegativePattern = 9;
+        }
+
         public const String FormatoNumeroNF = @"000\.000\.000";
 
         public const String CEP = @"^(\d{5})\-?(\d{3})$";
@@ -206,7 +212,7 @@ namespace DanfeSharp
 
         public static String FormatarMoeda(this Double? number)
         {
-            return number.HasValue ? String.Format(Cultura, "R$ {0:N2}", number.Value) : String.Empty;
+            return number.HasValue ? number.Value.ToString("C", Cultura) : String.Empty;
         }
 
         public static String Formatar(this DateTime? dateTime)

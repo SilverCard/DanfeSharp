@@ -233,11 +233,11 @@ namespace DanfeSharp.Modelo
             #region NT 2013.003 Lei da Transparência
 
             if (CalculoImposto.ValorAproximadoTributos.HasValue && (String.IsNullOrEmpty(InformacoesComplementares) ||
-               !Regex.IsMatch(InformacoesComplementares, @"(valor|vlr?\.?)\s+(aprox\.?|aproximado)\s+(dos\s+)?(trib\.?|tributos)", RegexOptions.IgnoreCase)))
+               !Regex.IsMatch(InformacoesComplementares, @"((valor|vlr?\.?)\s+(aprox\.?|aproximado)\s+(dos\s+)?(trib\.?|tributos))|((trib\.?|tributos)\s+(aprox\.?|aproximado))", RegexOptions.IgnoreCase)))
             {
                 if (sb.Length > 0) sb.Append("\r\n");
-                sb.Append("Valor Aproximado dos Tributos : R$ ");
-                sb.Append(CalculoImposto.ValorAproximadoTributos.Formatar());
+                sb.Append("Valor Aproximado dos Tributos: ");
+                sb.Append(CalculoImposto.ValorAproximadoTributos.FormatarMoeda());
             }
 
             #endregion
