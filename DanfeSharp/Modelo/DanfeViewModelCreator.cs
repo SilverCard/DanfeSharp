@@ -215,6 +215,8 @@ namespace DanfeSharp.Modelo
             model.Emitente = CreateEmpresaFrom(infNfe.emit);
             model.Destinatario = CreateEmpresaFrom(infNfe.dest);
 
+            model.NotasFiscaisReferenciadas = ide.NFref.Select(x => x.ToString()).ToList();
+
             // Informações adicionais de compra
             if (infNfe.compra != null)
             {

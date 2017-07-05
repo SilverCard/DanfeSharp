@@ -749,7 +749,19 @@ namespace DanfeSharp.Esquemas.NFe
 
         public TAmb tpAmb { get; set; }
 
+        /// <summary>
+        /// Grupo de informação das NF/NF-e referenciadas
+        /// </summary>
+        [XmlElementAttribute("NFref")]
+        public List<NFReferenciada> NFref { get; set; }
+
+        public Identificacao()
+        {
+            NFref = new List<NFReferenciada>();
+        }
     }
+
+   
 
     /// <summary>
     /// Tipo do Documento Fiscal

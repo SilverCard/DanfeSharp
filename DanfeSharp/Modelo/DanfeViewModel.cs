@@ -127,6 +127,11 @@ namespace DanfeSharp.Modelo
         /// </summary>
         public String DescricaoStatusReposta { get; set; }
 
+        /// <summary>
+        /// Informações de Notas Fiscais referenciadas que serão levadas no texto adicional.
+        /// </summary>
+        public List<String> NotasFiscaisReferenciadas { get; set; }
+
         #region Informações adicionais de compra
 
         /// <summary>
@@ -171,6 +176,7 @@ namespace DanfeSharp.Modelo
             Produtos = new List<ProdutoViewModel>();
             Transportadora = new TransportadoraViewModel();
             CalculoIssqn = new CalculoIssqnViewModel();
+            NotasFiscaisReferenciadas = new List<string>();
 
             ExibirIcmsInterestadual = true;
             ExibirPisConfins = true;
@@ -209,9 +215,7 @@ namespace DanfeSharp.Modelo
         public virtual String TextoAdicional()
         {
             StringBuilder sb = new StringBuilder();
-
-            //ToDo NF-e Referenciadas?
-
+           
             if (!String.IsNullOrEmpty(InformacoesComplementares))
                 sb.AppendChaveValor("Inf. Contribuinte", InformacoesComplementares).Replace(";", "\r\n");
 
@@ -229,6 +233,14 @@ namespace DanfeSharp.Modelo
 
             if (!String.IsNullOrEmpty(NotaEmpenho))
                 sb.AppendChaveValor("Nota de Empenho", NotaEmpenho);
+
+
+            foreach (var nfref in NotasFiscaisReferenciadas)
+            {
+                if (sb.Length > 0) sb.Append(" ");
+                sb.Append(nfref);
+            }
+
 
             #region NT 2013.003 Lei da Transparência
 
