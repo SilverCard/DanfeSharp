@@ -25,7 +25,7 @@ namespace DanfeSharp
 
             var r = BoundingBox.InflatedRetangle(Estilo.PaddingSuperior, Estilo.PaddingInferior, Estilo.PaddingHorizontal);
 
-            String[] valores = { ViewModel.Numero, ViewModel.Vecimento.Formatar(), ViewModel.Valor.Formatar() };
+            String[] valores = { ViewModel.Numero, ViewModel.Vecimento.Formatar(), ViewModel.Valor.FormatarMoeda() };
 
             for (int i = 0; i < Chaves.Length; i++)
             {

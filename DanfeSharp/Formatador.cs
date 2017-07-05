@@ -204,6 +204,11 @@ namespace DanfeSharp
             return number.HasValue ? number.Value.Formatar(formato) : String.Empty;
         }
 
+        public static String FormatarMoeda(this Double? number)
+        {
+            return number.HasValue ? String.Format(Cultura, "R$ {0:N2}", number.Value) : String.Empty;
+        }
+
         public static String Formatar(this DateTime? dateTime)
         {
             return dateTime.HasValue ? dateTime.Value.ToShortDateString() : String.Empty;
