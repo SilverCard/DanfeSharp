@@ -10,6 +10,19 @@ namespace DanfeSharp.Modelo
     /// </summary>
     public class DanfeViewModel
     {
+        private int _QuantidadeCanhoto;
+
+        public int QuantidadeCanhotos {
+            get => _QuantidadeCanhoto;
+            set
+            {
+                if (value >= 0 && value <= 2)
+                    _QuantidadeCanhoto = value;
+                else
+                    throw new ArgumentOutOfRangeException("A quantidade de canhotos deve de 0 a 2.");
+            }
+        }
+
         /// <summary>
         /// <para>Número do Documento Fiscal</para>
         /// <para>Tag nNF</para>
@@ -168,6 +181,7 @@ namespace DanfeSharp.Modelo
 
         public DanfeViewModel ()
 	    {
+            QuantidadeCanhotos = 1;
             Orientacao = Orientacao.Retrato;
             CalculoImposto = new CalculoImpostoViewModel();
             Emitente = new EmpresaViewModel();

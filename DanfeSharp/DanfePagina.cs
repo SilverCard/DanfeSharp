@@ -46,27 +46,39 @@ namespace DanfeSharp
 
         private void DesenharCanhoto()
         {
-            var c = Danfe.Canhoto;
-            c.SetPosition(RetanguloDesenhavel.Location);
+            if (Danfe.ViewModel.QuantidadeCanhotos == 0) return;
+
+            var canhoto = Danfe.Canhoto;
+            canhoto.SetPosition(RetanguloDesenhavel.Location);
 
             if (Danfe.ViewModel.Orientacao == Orientacao.Retrato)
-            {
-                c.Width = RetanguloDesenhavel.Width;
-                c.Draw(Gfx);
-                RetanguloDesenhavel = RetanguloDesenhavel.CutTop(c.Height);
+            {           
+                canhoto.Width = RetanguloDesenhavel.Width;
+
+                for (int i = 0; i < Danfe.ViewModel.QuantidadeCanhotos; i++)
+                {
+                    canhoto.Draw(Gfx);
+                    canhoto.Y += canhoto.Height;
+                }
+
+                RetanguloDesenhavel = RetanguloDesenhavel.CutTop(canhoto.Height * Danfe.ViewModel.QuantidadeCanhotos);
             }
             else
             {
-                c.Width = RetanguloDesenhavel.Height;
-
+                canhoto.Width = RetanguloDesenhavel.Height;
                 Gfx.PrimitiveComposer.BeginLocalState();
-                Gfx.PrimitiveComposer.Rotate(90, new PointF(c.Y - c.X, c.Width + c.X + c.Y).ToPointMeasure());
-                c.Draw(Gfx);
+                Gfx.PrimitiveComposer.Rotate(90, new PointF(0, canhoto.Width + canhoto.X + canhoto.Y).ToPointMeasure());
+
+                for (int i = 0; i < Danfe.ViewModel.QuantidadeCanhotos; i++)
+                {
+                    canhoto.Draw(Gfx);
+                    canhoto.Y += canhoto.Height;
+                }              
+
                 Gfx.PrimitiveComposer.End();
+                RetanguloDesenhavel = RetanguloDesenhavel.CutLeft(canhoto.Height * Danfe.ViewModel.QuantidadeCanhotos);
 
-                RetanguloDesenhavel = RetanguloDesenhavel.CutLeft(c.Height);
             }
-
         }
 
         public void DesenhaNumeroPaginas(int n, int total)
@@ -93,7 +105,7 @@ namespace DanfeSharp
 
         public void DesenharBlocos(bool isPrimeirapagina = false)
         {
-            if (isPrimeirapagina) DesenharCanhoto();
+            if (isPrimeirapagina && Danfe.ViewModel.QuantidadeCanhotos > 0) DesenharCanhoto();
 
             var blocos = isPrimeirapagina ? Danfe._Blocos : Danfe._Blocos.Where(x => x.VisivelSomentePrimeiraPagina == false);
 
