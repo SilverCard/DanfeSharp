@@ -220,7 +220,11 @@ namespace DanfeSharp.Modelo
                 sb.AppendChaveValor("Inf. Contribuinte", InformacoesComplementares).Replace(";", "\r\n");
 
             if (!String.IsNullOrEmpty(Destinatario.Email))
-                sb.AppendChaveValor("Email do Destinatário", Destinatario.Email);
+            {
+                // Adiciona um espaço após a virgula caso necessário, isso facilita a quebra de linha.
+                var destEmail = Regex.Replace(Destinatario.Email, @"(?<=\S)([,;])(?=\S)", "$1 ").Trim(new char[] {' ', ',', ';'});
+                sb.AppendChaveValor("Email do Destinatário", destEmail);
+            }
 
             if (!String.IsNullOrEmpty(InformacoesAdicionaisFisco))
                 sb.AppendChaveValor("Inf. fisco", InformacoesAdicionaisFisco);
