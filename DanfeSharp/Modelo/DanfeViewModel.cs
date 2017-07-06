@@ -12,6 +12,9 @@ namespace DanfeSharp.Modelo
     {
         private int _QuantidadeCanhoto;
 
+        /// <summary>
+        /// Quantidade de canhotos a serem impressos.
+        /// </summary>
         public int QuantidadeCanhotos {
             get => _QuantidadeCanhoto;
             set
@@ -20,6 +23,23 @@ namespace DanfeSharp.Modelo
                     _QuantidadeCanhoto = value;
                 else
                     throw new ArgumentOutOfRangeException("A quantidade de canhotos deve de 0 a 2.");
+            }
+        }
+
+        private float _Margem;
+
+        /// <summary>
+        /// Magens horizontais e verticais do DANFE.
+        /// </summary>
+        public float Margem
+        {
+            get => _Margem;
+            set
+            {
+                if (value >= 2 && value <= 5)
+                    _Margem = value;
+                else
+                    throw new ArgumentOutOfRangeException("A margem deve ser entre 2 e 5.");
             }
         }
 
@@ -182,6 +202,7 @@ namespace DanfeSharp.Modelo
         public DanfeViewModel ()
 	    {
             QuantidadeCanhotos = 1;
+            Margem = 4;
             Orientacao = Orientacao.Retrato;
             CalculoImposto = new CalculoImpostoViewModel();
             Emitente = new EmpresaViewModel();
