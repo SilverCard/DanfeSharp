@@ -185,9 +185,9 @@ namespace DanfeSharp
             return InternalRegexReplace(telefone, Telefone, "($1) $2-$3");
         }
 
-        public static String FormatarChaveAcesso(String cnpj)
+        public static String FormatarChaveAcesso(String chaveAcesso)
         {
-            return Regex.Replace(cnpj, ".{4}", "$0 ").TrimEnd();
+            return Regex.Replace(chaveAcesso, ".{4}", "$0 ").TrimEnd();
         }
 
         public static String Formatar(this Double number, String formato = FormatoMoeda)

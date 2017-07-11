@@ -14,6 +14,22 @@ namespace DanfeSharp
             if (String.IsNullOrWhiteSpace(str)) return false;
 
             return Regex.IsMatch(str, $@"({chave}):?\s*{valor}", RegexOptions.IgnoreCase);
-        }        
+        } 
+        
+        public static String TipoDFeDeChaveAcesso(String chaveAcesso)
+        {
+            if (String.IsNullOrWhiteSpace(chaveAcesso)) throw new ArgumentException(nameof(chaveAcesso));
+
+            if(chaveAcesso.Length == 44)
+            {
+                String f = chaveAcesso.Substring(20, 2);
+
+                if (f == "55") return "NF-e";
+                else if (f == "57") return "CT-e";
+                else if (f == "65") return "NFC-e";
+            }
+
+            return "DF-e Desconhecido";
+        }
     }
 }

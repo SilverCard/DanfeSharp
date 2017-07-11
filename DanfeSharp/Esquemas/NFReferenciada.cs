@@ -21,10 +21,11 @@ namespace DanfeSharp.Esquemas
 
         public override string ToString()
         {
-            if (TipoNFReferenciada == TipoNFReferenciada.refCTe)
-                return "CT-e Ref.: " + Formatador.FormatarChaveAcesso(Item.ToString());
-            else if (TipoNFReferenciada == TipoNFReferenciada.refNFe)
-                return "NF-e Ref.: " + Formatador.FormatarChaveAcesso(Item.ToString());
+            if (TipoNFReferenciada == TipoNFReferenciada.refCTe || TipoNFReferenciada == TipoNFReferenciada.refNFe)
+            {
+                string chaveAcesso = Item.ToString();
+                return $"{Utils.TipoDFeDeChaveAcesso(chaveAcesso)} Ref.: {Formatador.FormatarChaveAcesso(Item.ToString())}";
+            }
             else
                 return Item.ToString();
         }

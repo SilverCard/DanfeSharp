@@ -27,7 +27,7 @@ namespace DanfeSharp.Blocos
             if (ViewModel.IsRetrato)
             { 
                 Tabela
-                .ComColuna(8.5f, ac, "CÓDIGO PRODUTO")
+                .ComColuna(8.5f, ac, "CÓDIGO", "PRODUTO")
                 .ComColuna(0, ae, "DESCRIÇÃO DO PRODUTO / SERVIÇO")
                 .ComColuna(5.6F, ac, "NCM/SH")
                 .ComColuna(3.9F, ac, cabecalho4)
