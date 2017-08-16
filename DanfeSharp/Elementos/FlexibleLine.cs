@@ -79,8 +79,8 @@ namespace DanfeSharp
             {
                 var e = Elementos[i];
                 var ew = (Width * ElementosLargurasP[i]) / 100F;
-
-                if (e is VerticalStack)
+						
+                if (Attribute.IsDefined(e.GetType(), typeof(AlturaFixaAttribute)))
                 {
                     e.Width = ew;
                 }

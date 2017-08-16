@@ -4,6 +4,7 @@ using System;
 
 namespace DanfeSharp
 {
+	[AlturaFixa]
     internal class Duplicata : ElementoBase
     {
         public Fonte FonteA { get; private set; }

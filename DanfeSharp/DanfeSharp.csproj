@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atributos\AlturaFixaAttribute.cs" />
     <Compile Include="Blocos\BlocoBase.cs" />
     <Compile Include="Blocos\BlocoCalculoImposto.cs" />
     <Compile Include="Blocos\BlocoCanhoto.cs" />

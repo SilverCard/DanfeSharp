@@ -8,6 +8,7 @@ namespace DanfeSharp
     /// <summary>
     /// Define uma pilha vertical de elementos, de forma que todos eles fiquem com a mesma largura.
     /// </summary>
+	[AlturaFixa]
     internal class VerticalStack : DrawableBase
     {
         public List<DrawableBase> Drawables { get; private set; }
