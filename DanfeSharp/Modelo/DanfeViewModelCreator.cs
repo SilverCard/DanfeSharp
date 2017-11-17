@@ -343,7 +343,7 @@ namespace DanfeSharp.Modelo
 
             var infoProto = procNfe.protNFe.infProt;
 
-            model.ProtocoloAutorizacao = String.Format("{0} - {1}", infoProto.nProt, infoProto.dhRecbto);
+            model.ProtocoloAutorizacao = String.Format(Formatador.Cultura, "{0} - {1}", infoProto.nProt, infoProto.dhRecbto);
 
             ExtrairDatas(model, infNfe);
 
