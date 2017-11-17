@@ -103,6 +103,7 @@
     <Compile Include="Esquemas\ProcNFe.cs" />
     <Compile Include="Esquemas\Versao.cs" />
     <Compile Include="Strings.cs" />
+    <Compile Include="Structs\DateTimeOffsetIso8601.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup />

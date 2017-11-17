@@ -50,7 +50,9 @@ namespace DanfeSharp.Esquemas.NFe
 
         public string verAplic;
         public string chNFe;
-        public System.DateTime dhRecbto;
+
+        public DateTimeOffsetIso8601 dhRecbto;
+
         public string nProt;
         public int cStat;
         public string xMotivo;
@@ -715,6 +717,9 @@ namespace DanfeSharp.Esquemas.NFe
         public int nNF { get; set; }
         public DateTime? dEmi { get; set; }
 
+
+        #region DataHora Emissão e Saída v2-
+
         /// <summary>
         /// Data de Saída/Entrada, NFe2
         /// </summary>
@@ -725,15 +730,21 @@ namespace DanfeSharp.Esquemas.NFe
         /// </summary>
         public String hSaiEnt { get; set; }
 
+        #endregion
+
+        #region DataHora Emissão e Saída v3+
+
         /// <summary>
         /// Data e Hora de Emissão, NFe v3
         /// </summary>
-        public DateTime? dhEmi { get; set; }
+        public DateTimeOffsetIso8601? dhEmi { get; set; }
 
         /// <summary>
         /// Data e Hora de Saída/Entrada, NFe v3
         /// </summary>
-        public DateTime? dhSaiEnt { get; set; }
+        public DateTimeOffsetIso8601? dhSaiEnt { get; set; }
+
+        #endregion
 
         public Tipo tpNF { get; set; }
 

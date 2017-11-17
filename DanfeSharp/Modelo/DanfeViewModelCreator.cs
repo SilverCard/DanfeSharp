@@ -134,8 +134,8 @@ namespace DanfeSharp.Modelo
 
             if (infNfe.Versao.Maior >= 3)
             {
-                model.DataHoraEmissao = ide.dhEmi;
-                model.DataSaidaEntrada = ide.dhSaiEnt;
+                if(ide.dhEmi.HasValue) model.DataHoraEmissao = ide.dhEmi.Value.DateTimeOffsetValue.DateTime;
+                if(ide.dhSaiEnt.HasValue) model.DataSaidaEntrada = ide.dhSaiEnt.Value.DateTimeOffsetValue.DateTime;
 
                 if (model.DataSaidaEntrada.HasValue)
                 {
@@ -343,7 +343,7 @@ namespace DanfeSharp.Modelo
 
             var infoProto = procNfe.protNFe.infProt;
 
-            model.ProtocoloAutorizacao = String.Format(Formatador.Cultura, "{0} - {1}", infoProto.nProt, infoProto.dhRecbto);
+            model.ProtocoloAutorizacao = String.Format(Formatador.Cultura, "{0} - {1}", infoProto.nProt, infoProto.dhRecbto.DateTimeOffsetValue.DateTime);
 
             ExtrairDatas(model, infNfe);
 
