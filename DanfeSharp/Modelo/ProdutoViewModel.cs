@@ -28,6 +28,11 @@ namespace DanfeSharp.Modelo
         /// </summary>
         public String Ncm { get; set; }
 
+        /// <summary>
+        /// <para>Código de barras - EAN</para>
+        /// <para>Tag cEAN</para>
+        /// </summary>
+        public string cEAN { get; set; }
 
         /// <summary>
         /// <para>Origem da mercadoria + Tributação do ICMS</para>
