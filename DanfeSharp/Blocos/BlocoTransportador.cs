@@ -4,10 +4,11 @@ namespace DanfeSharp.Blocos
 {
     internal class BlocoTransportador : BlocoBase
     {
-        public const float LarguraCampoPlacaVeiculo = 22F / 200F * 100;
-        public const float LarguraCampoCodigoAntt = 30F / 200F * 100;
-        public const float LarguraCampoCnpj = 31F / 200F * 100;
-        public const float LarguraCampoUf = 7F / 200F * 100;
+        public const float LarguraCampoPlacaVeiculo = 22F * Proporcao;
+        public const float LarguraCampoCodigoAntt = 30F * Proporcao;
+        public const float LarguraCampoCnpj = 31F * Proporcao;
+        public const float LarguraCampoUf = 7F * Proporcao;
+        public const float LarguraFrete = 34F * Proporcao;
 
         public BlocoTransportador(DanfeViewModel viewModel, Estilo campoEstilo) : base(viewModel, campoEstilo)
         {
@@ -20,7 +21,7 @@ namespace DanfeSharp.Blocos
                 .ComCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), AlinhamentoHorizontal.Centro)
                 .ComCampo(Strings.UF, transportadora.VeiculoUf, AlinhamentoHorizontal.Centro)
                 .ComCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(transportadora.CnpjCpf), AlinhamentoHorizontal.Centro)
-                .ComLarguras(0, 34F / 200F * 100, LarguraCampoCodigoAntt, LarguraCampoPlacaVeiculo, LarguraCampoUf, LarguraCampoCnpj);
+                .ComLarguras(0, LarguraFrete, LarguraCampoCodigoAntt, LarguraCampoPlacaVeiculo, LarguraCampoUf, LarguraCampoCnpj);
 
             AdicionarLinhaCampos()
                 .ComCampo(Strings.Endereco, transportadora.EnderecoLogadrouro)
