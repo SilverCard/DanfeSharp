@@ -520,16 +520,22 @@ namespace DanfeSharp.Esquemas.NFe
     {
 
         [XmlEnum("0")]
-        PorContaEmitente = 0,
+        PorContaRemetente = 0,
 
         [XmlEnum("1")]
-        PorContaDestinatarioRemetente = 1,
+        PorContaDestinatario = 1,
 
         [XmlEnum("2")]
         PorContaTerceiros = 2,
 
+        [XmlEnum("3")]
+        ProprioContaRemetente = 3,
+
+        [XmlEnum("4")]
+        ProprioContaDestinatario = 4,
+
         [XmlEnum("9")]
-        SemFrete = 9,
+        SemTransporte = 9,
     }
 
 
