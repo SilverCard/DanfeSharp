@@ -412,13 +412,19 @@ namespace DanfeSharp.Esquemas.NFe
         /// </summary>
         public Double vICMS;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS Interestadual para a UF de destino
+        /// </summary>
         public double? vICMSUFDest;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS Interestadual para a UF do remetente
+        /// </summary>
         public double? vICMSUFRemet;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS relativo Fundo de Combate à Pobreza(FCP) da UF de destino
+        /// </summary>
         public double? vFCPUFDest;
 
         /// <summary>
