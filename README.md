@@ -35,6 +35,4 @@ using (var danfe = new Danfe(modelo))
 }
 ```
 
-Um aplicativo web de exemplo que gera DANFE pode ser testado [aqui.](http://ricardobrito.xyz/DanfeSharpWebSample)
-
 
