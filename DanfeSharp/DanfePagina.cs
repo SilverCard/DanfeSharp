@@ -41,7 +41,7 @@ namespace DanfeSharp
 
         public void DesenharCreditos()
         {
-            Gfx.DrawString("Impresso com DanfeSharp", RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Direita);
+            Gfx.DrawString(string.Format("Gerado em {0} com Lenus UX | www.sysvalley.com.br", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")), RetanguloCreditos, Danfe.EstiloPadrao.CriarFonteItalico(6), AlinhamentoHorizontal.Direita);
         }
 
         private void DesenharCanhoto()

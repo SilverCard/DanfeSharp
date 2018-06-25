@@ -8,8 +8,12 @@ namespace DanfeSharp.Blocos
     /// <summary>
     /// Define um bloco básico do DANFE.
     /// </summary>
-    internal abstract class BlocoBase : ElementoBase
-    {
+    internal abstract class BlocoBase : ElementoBase {
+        /// <summary>
+        /// Constante de proporção dos campos para o formato retrato A4, porcentagem dividida pela largura desenhável.
+        /// </summary>
+        public const float Proporcao = 100F / 200F;
+
         public DanfeViewModel ViewModel { get; private set; }
 
         public abstract PosicaoBloco Posicao { get; }

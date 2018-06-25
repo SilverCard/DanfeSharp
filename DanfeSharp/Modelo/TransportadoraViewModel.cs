@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DanfeSharp.Modelo
-{
-    public class TransportadoraViewModel : EmpresaViewModel
-    {
-        public static readonly Dictionary<int, String> ModalidadesFrete = new Dictionary<int,string>()
+namespace DanfeSharp.Modelo {
+    public class TransportadoraViewModel : EmpresaViewModel {
+        public static readonly Dictionary<int, String> ModalidadesFrete = new Dictionary<int, string>()
         {
-            {0, "Emitente"},
-            {1, "Dest/Rem"},
-            {2, "Terceiros"},
-            {9, "Sem frete"}
+            {0, "Por conta Remetente"},
+            {1, "Por conta Destinatário"},
+            {2, "Por conta Terceiros"},
+            {3, "Próprio, por conta Rem."},
+            {4, "Próprio, por conta Dest."},
+            {9, "Sem Transporte"}
         };
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace DanfeSharp.Modelo
         /// <para>Tag modFrete</para>
         /// </summary>
         public int ModalidadeFrete { get; set; }
-        
+
         /// <summary>
         /// <para>Registro Nacional de Transportador de Carga (ANTT).</para>
         /// <para>Tag RNTC</para>
@@ -73,15 +73,14 @@ namespace DanfeSharp.Modelo
         /// </summary>
         public Double? PesoBruto { get; set; }
 
-        public String ModalidadeFreteString
-        {
-            get
-            {
+        public String ModalidadeFreteString {
+            get {
                 String result = "";
 
-                if (ModalidadesFrete.ContainsKey(ModalidadeFrete))
-                {
-                    result = String.Format("({0}) {1}", ModalidadeFrete, ModalidadesFrete[ModalidadeFrete]);
+                if (ModalidadesFrete.ContainsKey(ModalidadeFrete)) {
+                    result = $"{ModalidadeFrete}-{ModalidadesFrete[ModalidadeFrete]}";
+                } else {
+                    result = $"({ModalidadeFrete})";
                 }
 
                 return result;
