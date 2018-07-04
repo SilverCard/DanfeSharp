@@ -118,7 +118,7 @@ namespace DanfeSharp.Test
                     EnderecoCep = "00000",
                     EnderecoComplemento = "Complemento",
                     Especie = "Especie",
-                    Placa = "MMM8888",
+                    Placa = "MMMWWWW",
                     EnderecoLogadrouro = "Logadrouro",
                     Ie = "12334",
                     EnderecoUf = "RS",
