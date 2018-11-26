@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DanfeSharp.Esquemas.NFe;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -114,6 +115,11 @@ namespace DanfeSharp.Modelo
         /// <para>Tag tpNF</para>
         /// </summary>
         public int TipoNF { get; set; }
+        
+        /// <summary>
+        /// Tipo de emissão
+        /// </summary>
+        public FormaEmissao TipoEmissao { get; set; }
 
         /// <summary>
         /// Numero do protocolo com sua data e hora
@@ -199,6 +205,14 @@ namespace DanfeSharp.Modelo
 
         #endregion
 
+        #region Contingencia
+
+        public DateTime? ContingenciaDataHora { get; set; }
+
+        public String ContingenciaJustificativa { get; set; }
+
+        #endregion
+
         public DanfeViewModel ()
 	    {
             QuantidadeCanhotos = 1;
@@ -245,6 +259,37 @@ namespace DanfeSharp.Modelo
             {
                 return $"Recebemos de {Emitente.RazaoSocial} os produtos e/ou serviços constantes na Nota Fiscal Eletrônica indicada {(Orientacao == Orientacao.Retrato ? "abaixo" : "ao lado" )}. Emissão: {DataHoraEmissao.Formatar()} Valor Total: R$ {CalculoImposto.ValorTotalNota.Formatar()} Destinatário: {Destinatario.RazaoSocial}";
             }
+        }
+
+        public virtual String TextoAdicionalFisco()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (TipoEmissao == FormaEmissao.ContingenciaSVCAN || TipoEmissao == FormaEmissao.ContingenciaSVCRS)
+            {
+                sb.Append("Contingência ");
+
+                if (TipoEmissao == FormaEmissao.ContingenciaSVCAN)
+                    sb.Append("SVC-AN");
+
+                if (TipoEmissao == FormaEmissao.ContingenciaSVCRS)
+                    sb.Append("SVC-RS");
+
+                if(ContingenciaDataHora.HasValue)
+                {
+                    sb.Append($" - {ContingenciaDataHora.FormatarDataHora()}");
+                }
+
+                if (!String.IsNullOrWhiteSpace(ContingenciaJustificativa))
+                {
+                    sb.Append($" - {ContingenciaJustificativa}");
+                }
+
+                sb.Append(".");
+
+            }
+
+            return sb.ToString();
         }
 
         public virtual String TextoAdicional()

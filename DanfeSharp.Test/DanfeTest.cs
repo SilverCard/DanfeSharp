@@ -1,5 +1,6 @@
 ﻿using DanfeSharp.Modelo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Drawing;
 using System.IO;
 
@@ -112,6 +113,32 @@ namespace DanfeSharp.Test
             var model = FabricaFake.DanfeViewModel_1();
             model.Orientacao = Orientacao.Retrato;
             model.QuantidadeCanhotos = 0;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void Contingencia_SVC_AN()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.TipoEmissao = Esquemas.NFe.FormaEmissao.ContingenciaSVCAN;
+            model.ContingenciaDataHora = DateTime.Now;
+            model.ContingenciaJustificativa = "Aqui vai o motivo da contingência";
+            model.Orientacao = Orientacao.Retrato;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void Contingencia_SVC_RS()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.TipoEmissao = Esquemas.NFe.FormaEmissao.ContingenciaSVCRS;
+            model.ContingenciaDataHora = DateTime.Now;
+            model.ContingenciaJustificativa = "Aqui vai o motivo da contingência";
+            model.Orientacao = Orientacao.Retrato;
             DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
             d.Gerar();
             d.SalvarTestPdf();
