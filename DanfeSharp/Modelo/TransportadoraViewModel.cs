@@ -7,10 +7,12 @@ namespace DanfeSharp.Modelo
     {
         public static readonly Dictionary<int, String> ModalidadesFrete = new Dictionary<int,string>()
         {
-            {0, "Emitente"},
-            {1, "Dest/Rem"},
-            {2, "Terceiros"},
-            {9, "Sem frete"}
+            {0, "Por conta Remetente"},
+            {1, "Por conta Destinatário"},
+            {2, "Por conta Terceiros"},
+            {3, "Próprio, por conta Rem."},
+            {4, "Próprio, por conta Dest."},
+            {9, "Sem Transporte"}
         };
 
         /// <summary>
@@ -81,7 +83,11 @@ namespace DanfeSharp.Modelo
 
                 if (ModalidadesFrete.ContainsKey(ModalidadeFrete))
                 {
-                    result = String.Format("({0}) {1}", ModalidadeFrete, ModalidadesFrete[ModalidadeFrete]);
+                    result = $"{ModalidadeFrete}-{ModalidadesFrete[ModalidadeFrete]}";
+                }
+                else
+                {
+                    result = $"({ModalidadeFrete})";
                 }
 
                 return result;

@@ -47,13 +47,8 @@ namespace DanfeSharp.Esquemas
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public class RefECF
     {
-        /// <remarks/>
         public string mod { get; set; }
-
-        /// <remarks/>
         public string nECF { get; set; }
-
-        /// <remarks/>
         public string nCOO { get; set; }
 
         public override string ToString()
@@ -67,17 +62,9 @@ namespace DanfeSharp.Esquemas
     public class RefNF
     {
         public string AAMM { get; set; }
-
-        /// <remarks/>
         public string CNPJ { get; set; }
-
-        /// <remarks/>
         public string mod { get; set; }
-
-        /// <remarks/>
         public string serie { get; set; }
-
-        /// <remarks/>
         public string nNF { get; set; }
 
         public override string ToString()
@@ -90,22 +77,12 @@ namespace DanfeSharp.Esquemas
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public class RefNFP
     {
-        /// <remarks/>
         public string AAMM { get; set; }
-
         public string CNPJ { get; set; }
         public string CPF { get; set; }
-
-        /// <remarks/>
         public string IE { get; set; }
-
-        /// <remarks/>
         public string mod { get; set; }
-
-        /// <remarks/>
         public string serie { get; set; }
-
-        /// <remarks/>
         public string nNF { get; set; }
 
         public override string ToString()

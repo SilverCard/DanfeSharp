@@ -14,13 +14,19 @@
         /// </summary>
         public double ValorIcms { get; set; }
 
-        /// <remarks/>
+        /// <summary>
+        /// <para>Tag vICMSUFDest</para>
+        /// </summary>
         public double? vICMSUFDest { get; set; }
 
-        /// <remarks/>
+        /// <summary>
+        /// <para>Tag vICMSUFRemet</para>
+        /// </summary>
         public double? vICMSUFRemet { get; set; }
 
-        /// <remarks/>
+        /// <summary>
+        /// <para>Tag vFCPUFDest</para>
+        /// </summary>
         public double? vFCPUFDest { get; set; }
 
         /// <summary>
