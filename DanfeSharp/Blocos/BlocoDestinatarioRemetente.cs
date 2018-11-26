@@ -17,14 +17,14 @@ namespace DanfeSharp.Blocos
             .ComCampo(Strings.RazaoSocial, destinatario.RazaoSocial)
             .ComCampo(Strings.CnpjCpf, Formatador.FormatarCpfCnpj(destinatario.CnpjCpf), AlinhamentoHorizontal.Centro)
             .ComCampo("Data de Emissão", viewModel.DataHoraEmissao.Formatar(), AlinhamentoHorizontal.Centro)
-            .ComLarguras(0, 45F/200F * 100, 30F/200F * 100);
+            .ComLarguras(0, 45F * Proporcao, 30F * Proporcao);
 
             AdicionarLinhaCampos()
             .ComCampo(Strings.Endereco, destinatario.EnderecoLinha1)
             .ComCampo("Bairro / Distrito", destinatario.EnderecoBairro)
             .ComCampo("Cep", Formatador.FormatarCEP(destinatario.EnderecoCep), AlinhamentoHorizontal.Centro)
             .ComCampo("Data Entrada / Saída", ViewModel.DataSaidaEntrada.Formatar(), AlinhamentoHorizontal.Centro)
-            .ComLarguras(0, 45F/200 * 100F, 25F / 200F * 100, 30F / 200F * 100);
+            .ComLarguras(0, 45F * Proporcao, 25F * Proporcao, 30F * Proporcao);
 
             AdicionarLinhaCampos()
             .ComCampo(Strings.Municipio, destinatario.Municipio)
@@ -32,7 +32,7 @@ namespace DanfeSharp.Blocos
             .ComCampo(Strings.UF, destinatario.EnderecoUf, AlinhamentoHorizontal.Centro)
             .ComCampo(Strings.InscricaoEstadual, destinatario.Ie, AlinhamentoHorizontal.Centro)
             .ComCampo("Hora Entrada / Saída", ViewModel.HoraSaidaEntrada.Formatar(), AlinhamentoHorizontal.Centro)
-            .ComLarguras(0, 35F / 200F * 100, 7F / 200F * 100, 40F / 200F * 100, 30F / 200F * 100);
+            .ComLarguras(0, 35F * Proporcao, 7F * Proporcao, 40F * Proporcao, 30F * Proporcao);
         }
 
         public override string Cabecalho => "Destinatário / Remetente";

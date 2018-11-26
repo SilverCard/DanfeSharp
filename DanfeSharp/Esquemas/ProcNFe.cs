@@ -412,13 +412,19 @@ namespace DanfeSharp.Esquemas.NFe
         /// </summary>
         public Double vICMS;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS Interestadual para a UF de destino
+        /// </summary>
         public double? vICMSUFDest;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS Interestadual para a UF do remetente
+        /// </summary>
         public double? vICMSUFRemet;
 
-        /// <remarks/>
+        /// <summary>
+        /// Valor total do ICMS relativo Fundo de Combate à Pobreza(FCP) da UF de destino
+        /// </summary>
         public double? vFCPUFDest;
 
         /// <summary>
@@ -520,16 +526,22 @@ namespace DanfeSharp.Esquemas.NFe
     {
 
         [XmlEnum("0")]
-        PorContaEmitente = 0,
+        PorContaRemetente = 0,
 
         [XmlEnum("1")]
-        PorContaDestinatarioRemetente = 1,
+        PorContaDestinatario = 1,
 
         [XmlEnum("2")]
         PorContaTerceiros = 2,
 
+        [XmlEnum("3")]
+        ProprioContaRemetente = 3,
+
+        [XmlEnum("4")]
+        ProprioContaDestinatario = 4,
+
         [XmlEnum("9")]
-        SemFrete = 9,
+        SemTransporte = 9,
     }
 
 

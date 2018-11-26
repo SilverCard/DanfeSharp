@@ -110,22 +110,22 @@ namespace DanfeSharp.Test
                 Transportadora = new TransportadoraViewModel()
                 {
                     RazaoSocial = "Correios",
-                    CnpjCpf = new String('1', 14),
+                    CnpjCpf = new String('8', 14),
                     VeiculoUf = "RS",
                     QuantidadeVolumes = 123.1234,
-                    CodigoAntt = "1234",
-                    EnderecoBairro = "Bairoo",
+                    CodigoAntt = new String('8', 20),
+                    EnderecoBairro = "Bairo",
                     EnderecoCep = "00000",
-                    EnderecoComplemento = "Com",
+                    EnderecoComplemento = "Complemento",
                     Especie = "Especie",
-                    Placa = "ABC1234",
+                    Placa = "MMMWWWW",
                     EnderecoLogadrouro = "Logadrouro",
                     Ie = "12334",
                     EnderecoUf = "RS",
                     PesoLiquido = 456.7794,
                     Marca = "DanfeSharp",
                     EnderecoNumero = "101",
-                    ModalidadeFrete = 1,
+                    ModalidadeFrete = 4,
                     PesoBruto = 101.1234
                 },
                 InformacoesComplementares = "Aqui vai as informações complementares."
