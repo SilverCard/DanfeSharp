@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace DanfeSharp.Test
 {
@@ -18,7 +19,11 @@ namespace DanfeSharp.Test
 
             if (!Directory.Exists(caminhoOut)) Directory.CreateDirectory(caminhoOut);
 
-            foreach (var pathXml in Directory.EnumerateFiles(pasta, "*.xml"))
+            var arquivos = Directory.EnumerateFiles(pasta, "*.xml");
+            if (arquivos.Count() == 0)
+                throw new FileNotFoundException($"Nenhum arquivo xml encontrado em {pasta}.");
+
+            foreach (var pathXml in arquivos)
             {
                 var model = DanfeViewModelCreator.CriarDeArquivoXml(pathXml);
                 using (Danfe danfe = new Danfe(model))

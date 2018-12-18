@@ -197,7 +197,7 @@ namespace DanfeSharp.Modelo
                 throw new NotSupportedException("Somente o mod==55 está implementado.");
             }
 
-            if(FormasEmissaoSuportadas.Contains(model.TipoEmissao))
+            if(!FormasEmissaoSuportadas.Contains(model.TipoEmissao))
             {
                 throw new NotSupportedException($"O tpEmis {ide.tpEmis} não é suportado.");
             }
