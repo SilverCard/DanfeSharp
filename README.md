@@ -1,4 +1,5 @@
-# DanfeSharp
+# DanfeSharp .Net Core
+Versão Convertida e Adaptada do DanfeSharp para .Net Core.
 
 DanfeSharp é uma biblioteca em C# que permite a geração do DANFE em formato PDF.
 
