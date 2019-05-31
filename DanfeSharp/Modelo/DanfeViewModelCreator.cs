@@ -18,6 +18,7 @@ namespace DanfeSharp.Modelo
             model.CnpjCpf = !String.IsNullOrWhiteSpace(empresa.CNPJ) ? empresa.CNPJ : empresa.CPF;
             model.Ie = empresa.IE;
             model.IeSt = empresa.IEST;
+            model.Email = empresa.email;
 
             var end = empresa.Endereco;
 
@@ -30,7 +31,7 @@ namespace DanfeSharp.Modelo
                 model.EnderecoUf = end.UF;
                 model.EnderecoCep = end.CEP;
                 model.Telefone = end.fone;
-                model.Email = empresa.email;
+                model.EnderecoComplemento = end.xCpl;
             }
 
             if (empresa is Emitente)
