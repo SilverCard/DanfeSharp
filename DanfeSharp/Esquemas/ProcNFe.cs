@@ -773,6 +773,16 @@ namespace DanfeSharp.Esquemas.NFe
         public TAmb tpAmb { get; set; }
 
         /// <summary>
+        /// Data e Hora da entrada em contingência
+        /// </summary>
+        public DateTimeOffsetIso8601? dhCont { get; set; }
+
+        /// <summary>
+        /// Justificativa da entrada em contingência 
+        /// </summary>
+        public String xJust { get; set; }
+               
+        /// <summary>
         /// Grupo de informação das NF/NF-e referenciadas
         /// </summary>
         [XmlElementAttribute("NFref")]

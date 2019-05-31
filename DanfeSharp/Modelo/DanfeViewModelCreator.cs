@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace DanfeSharp.Modelo
 {
     public static class DanfeViewModelCreator
     {
+        public readonly static IEnumerable<FormaEmissao> FormasEmissaoSuportadas = new FormaEmissao[]{ FormaEmissao.Normal, FormaEmissao.ContingenciaSVCAN, FormaEmissao.ContingenciaSVCRS };
+
         private static EmpresaViewModel CreateEmpresaFrom(Empresa empresa)
         {
             EmpresaViewModel model = new EmpresaViewModel();
@@ -135,12 +138,12 @@ namespace DanfeSharp.Modelo
 
             if (infNfe.Versao.Maior >= 3)
             {
-                if(ide.dhEmi.HasValue) model.DataHoraEmissao = ide.dhEmi.Value.DateTimeOffsetValue.DateTime;
-                if(ide.dhSaiEnt.HasValue) model.DataSaidaEntrada = ide.dhSaiEnt.Value.DateTimeOffsetValue.DateTime;
+                if(ide.dhEmi.HasValue) model.DataHoraEmissao = ide.dhEmi?.DateTimeOffsetValue.DateTime;
+                if(ide.dhSaiEnt.HasValue) model.DataSaidaEntrada = ide.dhSaiEnt?.DateTimeOffsetValue.DateTime;
 
                 if (model.DataSaidaEntrada.HasValue)
                 {
-                    model.HoraSaidaEntrada = model.DataSaidaEntrada.Value.TimeOfDay;
+                    model.HoraSaidaEntrada = model.DataSaidaEntrada?.TimeOfDay;
                 }
             }
             else
@@ -188,17 +191,17 @@ namespace DanfeSharp.Modelo
             var nfe = procNfe.NFe;
             var infNfe = nfe.infNFe;
             var ide = infNfe.ide;
+            model.TipoEmissao = ide.tpEmis;
 
             if (ide.mod != 55)
             {
-                throw new Exception("Somente o mod==55 está implementado.");
+                throw new NotSupportedException("Somente o mod==55 está implementado.");
             }
 
-            if (ide.tpEmis != FormaEmissao.Normal)
+            if(!FormasEmissaoSuportadas.Contains(model.TipoEmissao))
             {
-                throw new Exception("Somente o tpEmis==1 está implementado.");
+                throw new NotSupportedException($"O tpEmis {ide.tpEmis} não é suportado.");
             }
-
 
             model.Orientacao = ide.tpImp == 1 ? Orientacao.Retrato : Orientacao.Paisagem;
 
@@ -347,6 +350,14 @@ namespace DanfeSharp.Modelo
             model.ProtocoloAutorizacao = String.Format(Formatador.Cultura, "{0} - {1}", infoProto.nProt, infoProto.dhRecbto.DateTimeOffsetValue.DateTime);
 
             ExtrairDatas(model, infNfe);
+
+            // Contingência SVC-AN e SVC-RS
+            if(model.TipoEmissao == FormaEmissao.ContingenciaSVCAN || model.TipoEmissao == FormaEmissao.ContingenciaSVCRS)
+            {
+             
+                model.ContingenciaDataHora = ide.dhCont?.DateTimeOffsetValue.DateTime;
+                model.ContingenciaJustificativa = ide.xJust;
+            }
 
             return model;
         }
