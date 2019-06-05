@@ -21,14 +21,14 @@ namespace DanfeSharp.Blocos
 
             AdicionarLinhaCampos()
             .ComCampo(Strings.Endereco, destinatario.EnderecoLinha1)
-            .ComCampo("Bairro / Distrito", destinatario.EnderecoBairro)
-            .ComCampo("Cep", Formatador.FormatarCEP(destinatario.EnderecoCep), AlinhamentoHorizontal.Centro)
+            .ComCampo(Strings.BairroDistrito, destinatario.EnderecoBairro)
+            .ComCampo(Strings.Cep, Formatador.FormatarCEP(destinatario.EnderecoCep), AlinhamentoHorizontal.Centro)
             .ComCampo("Data Entrada / Saída", ViewModel.DataSaidaEntrada.Formatar(), AlinhamentoHorizontal.Centro)
             .ComLarguras(0, 45F * Proporcao, 25F * Proporcao, 30F * Proporcao);
 
             AdicionarLinhaCampos()
             .ComCampo(Strings.Municipio, destinatario.Municipio)
-            .ComCampo("Fone / Fax", Formatador.FormatarTelefone(destinatario.Telefone), AlinhamentoHorizontal.Centro)
+            .ComCampo(Strings.FoneFax, Formatador.FormatarTelefone(destinatario.Telefone), AlinhamentoHorizontal.Centro)
             .ComCampo(Strings.UF, destinatario.EnderecoUf, AlinhamentoHorizontal.Centro)
             .ComCampo(Strings.InscricaoEstadual, destinatario.Ie, AlinhamentoHorizontal.Centro)
             .ComCampo("Hora Entrada / Saída", ViewModel.HoraSaidaEntrada.Formatar(), AlinhamentoHorizontal.Centro)

@@ -52,6 +52,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DanfeXmlTests.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="FabricaFake.cs" />
     <Compile Include="SimplePdfPageTester.cs" />
@@ -60,6 +61,12 @@
     <Compile Include="Utils_Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Logos\PDF\Quadrado.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Logos\PDF\Retangular.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +74,34 @@
       <Project>{3b92aa4e-b2f6-4cb0-83c7-f8dcfccb22cb}</Project>
       <Name>DanfeSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logos\JPG\Quadrado.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Logos\JPG\Retangular.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Logos\PNG\Quadrado.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Logos\PNG\Retangular.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Logos\Quadradro.svg" />
+    <Content Include="Logos\Retangular.svg" />
+    <Content Include="Xml\NFe\v2.00\v2_Retrato.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xml\NFe\v3.10\v3.10_Retrato.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xml\NFe\v4.00\v4_ComLocalEntrega.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xml\NFe\v4.00\v4_ComLocalRetirada.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

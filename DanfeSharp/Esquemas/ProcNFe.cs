@@ -89,16 +89,73 @@ namespace DanfeSharp.Esquemas.NFe
     [XmlType(Namespace = Namespaces.NFe)]
     public class Endereco
     {
+        /// <summary>
+        /// Logradouro
+        /// </summary>
         public string xLgr { get; set; }
+
+        /// <summary>
+        /// Número
+        /// </summary>
         public string nro { get; set; }
+
+        /// <summary>
+        /// Complemento
+        /// </summary>
         public string xCpl { get; set; }
-        public string xBairro { get; set; }        
+
+        /// <summary>
+        /// Bairro
+        /// </summary>
+        public string xBairro { get; set; }
+
+        /// <summary>
+        /// Código do município 
+        /// </summary>
         public string cMun { get; set; }
+
+        /// <summary>
+        /// Nome do município
+        /// </summary>
         public string xMun { get; set; }
+
+        /// <summary>
+        /// Sigla da UF
+        /// </summary>
         public string UF { get; set; }
+
+        /// <summary>
+        /// Código do CEP
+        /// </summary>
         public string CEP { get; set; }
+
+        /// <summary>
+        /// Telefone
+        /// </summary>
         public string fone { get; set; }
     }
+
+    /// <summary>
+    /// Nota Técnica 2018.005
+    /// </summary>
+    [Serializable]
+    [XmlType(Namespace = Namespaces.NFe)]
+    public class LocalEntregaRetirada : Endereco
+    {
+        public string CNPJ { get; set; }
+        public string CPF { get; set; }
+
+        /// <summary>
+        /// Razão Social ou Nome do Expedidor/Recebedor
+        /// </summary>
+        public string xNome { get; set; }
+
+        /// <summary>
+        /// Inscrição Estadual do Estabelecimento Expedidor/Recebedor
+        /// </summary>
+        public string IE { get; set; }
+    }
+
 
     public class Empresa
     {
@@ -587,6 +644,17 @@ namespace DanfeSharp.Esquemas.NFe
         public Identificacao ide { get; set; }
         public Emitente emit { get; set; }
         public Destinatario dest { get; set; }
+
+        /// <summary>
+        /// Identificação do Local de retirada 
+        /// </summary>
+        public LocalEntregaRetirada retirada { get; set; }
+
+        /// <summary>
+        /// Identificação do Local de entrega 
+        /// </summary>
+        public LocalEntregaRetirada entrega { get; set; }
+
 
         [XmlElement("det")]
         public List<Detalhe> det { get; set; }

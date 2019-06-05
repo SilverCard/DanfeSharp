@@ -52,7 +52,13 @@ namespace DanfeSharp
             IdentificacaoEmitente = AdicionarBloco<BlocoIdentificacaoEmitente>();  
             AdicionarBloco<BlocoDestinatarioRemetente>();
 
-            if(ViewModel.Duplicatas.Count > 0)
+            if (ViewModel.LocalRetirada != null && ViewModel.ExibirBlocoLocalRetirada)
+                AdicionarBloco<BlocoLocalRetirada>();
+
+            if (ViewModel.LocalEntrega != null && ViewModel.ExibirBlocoLocalEntrega)
+                AdicionarBloco<BlocoLocalEntrega>();
+
+            if (ViewModel.Duplicatas.Count > 0)
                 AdicionarBloco<BlocoDuplicataFatura>();
 
             AdicionarBloco<BlocoCalculoImposto>(ViewModel.Orientacao == Orientacao.Paisagem ? EstiloPadrao : CriarEstilo(4.75F));

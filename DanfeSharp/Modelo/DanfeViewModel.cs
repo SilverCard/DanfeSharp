@@ -171,6 +171,14 @@ namespace DanfeSharp.Modelo
         /// </summary>
         public List<String> NotasFiscaisReferenciadas { get; set; }
 
+        #region Local Retirada e Entrega
+
+        public LocalEntregaRetiradaViewModel LocalRetirada { get; set; }
+
+        public LocalEntregaRetiradaViewModel LocalEntrega { get; set; }
+
+        #endregion
+
         #region Informações adicionais de compra
 
         /// <summary>
@@ -196,12 +204,23 @@ namespace DanfeSharp.Modelo
         /// <summary>
         /// Exibi os valores do ICMS Interestadual e Valor Total dos Impostos no bloco Cálculos do Imposto.
         /// </summary>
-        public bool ExibirIcmsInterestadual { get; set; }
+        public bool ExibirIcmsInterestadual { get; set; } = true;
 
         /// <summary>
         /// Exibi os valores do PIS e COFINS no bloco Cálculos do Imposto.
         /// </summary>
-        public bool ExibirPisConfins { get; set; }
+        public bool ExibirPisConfins { get; set; } = true;
+
+        /// <summary>
+        /// Exibi o bloco "Informações do local de entrega" quando o elemento "entrega" estiver disponível.
+        /// </summary>
+        public bool ExibirBlocoLocalEntrega { get; set; } = true;
+
+        /// <summary>
+        /// Exibi o bloco "Informações do local de retirada" quando o elemento "retirada" estiver disponível.
+        /// </summary>
+        public bool ExibirBlocoLocalRetirada { get; set; } = true;
+
 
         #endregion
 
@@ -226,9 +245,6 @@ namespace DanfeSharp.Modelo
             Transportadora = new TransportadoraViewModel();
             CalculoIssqn = new CalculoIssqnViewModel();
             NotasFiscaisReferenciadas = new List<string>();
-
-            ExibirIcmsInterestadual = true;
-            ExibirPisConfins = true;
         }
 
         

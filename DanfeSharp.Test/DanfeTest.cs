@@ -9,7 +9,7 @@ namespace DanfeSharp.Test
 {
     [TestClass]
     public class DanfeTest
-    {      
+    {     
 
         [TestMethod]
         public void GerarDanfeXml()
@@ -186,6 +186,26 @@ namespace DanfeSharp.Test
             var model = FabricaFake.DanfeViewModel_1();
             model.TipoAmbiente = 2;
             model.Orientacao = Orientacao.Paisagem;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void ComBlocoLocalEntrega()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.LocalEntrega = FabricaFake.LocalEntregaRetiradaFake();
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
+        public void ComBlocoLocalRetirada()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.LocalRetirada = FabricaFake.LocalEntregaRetiradaFake();
             DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
             d.Gerar();
             d.SalvarTestPdf();
