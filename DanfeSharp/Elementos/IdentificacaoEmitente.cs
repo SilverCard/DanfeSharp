@@ -42,11 +42,13 @@ namespace DanfeSharp
             {
                 RectangleF rLogo;
 
-                if(Logo.Size.Width >= Logo.Size.Height)
+                // Logo Horizontal
+                if(Logo.Size.Width > Logo.Size.Height)
                 {
                     rLogo = new RectangleF(rp.X, rp.Y, rp.Width, alturaMaximaLogoHorizontal);
                     rp = rp.CutTop(alturaMaximaLogoHorizontal);
                 }
+                // Logo Vertical / Quadrado
                 else
                 {
                     float lw = rp.Height * Logo.Size.Width / Logo.Size.Height;

@@ -55,16 +55,20 @@
     <Compile Include="DanfeXmlTests.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="FabricaFake.cs" />
+    <Compile Include="LogoTests.cs" />
     <Compile Include="SimplePdfPageTester.cs" />
     <Compile Include="DanfeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils_Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Logos\PDF\Horizontal.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Logos\PDF\Quadrado.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Logos\PDF\Retangular.pdf">
+    <None Include="Logos\PDF\Vertical.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
@@ -76,20 +80,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logos\JPG\Horizontal.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Logos\JPG\Quadrado.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Logos\JPG\Retangular.jpg">
+    <Content Include="Logos\JPG\Vertical.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Logos\PNG\Quadrado.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Logos\PNG\Retangular.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Logos\Quadradro.svg" />
-    <Content Include="Logos\Retangular.svg" />
     <Content Include="Xml\NFe\v2.00\v2_Retrato.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

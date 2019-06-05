@@ -13,21 +13,6 @@ namespace DanfeSharp.Test
     {
         public const double v = 1234.56;
 
-        public static MemoryStream FakeLogo(int w, int h)
-        {
-            MemoryStream ms = new MemoryStream();
-            using (Bitmap bmp = new Bitmap(w, h))            
-            using (var graph = System.Drawing.Graphics.FromImage(bmp))
-            {
-                Rectangle ImageSize = new Rectangle(0, 0, w, h);
-                graph.FillRectangle(Brushes.Cyan, ImageSize);
-                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-            
-            ms.Position = 0;
-            return ms;
-        }
-
         public static LocalEntregaRetiradaViewModel LocalEntregaRetiradaFake()
         {
             return new LocalEntregaRetiradaViewModel()
