@@ -76,7 +76,8 @@ namespace DanfeSharp.Test
                 Emitente = new EmpresaViewModel()
                 {
                     CnpjCpf = new String('0', 14),
-                    RazaoSocial = "Abstergo Ltda",
+                    RazaoSocial = "Abstergo do Brasil Indústria de Tecnologia Ltda.",
+                    NomeFantasia = "Abstergo",
                     Email = "fake@mail.123",
                     EnderecoBairro = "Bairro",
                     EnderecoCep = "12345678",

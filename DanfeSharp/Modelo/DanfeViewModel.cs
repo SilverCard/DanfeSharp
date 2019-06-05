@@ -221,6 +221,12 @@ namespace DanfeSharp.Modelo
         /// </summary>
         public bool ExibirBlocoLocalRetirada { get; set; } = true;
 
+        
+        /// <summary>
+        /// Exibe o Nome Fantasia, caso disponível, ao invés da Razão Social no quadro identificação do emitente.
+        /// </summary>
+        public bool PreferirEmitenteNomeFantasia { get; set; } = true;
+
 
         #endregion
 

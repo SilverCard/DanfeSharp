@@ -114,6 +114,17 @@ namespace DanfeSharp.Test
         }
 
         [TestMethod]
+        public void OpcaoPreferirEmitenteNomeFantasia_False()
+        {
+            var model = FabricaFake.DanfeViewModel_1();
+            model.Orientacao = Orientacao.Retrato;
+            model.PreferirEmitenteNomeFantasia = false;
+            DanfeSharp.Danfe d = new DanfeSharp.Danfe(model);
+            d.Gerar();
+            d.SalvarTestPdf();
+        }
+
+        [TestMethod]
         public void Paisagem()
         {
             var model = FabricaFake.DanfeViewModel_1();
