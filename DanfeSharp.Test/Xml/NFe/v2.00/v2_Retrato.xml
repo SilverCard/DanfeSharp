@@ -1,0 +1,233 @@
+<nfeProc versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+    <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+        <infNFe versao="2.00" Id="NFe35140222257735000138552443253123071430458314">
+            <ide>
+                <cUF>43</cUF>
+                <cNF>40757428</cNF>
+                <natOp>Lan.ef.dec.emis.doc.fis.rel.op.pr.reg.equip.CF /</natOp>
+                <indPag>0</indPag>
+                <mod>55</mod>
+                <serie>244</serie>
+                <nNF>325312307</nNF>
+                <dEmi>2011-09-16</dEmi>
+                <tpNF>1</tpNF>
+                <cMunFG>3550308</cMunFG>
+                <tpImp>1</tpImp>
+                <tpEmis>1</tpEmis>
+                <cDV>8</cDV>
+                <tpAmb>1</tpAmb>
+                <finNFe>1</finNFe>
+                <procEmi>0</procEmi>
+                <verProc>ABC</verProc>
+            </ide>
+            <emit>
+                <CNPJ>22257735000138</CNPJ>
+                <xNome>Umbrella Corp</xNome>
+                <xFant>Umbrella</xFant>
+                <enderEmit>
+                    <xLgr>Rua João Augusto Morais</xLgr>
+                    <nro>300</nro>
+                    <xBairro>Siqueira Campos</xBairro>
+                    <cMun>3550308</cMun>
+                    <xMun>São Paulo</xMun>
+                    <UF>SP</UF>
+                    <CEP>08010150</CEP>
+                    <cPais>1058</cPais>
+                    <xPais>Brasil</xPais>
+                </enderEmit>
+                <IE>361499373647</IE>
+                <CRT>3</CRT>
+            </emit>
+            <dest>
+                <CNPJ>64542918000145</CNPJ>
+                <xNome>Cyberdyne Systems Corp.</xNome>
+                <enderDest>
+                    <xLgr>Rua Deputado Carlos Correia</xLgr>
+                    <nro>S/N</nro>
+                    <xBairro>Siqueira Campos</xBairro>
+                    <cMun>3550308</cMun>
+                    <xMun>Aracaju</xMun>
+                    <UF>SE</UF>
+                    <CEP>49075976</CEP>
+                    <cPais>1058</cPais>
+                    <xPais>BRASIL</xPais>
+                    <fone>0112345678</fone>
+                </enderDest>
+                <IE>270913586892</IE>
+            </dest>
+            <det nItem="1">
+                <prod>
+                    <cProd>000000000028266841</cProd>
+                    <cEAN>714832083003</cEAN>
+                    <xProd>Terminator Modelo T-1000</xProd>
+                    <NCM>52665586</NCM>
+                    <CFOP>5929</CFOP>
+                    <uCom>PC</uCom>
+                    <qCom>1.0000</qCom>
+                    <vUnCom>49.5000000000</vUnCom>
+                    <vProd>49.50</vProd>
+                    <cEANTrib />
+                    <uTrib>PZA</uTrib>
+                    <qTrib>1.0000</qTrib>
+                    <vUnTrib>49.5000000000</vUnTrib>
+                    <indTot>1</indTot>
+                </prod>
+                <imposto>
+                    <ICMS>
+                        <ICMS00>
+                            <orig>2</orig>
+                            <CST>00</CST>
+                            <modBC>3</modBC>
+                            <vBC>0.00</vBC>
+                            <pICMS>0.00</pICMS>
+                            <vICMS>0.00</vICMS>
+                        </ICMS00>
+                    </ICMS>
+                    <IPI>
+                        <cEnq>999</cEnq>
+                        <IPITrib>
+                            <CST>50</CST>
+                            <vBC>0.00</vBC>
+                            <pIPI>0.00</pIPI>
+                            <vIPI>0.00</vIPI>
+                        </IPITrib>
+                    </IPI>
+                    <PIS>
+                        <PISOutr>
+                            <CST>99</CST>
+                            <vBC>0.00</vBC>
+                            <pPIS>0.00</pPIS>
+                            <vPIS>0.00</vPIS>
+                        </PISOutr>
+                    </PIS>
+                    <COFINS>
+                        <COFINSOutr>
+                            <CST>99</CST>
+                            <vBC>0.00</vBC>
+                            <pCOFINS>0.00</pCOFINS>
+                            <vCOFINS>0.00</vCOFINS>
+                        </COFINSOutr>
+                    </COFINS>
+                </imposto>
+                <infAdProd>.</infAdProd>
+            </det>
+            <det nItem="2">
+                <prod>
+                    <cProd>F0003657</cProd>
+                    <cEAN>099218911957</cEAN>
+                    <xProd>Produto Número 2</xProd>
+                    <NCM>60664500</NCM>
+                    <CFOP>5929</CFOP>
+                    <uCom>PC</uCom>
+                    <qCom>1.0000</qCom>
+                    <vUnCom>439.0000000000</vUnCom>
+                    <vProd>439.00</vProd>
+                    <cEANTrib />
+                    <uTrib>PZA</uTrib>
+                    <qTrib>1.0000</qTrib>
+                    <vUnTrib>439.0000000000</vUnTrib>
+                    <indTot>1</indTot>
+                </prod>
+                <imposto>
+                    <ICMS>
+                        <ICMS00>
+                            <orig>0</orig>
+                            <CST>00</CST>
+                            <modBC>3</modBC>
+                            <vBC>0.00</vBC>
+                            <pICMS>0.00</pICMS>
+                            <vICMS>0.00</vICMS>
+                        </ICMS00>
+                    </ICMS>
+                    <IPI>
+                        <cEnq>999</cEnq>
+                        <IPITrib>
+                            <CST>50</CST>
+                            <vBC>0.00</vBC>
+                            <pIPI>0.00</pIPI>
+                            <vIPI>0.00</vIPI>
+                        </IPITrib>
+                    </IPI>
+                    <PIS>
+                        <PISOutr>
+                            <CST>99</CST>
+                            <vBC>0.00</vBC>
+                            <pPIS>0.00</pPIS>
+                            <vPIS>0.00</vPIS>
+                        </PISOutr>
+                    </PIS>
+                    <COFINS>
+                        <COFINSOutr>
+                            <CST>99</CST>
+                            <vBC>0.00</vBC>
+                            <pCOFINS>0.00</pCOFINS>
+                            <vCOFINS>0.00</vCOFINS>
+                        </COFINSOutr>
+                    </COFINS>
+                </imposto>
+                <infAdProd>.</infAdProd>
+            </det>          
+            
+            <total>
+                <ICMSTot>
+                    <vBC>0.00</vBC>
+                    <vICMS>0.00</vICMS>
+                    <vBCST>0.00</vBCST>
+                    <vST>0.00</vST>
+                    <vProd>3742.20</vProd>
+                    <vFrete>0.00</vFrete>
+                    <vSeg>0.00</vSeg>
+                    <vDesc>0.00</vDesc>
+                    <vII>0.00</vII>
+                    <vIPI>0.00</vIPI>
+                    <vPIS>0.00</vPIS>
+                    <vCOFINS>0.00</vCOFINS>
+                    <vOutro>0.00</vOutro>
+                    <vNF>3742.20</vNF>
+                </ICMSTot>
+            </total>
+            <transp>
+                <modFrete>0</modFrete>
+                <vol>
+                    <esp>CAIXA</esp>
+                    <marca>UMBRELLA</marca>
+                </vol>
+            </transp>
+            <infAdic>
+                <infCpl>Informação infCpl do Xml.</infCpl>
+            </infAdic>
+        </infNFe>
+        <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <SignedInfo>
+                <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+                <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+                <Reference URI="#NFe35140222257735000138552443253123071430458314">
+                    <Transforms>
+                        <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                        <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+                    </Transforms>
+                    <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                    <DigestValue>RGFuZmVTaGFycA==</DigestValue>
+                </Reference>
+            </SignedInfo>
+            <SignatureValue>RGFuZmVTaGFycA==</SignatureValue>
+            <KeyInfo>
+                <X509Data>
+                    <X509Certificate>RGFuZmVTaGFycA==</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </Signature>
+    </NFe>
+    <protNFe versao="2.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+        <infProt Id="ID812978964386859">
+            <tpAmb>1</tpAmb>
+            <verAplic>RS28322440583679</verAplic>
+            <chNFe>35140222257735000138552443253123071430458314</chNFe>
+            <dhRecbto>2011-09-16T17:32:38</dhRecbto>
+            <nProt>812978964386859</nProt>
+            <digVal>RGFuZmVTaGFycA==</digVal>
+            <cStat>100</cStat>
+            <xMotivo>Autorizado o uso da NF-e</xMotivo>
+        </infProt>
+    </protNFe>
+</nfeProc>

@@ -33,6 +33,9 @@ namespace DanfeSharp.Test
         }
 
         [TestMethod]
+        public void v1() => TestXml("v1.00/v1.xml");
+
+        [TestMethod]
         public void v2_Retrato() => TestXml("v2.00/v2_Retrato.xml");
 
         [TestMethod]
