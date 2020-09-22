@@ -61,7 +61,7 @@ namespace DanfeSharp
         public static String FormatarEnderecoLinha1(String endereco, int? numero, String complemento = null)
         {
             String sNumero = numero.HasValue ? numero.Value.ToString() : null;
-            return FormatarEnderecoLinha1(endereco, numero, complemento);
+            return FormatarEnderecoLinha1(endereco, sNumero, complemento);
         }
 
         /// <summary>
