@@ -1,12 +1,9 @@
 ﻿using org.pdfclown.documents;
 using org.pdfclown.documents.contents.composition;
-using org.pdfclown.documents.contents.xObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DanfeSharp
 {

@@ -1,9 +1,5 @@
 ﻿using DanfeSharp.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DanfeSharp.App
@@ -40,6 +36,5 @@ namespace DanfeSharp.App
                 MessageBox.Show(e.Message, "Erro ao gerar o DANFE", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
     }
 }

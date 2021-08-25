@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace DanfeSharp.Model
 {
@@ -114,6 +112,12 @@ namespace DanfeSharp.Model
         public Double ValorIcmsSt { get; set; }
 
         /// <summary>
+        /// <para>Valor Total do PIS</para>
+        /// <para>Tag vPIS</para>
+        /// </summary>
+        public Double ValorPis { get; set; }
+
+        /// <summary>
         /// <para>Valor Total dos produtos e serviços</para>
         /// <para>Tag vProd</para>
         /// </summary>
@@ -149,7 +153,13 @@ namespace DanfeSharp.Model
         /// <para>Tag vIPI</para>
         /// </summary>
         public Double ValorIpi { get; set; }
-        
+
+        /// <summary>
+        /// <para>Valor Total do COFINS</para>
+        /// <para>Tag vCOFINS</para>
+        /// </summary>
+        public Double ValorCofins { get; set; }
+
         /// <summary>
         /// <para>Valor Total da NF-e </para>
         /// <para>Tag vNF</para>
@@ -275,6 +285,5 @@ namespace DanfeSharp.Model
         {
             return DanfeViewModelCreator.CreateFromXmlString(xml);
         }
-
     }
 }

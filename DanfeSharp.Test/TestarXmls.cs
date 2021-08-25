@@ -1,9 +1,8 @@
-﻿using System;
+﻿using DanfeSharp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
-using DanfeSharp;
-using DanfeSharp.Model;
+using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace DanfeSharp.Test
 {

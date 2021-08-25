@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -409,8 +406,8 @@ namespace DanfeSharp.Schemas.NFe
         public Double vDesc;
         public string vII;
         public Double vIPI;
-        public string vPIS;
-        public string vCOFINS;
+        public Double vPIS;
+        public Double vCOFINS;
         public Double vOutro;
         public Double vNF;
         public Double? vTotTrib;

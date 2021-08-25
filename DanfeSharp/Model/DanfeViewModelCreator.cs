@@ -1,13 +1,8 @@
 ﻿using DanfeSharp.Schemas.NFe;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace DanfeSharp.Model
@@ -218,7 +213,6 @@ namespace DanfeSharp.Model
                 }
             }
 
-
             var icmsTotal = infNfe.total.ICMSTot;
 
             model.ValorAproximadoTributos = icmsTotal.vTotTrib;
@@ -226,6 +220,8 @@ namespace DanfeSharp.Model
             model.ValorIcms = icmsTotal.vICMS;
             model.BaseCalculoIcmsSt = icmsTotal.vBCST;
             model.ValorIcmsSt = icmsTotal.vST;
+            model.ValorPis = icmsTotal.vPIS;
+            model.ValorCofins = icmsTotal.vCOFINS;
             model.ValorTotalProdutos = icmsTotal.vProd;
             model.ValorFrete = icmsTotal.vFrete;
             model.ValorSeguro = icmsTotal.vSeg;
@@ -277,8 +273,6 @@ namespace DanfeSharp.Model
                     transportadoraModel.PesoBruto = vol.pesoB;
                     transportadoraModel.PesoLiquido = vol.pesoL;
                 }
-            
-
 
             var infAdic = infNfe.infAdic;
             if (infAdic != null)
@@ -295,9 +289,5 @@ namespace DanfeSharp.Model
 
             return model;
         }
-
-       
-
-
     }
 }

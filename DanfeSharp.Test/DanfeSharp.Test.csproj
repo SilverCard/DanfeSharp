@@ -38,9 +38,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
       <ItemGroup>
@@ -62,10 +59,6 @@
     <ProjectReference Include="..\DanfeSharp\DanfeSharp.csproj">
       <Project>{2436ae11-2c3d-48c4-9dc2-3e0dd2ff8ccb}</Project>
       <Name>DanfeSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\pdfclown.lib\pdfclown.lib.csproj">
-      <Project>{dbed0809-ee4c-45b0-92fa-e4789ecc2aec}</Project>
-      <Name>pdfclown.lib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
