@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -19,7 +20,6 @@ namespace DanfeSharp.Schemas.NFe
         [XmlAttribute]
         public string versao;
     }
-
 
     /// <summary>
     /// Identificação do Ambiente
@@ -42,7 +42,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class InfProt
     {
-
         /// <summary>
         /// Identificação do Ambiente
         /// </summary>
@@ -50,7 +49,7 @@ namespace DanfeSharp.Schemas.NFe
 
         public string verAplic;
         public string chNFe;
-        public System.DateTime dhRecbto;
+        public DateTime dhRecbto;
         public string nProt;
         public string cStat;
         public string xMotivo;
@@ -58,7 +57,6 @@ namespace DanfeSharp.Schemas.NFe
         [XmlAttribute(DataType = "ID")]
         public string Id;
     }
-
 
     /// <summary>
     /// Tipo Protocolo de status resultado do processamento da NF-e<
@@ -73,8 +71,6 @@ namespace DanfeSharp.Schemas.NFe
         public string versao;
     }
 
-
-
     [Serializable]
     [XmlType(Namespace = Namespaces.NFe)]
     public partial class NFe
@@ -82,19 +78,17 @@ namespace DanfeSharp.Schemas.NFe
         public InfNFe infNFe;
     }
 
-
     [Serializable]
     [XmlType(Namespace = Namespaces.NFe)]
     public partial class Endereco
     {
-
         public string xLgr;
         public string nro;
         public string xCpl;
         public string xBairro;        
         public string cMun;
         public string xMun;
-        public String UF;
+        public string UF;
         public string CEP;
         public string fone;
     }
@@ -106,7 +100,6 @@ namespace DanfeSharp.Schemas.NFe
         public string xNome;
         public string IE;
         public string IEST;
-
         public string email;
 
         [XmlIgnore]
@@ -118,7 +111,6 @@ namespace DanfeSharp.Schemas.NFe
     public partial class Destinatario : Empresa
     {
         public string ISUF;
-        //public string email;
 
         public Endereco enderDest
         {
@@ -137,7 +129,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Emitente : Empresa
     {
-
         public string xFant;
         public string IM;
         public string CNAE;
@@ -154,7 +145,6 @@ namespace DanfeSharp.Schemas.NFe
             }
         }
     }
-
 
     /// <summary>
     /// Dados dos produtos e serviços da NF-e
@@ -186,14 +176,13 @@ namespace DanfeSharp.Schemas.NFe
         public string nFCI;
     }
 
-
     [Serializable]
     [XmlTypeAttribute(AnonymousType = true, Namespace = Namespaces.NFe)]
     public class ImpostoICMS
     {
-        public String orig;
-        public String CST;
-        public String CSOSN;
+        public string orig;
+        public string CST;
+        public string CSOSN;
         public double vBC;
         public double pICMS;
         public double vICMS;
@@ -221,7 +210,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ProdutoICMS
     {
-
         [XmlElement("ICMS00", typeof(ImpostoICMS00))]
         [XmlElement("ICMS10", typeof(ImpostoICMS10))]
         [XmlElement("ICMS20", typeof(ImpostoICMS20))]
@@ -247,7 +235,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ProdutoIPI
     {
-
         public string clEnq;
         public string CNPJProd;
         public string cSelo;
@@ -260,7 +247,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class IPITrib
     {
-
         public string CST;
         public double? pIPI;
         public double? qUnid;
@@ -288,26 +274,22 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public class Detalhe
     {
-
         public Produto prod;      
         public ProdutoImposto imposto;
         public string infAdProd;
 
         [XmlAttribute]
         public string nItem;
-    }
-    
+    }    
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Duplicata
     {
-
         public string nDup;
         public DateTime? dVenc;
-        public Double? vDup;
+        public double? vDup;
     }
-
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
@@ -318,8 +300,6 @@ namespace DanfeSharp.Schemas.NFe
         public string vDesc;
         public string vLiq;
     }
-
-
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
@@ -336,31 +316,25 @@ namespace DanfeSharp.Schemas.NFe
         }
     }
 
-
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ObsCont
     {
-
         public string xTexto;
 
         [XmlAttribute]
         public string xCampo;
     }
-
-
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ObsFisco
     {
-
         public string xTexto;
 
         [XmlAttribute]
         public string xCampo;
     }
-
 
     /// <summary>
     /// Informações adicionais da NF-e
@@ -369,7 +343,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class InfAdic
     {
-
         public string infAdFisco;
         public string infCpl;
 
@@ -387,7 +360,6 @@ namespace DanfeSharp.Schemas.NFe
 
     }
 
-
     /// <summary>
     /// Totais referentes ao ICMS
     /// </summary>
@@ -395,22 +367,21 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ICMSTotal
     {
-
-        public Double vBC;
-        public Double vICMS;
-        public Double vBCST;
-        public Double vST;
-        public Double vProd;
-        public Double vFrete;
-        public Double vSeg;
-        public Double vDesc;
+        public double vBC;
+        public double vICMS;
+        public double vBCST;
+        public double vST;
+        public double vProd;
+        public double vFrete;
+        public double vSeg;
+        public double vDesc;
         public string vII;
-        public Double vIPI;
-        public Double vPIS;
-        public Double vCOFINS;
-        public Double vOutro;
-        public Double vNF;
-        public Double? vTotTrib;
+        public double vIPI;
+        public double vPIS;
+        public double vCOFINS;
+        public double vOutro;
+        public double vNF;
+        public double? vTotTrib;
     }
 
     /// <summary>
@@ -420,24 +391,20 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class ISSQNTotal
     {
-
-        public Double? vServ;
-        public Double? vBC;
-        public Double? vISS;
-        public Double? vPIS;
-        public Double? vCOFINS;
+        public double? vServ;
+        public double? vBC;
+        public double? vISS;
+        public double? vPIS;
+        public double? vCOFINS;
     }
-
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Total
     {
-
         public ICMSTotal ICMSTot;
         public ISSQNTotal ISSQNtot;
     }
-
 
     /// <summary>
     /// Modalidade do frete
@@ -446,16 +413,27 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public enum ModalidadeFrete
     {
-
+        [Description("Contratação do Frete por conta do Remetente (CIF)")]
         [XmlEnum("0")]
-        PorContaEmitente = 0,
+        PorContaRemetente = 0,
 
+        [Description("Contratação do Frete por conta do Destinatário(FOB)")]
         [XmlEnum("1")]
-        PorContaDestinatarioRemetente = 1,
+        PorContaDestinatario = 1,
 
+        [Description("Contratação do Frete por conta de Terceiros")]
         [XmlEnum("2")]
         PorContaTerceiros = 2,
 
+        [Description("Transporte Próprio por conta do Remetente")]
+        [XmlEnum("3")]
+        ProprioPorContaRemente = 3,
+
+        [Description("Transporte Próprio por conta do Destinatário")]
+        [XmlEnum("4")]
+        ProprioPorContaDestinatario = 4,
+
+        [Description("Sem Ocorrência de Transporte")]
         [XmlEnum("9")]
         SemFrete = 9,
     }
@@ -468,41 +446,34 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Transportador
     {
-
         public string CNPJ;
         public string CPF;
         public string xNome;
         public string IE;
         public string xEnder;
         public string xMun;
-        public String UF;
-
+        public string UF;
     }
-
 
     [Serializable]
     [XmlType(Namespace = Namespaces.NFe)]
     public partial class Veiculo
     {
-
         public string placa;
-        public String UF;
+        public string UF;
         public string RNTC;
     }
-
-
 
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Volume
     {
-
-        public Double? qVol;
+        public double? qVol;
         public string esp;
         public string marca;
         public string nVol;
-        public Double? pesoL;
-        public Double? pesoB;
+        public double? pesoL;
+        public double? pesoB;
     }
 
 
@@ -510,12 +481,11 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Transporte
     {
-
         public ModalidadeFrete modFrete;
         public Transportador transporta;
 
-        public String balsa;
-        public String vagao;
+        public string balsa;
+        public string vagao;
 
         public Veiculo reboque;
         public Veiculo veicTransp;
@@ -529,13 +499,10 @@ namespace DanfeSharp.Schemas.NFe
         }
     }
 
-
-
     [Serializable]
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class InfNFe
     {
-
         public Identificacao ide;
         public Emitente emit;
         public Destinatario dest;
@@ -575,7 +542,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
     public enum FormaEmissao
     {
-
         [XmlEnum("1")]
         Normal = 1,
 
@@ -605,7 +571,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public partial class Identificacao
     {
-
         public string natOp;
 
         /// <summary>
@@ -625,7 +590,7 @@ namespace DanfeSharp.Schemas.NFe
         /// <summary>
         /// Hora de Saída/Entrada, NFe2
         /// </summary>
-        public String hSaiEnt;
+        public string hSaiEnt;
 
         /// <summary>
         /// Data e Hora de Emissão, NFe v3
@@ -645,7 +610,6 @@ namespace DanfeSharp.Schemas.NFe
         public FormaEmissao tpEmis;
 
         public TAmb tpAmb;
-
     }
 
     /// <summary>
@@ -655,7 +619,6 @@ namespace DanfeSharp.Schemas.NFe
     [XmlType(AnonymousType = true, Namespace = Namespaces.NFe)]
     public enum Tipo
     {
-
         [XmlEnum("0")]
         Entrada = 0,
         [XmlEnum("1")]

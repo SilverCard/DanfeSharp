@@ -8,32 +8,31 @@ namespace DanfeSharp.Model
         /// <para>Código do produto ou serviço</para>
         /// <para>Tag cProd</para>
         /// </summary>
-        public String Codigo { get; set; }
+        public string Codigo { get; set; }
 
         /// <summary>
         /// <para>Informações Adicionais do Produto</para>
         /// <para>Tag infAdProd</para>
         /// </summary>
-        public String InformacoesAdicionais { get; set; }
+        public string InformacoesAdicionais { get; set; }
 
         /// <summary>
         /// <para>Descrição do produto ou serviço</para>
         /// <para>Tag xProd</para>
         /// </summary>
-        public String Descricao { get; set; }
+        public string Descricao { get; set; }
 
         /// <summary>
         /// <para>Código NCM com 8 dígitos ou 2 dígitos (gênero)</para>
         /// <para>Tag NCM</para>
         /// </summary>
-        public String Ncm { get; set; }
-
+        public string Ncm { get; set; }
 
         /// <summary>
         /// <para>Origem da mercadoria + Tributação do ICMS</para>
         /// <para>Tag orig e CST</para>
         /// </summary>
-        public String OCst { get; set; }
+        public string OCst { get; set; }
 
         /// <summary>
         /// <para>Código Fiscal de Operações e Prestações</para>
@@ -45,7 +44,7 @@ namespace DanfeSharp.Model
         /// <para>Unidade Comercial</para>
         /// <para>Tag uCom</para>
         /// </summary>
-        public String Unidade { get; set; }
+        public string Unidade { get; set; }
 
         /// <summary>
         /// <para>Quantidade Comercial</para>
@@ -107,13 +106,13 @@ namespace DanfeSharp.Model
             ValorIpi = null;
         }
 
-        public String DescricaoCompleta
+        public string DescricaoCompleta
         {
             get
             {
-                String descriCaoCompleta = Descricao;
+                string descriCaoCompleta = Descricao;
 
-                if (!String.IsNullOrWhiteSpace(InformacoesAdicionais))
+                if (!string.IsNullOrWhiteSpace(InformacoesAdicionais))
                 {
                     descriCaoCompleta += "\n" + InformacoesAdicionais;
                 }

@@ -8,7 +8,7 @@ namespace DanfeSharp.Model
         /// <para>Número da Duplicata</para>
         /// <para>Tag nDup</para>
         /// </summary>
-        public String Numero { get; set; }
+        public string Numero { get; set; }
 
         /// <summary>
         /// <para>Data de vencimento</para>
@@ -20,6 +20,6 @@ namespace DanfeSharp.Model
         /// <para>Valor da duplicata</para>
         /// <para>Tag vDup</para>
         /// </summary>
-        public Double? Valor { get; set; }
+        public double? Valor { get; set; }
     }
 }

@@ -1,17 +1,14 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace DanfeSharp
 {
-
     public class BlocoProdutos : BlocoDanfe
     {
         public int ProdutoIndex { get; private set; }
         public int ProdutoIndexEnd { get; private set; }
         
-        String[,] CellValues;
-
+        string[,] CellValues;
 
         public BlocoProdutos(DanfeDocumento danfeMaker, float height, int produtoIndex)
             : base(danfeMaker)
@@ -52,7 +49,6 @@ namespace DanfeSharp
             }
         }
 
-
         protected override void CriarCampos()
         {
         }
@@ -61,7 +57,7 @@ namespace DanfeSharp
         {
         }
 
-        protected override void ToXObjectInternal(PrimitiveComposer composer)
+        protected override void ToXObjectInternal(org.pdfclown.documents.contents.composition.PrimitiveComposer composer)
         {
             DanfeProdutosServicosTabela table = new DanfeProdutosServicosTabela(Danfe);
             table.Valores = CellValues;

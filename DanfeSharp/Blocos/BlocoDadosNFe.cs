@@ -1,16 +1,12 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace DanfeSharp
 {
     public class BlocoDadosNFe : BlocoDanfe
     {
-
-        public const String DescricaoDanfe = "DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA";
-        public const String MensagemConsulta = "Consulta de autenticidade no portal nacional da NF-e www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora.";
-
-
+        public const string DescricaoDanfe = "DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA";
+        public const string MensagemConsulta = "Consulta de autenticidade no portal nacional da NF-e www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora.";
         public const float TamanhoFonteNumeracao = 9;
 
         /// <summary>
@@ -26,25 +22,20 @@ namespace DanfeSharp
         /// Retângulo da descrição do DANFE
         /// </summary>
         public RectangleF RetDescDanfe { get; private set; }
-
         public RectangleF RetCodigoBarras { get; set; }
         private RectangleF RetCampoVariavel;
 
         public DanfeCampo NaturezaOperacao { get; set; }
         public DanfeCampo CampoVariavel2 { get; set; }
-
         public DanfeCampo Ie { get; set; }
         public DanfeCampo IeSt { get; set; }
         public DanfeCampo Cnpj { get; set; }
-
         public DanfeCampo ChaveAcesso { get; set; }
 
         /// <summary>
         /// Retângulo da descrição do DANFE
         /// </summary>
         public RectangleF RetanguloFolha { get; private set; }
-
-
 
         public BlocoDadosNFe(DanfeDocumento danfeMaker)
             : base(danfeMaker)
@@ -57,12 +48,12 @@ namespace DanfeSharp
         protected override void CriarCampos()
         {
             NaturezaOperacao = CriarCampo("Natureza da operação", Danfe.Model.NaturezaOperacao);
-            CampoVariavel2 = CriarCampo("PROTOCOLO DE AUTORIZAÇÃO DE USO", Danfe.Model.ProtocoloAutorizacao, XAlignmentEnum.Center);
-            ChaveAcesso = CriarCampo("Chave de Acesso", Formatador.FormatarChaveAcesso(Danfe.Model.ChaveAcesso), RectangleF.Empty, XAlignmentEnum.Center, 10, true);
+            CampoVariavel2 = CriarCampo("PROTOCOLO DE AUTORIZAÇÃO DE USO", Danfe.Model.ProtocoloAutorizacao, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            ChaveAcesso = CriarCampo("Chave de Acesso", Formatador.FormatarChaveAcesso(Danfe.Model.ChaveAcesso), RectangleF.Empty, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, 10, true);
 
-            Ie = CriarCampo(Strings.InscricaoEstadual, Danfe.Model.Emitente.Ie, XAlignmentEnum.Center);
-            IeSt = CriarCampo("INSC. EST. DO SUBST. TRIBUTÁRIO", Danfe.Model.Emitente.IeSt, XAlignmentEnum.Center);
-            Cnpj = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(Danfe.Model.Emitente.CnpjCpf), XAlignmentEnum.Center);
+            Ie = CriarCampo(Strings.InscricaoEstadual, Danfe.Model.Emitente.Ie, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            IeSt = CriarCampo("INSC. EST. DO SUBST. TRIBUTÁRIO", Danfe.Model.Emitente.IeSt, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            Cnpj = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(Danfe.Model.Emitente.CnpjCpf), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
         }
 
         protected override void PosicionarCampos()
@@ -87,7 +78,7 @@ namespace DanfeSharp
 
         }
 
-        private void PrintDescricaoDanfe(RectangleF area, BlockComposer bComp, PrimitiveComposer comp)
+        private void PrintDescricaoDanfe(RectangleF area, org.pdfclown.documents.contents.composition.BlockComposer bComp, org.pdfclown.documents.contents.composition.PrimitiveComposer comp)
         {
 
             comp.SafeDrawRectangle(area);
@@ -96,7 +87,7 @@ namespace DanfeSharp
             RectangleF pRet = area.GetPaddedRectangleMm(1);
 
             // DANFE e descrição
-            bComp.SafeBegin(pRet, XAlignmentEnum.Center, YAlignmentEnum.Top);
+            bComp.SafeBegin(pRet, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             comp.SetFont(Danfe.FontBold, 12);
             bComp.ShowText("DANFE");
             comp.SetFont(Danfe.Font, 6);
@@ -109,7 +100,7 @@ namespace DanfeSharp
             rEntrasaSaida = rEntrasaSaida.GetPaddedRectangleMm(0, 2.5F);
 
             comp.SetFont(Danfe.Font, 8);
-            bComp.SafeBegin(rEntrasaSaida, XAlignmentEnum.Left, YAlignmentEnum.Top);
+            bComp.SafeBegin(rEntrasaSaida, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             bComp.ShowText("0 - Entrada\n1 - Saída");
             bComp.End();
 
@@ -117,7 +108,7 @@ namespace DanfeSharp
             rEntrasaSaida2 = new RectangleF(rEntrasaSaida.Right - bComp.BoundBox.Height, bComp.BoundBox.Y, bComp.BoundBox.Height, bComp.BoundBox.Height);
             comp.SafeDrawRectangle(rEntrasaSaida2);
 
-            bComp.SafeBegin(rEntrasaSaida2, XAlignmentEnum.Center, YAlignmentEnum.Middle);
+            bComp.SafeBegin(rEntrasaSaida2, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
             bComp.ShowText(Danfe.Model.TipoNF.ToString());
             bComp.End();
 
@@ -135,12 +126,12 @@ namespace DanfeSharp
             retDireito.Height -= (float)Danfe.FontBold.GetLineHeight(TamanhoFonteNumeracao);
 
             comp.SetFont(Danfe.FontBold, TamanhoFonteNumeracao);
-            bComp.SafeBegin(retEsquerdo, XAlignmentEnum.Right, YAlignmentEnum.Bottom);
+            bComp.SafeBegin(retEsquerdo, org.pdfclown.documents.contents.composition.XAlignmentEnum.Right, org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom);
             bComp.ShowText("Nº\nSérie\nFolha");
             bComp.End();
 
-            bComp.SafeBegin(retDireito, XAlignmentEnum.Left, YAlignmentEnum.Bottom);
-            bComp.ShowText(String.Format("{0}\n{1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
+            bComp.SafeBegin(retDireito, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom);
+            bComp.ShowText(string.Format("{0}\n{1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
             bComp.End();
 
         }
@@ -166,9 +157,7 @@ namespace DanfeSharp
             return bestSize;
         }
 
-
-
-        private void PrintLogo(PrimitiveComposer comp, RectangleF area)
+        private void PrintLogo(org.pdfclown.documents.contents.composition.PrimitiveComposer comp, RectangleF area)
         {
            
             area = area.GetPaddedRectangleMm(1.5F, 1.5F, 1.5F, 1F);
@@ -181,7 +170,7 @@ namespace DanfeSharp
             comp.ShowXObject(Danfe._Logo, point, bestsize);
         }
 
-        private void PrintIdentificacaoEmitente(RectangleF area, BlockComposer bComp, PrimitiveComposer comp)
+        private void PrintIdentificacaoEmitente(RectangleF area, org.pdfclown.documents.contents.composition.BlockComposer bComp, org.pdfclown.documents.contents.composition.PrimitiveComposer comp)
         {
             comp.SafeDrawRectangle(area);
 
@@ -190,9 +179,9 @@ namespace DanfeSharp
 
             var emitente = Danfe.Model.Emitente;
 
-            var yAlign = Danfe.PossuiLogo ? YAlignmentEnum.Bottom : YAlignmentEnum.Middle;
+            var yAlign = Danfe.PossuiLogo ? org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom : org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle;
 
-            bComp.SafeBegin(pRet, XAlignmentEnum.Left, yAlign);
+            bComp.SafeBegin(pRet, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, yAlign);
 
             double bestSize = DanfeCampo.AjustarFonte(emitente.Nome, Danfe.FontBold, pRet.Width, Danfe.PossuiLogo ? 10 : 12);
             comp.SetFont(Danfe.FontBold, bestSize);
@@ -206,10 +195,10 @@ namespace DanfeSharp
             bComp.ShowBreak();
             bComp.ShowText(emitente.EnderecoLinha3);
 
-            if (!String.IsNullOrWhiteSpace(emitente.Telefone))
+            if (!string.IsNullOrWhiteSpace(emitente.Telefone))
             {
                 bComp.ShowBreak();
-                bComp.ShowText(String.Format("Fone: {0}", Formatador.FormatarTelefone(emitente.Telefone)));
+                bComp.ShowText(string.Format("Fone: {0}", Formatador.FormatarTelefone(emitente.Telefone)));
             }
 
             bComp.End();
@@ -222,10 +211,9 @@ namespace DanfeSharp
             }
         }
 
-
-        protected override void ToXObjectInternal(PrimitiveComposer comp)
+        protected override void ToXObjectInternal(org.pdfclown.documents.contents.composition.PrimitiveComposer comp)
         {
-            BlockComposer bComp = new BlockComposer(comp);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(comp);
 
             PrintIdentificacaoEmitente(RetEmitente, bComp, comp);
             PrintDescricaoDanfe(RetDescDanfe, bComp, comp);
@@ -236,7 +224,7 @@ namespace DanfeSharp
             comp.SafeDrawRectangle(RetCampoVariavel);
 
             comp.SetFont(Danfe.Font, 8);
-            bComp.SafeBegin(RetCampoVariavel, XAlignmentEnum.Center, YAlignmentEnum.Middle);
+            bComp.SafeBegin(RetCampoVariavel, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
             bComp.ShowText(MensagemConsulta);
             bComp.End();
 
@@ -245,6 +233,5 @@ namespace DanfeSharp
             var barcode = new Barcode128C(Danfe.Model.ChaveAcesso, RetCodigoBarras.Size).ToXObject(Danfe.Document);
             comp.ShowXObject(barcode, new PointF(RetCodigoBarras.X, RetCodigoBarras.Y));
         }
-
     }
 }

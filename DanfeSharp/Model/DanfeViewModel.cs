@@ -22,26 +22,25 @@ namespace DanfeSharp.Model
         /// <summary>
         /// Chave de Acesso
         /// </summary>
-        public String ChaveAcesso { get; set; }
-                    
+        public string ChaveAcesso { get; set; }                    
 
         /// <summary>
         /// <para>Descrição da Natureza da Operação</para>
         /// <para>Tag natOp</para>
         /// </summary>
-        public String NaturezaOperacao { get; set; }
+        public string NaturezaOperacao { get; set; }
 
         /// <summary>
         /// <para>Informações Complementares de interesse do Contribuinte</para>
         /// <para>Tag infCpl</para>
         /// </summary>
-        public String InformacoesComplementares { get; set; }
+        public string InformacoesComplementares { get; set; }
 
         /// <summary>
         /// <para>Informações adicionais de interesse do Fisco</para>
         /// <para>Tag infAdFisco</para>
         /// </summary>
-        public String InformacoesAdicionaisFisco { get; set; }
+        public string InformacoesAdicionaisFisco { get; set; }
 
         /// <summary>
         /// <para>Data e Hora de emissão do Documento Fiscal</para>
@@ -80,7 +79,7 @@ namespace DanfeSharp.Model
         /// <summary>
         /// Numero do protocolo com sua data e hora
         /// </summary>
-        public String ProtocoloAutorizacao { get; set; }
+        public string ProtocoloAutorizacao { get; set; }
 
         /// <summary>
         /// Faturas da Nota Fiscal
@@ -91,80 +90,79 @@ namespace DanfeSharp.Model
         /// <para>Base de Cálculo do ICMS</para>
         /// <para>Tag vBC</para>
         /// </summary>
-        public Double BaseCalculoIcms { get; set; }
+        public double BaseCalculoIcms { get; set; }
         
         /// <summary>
         /// <para>Valor Total do ICMS</para>
         /// <para>Tag vICMS</para>
         /// </summary>
-        public Double ValorIcms { get; set; }
+        public double ValorIcms { get; set; }
 
         /// <summary>
         /// <para>Base de Cálculo do ICMS ST</para>
         /// <para>Tag vBCST</para>
         /// </summary>
-        public Double BaseCalculoIcmsSt { get; set; }
+        public double BaseCalculoIcmsSt { get; set; }
 
         /// <summary>
         /// <para>Valor Total do ICMS ST</para>
         /// <para>Tag vST</para>
         /// </summary>
-        public Double ValorIcmsSt { get; set; }
+        public double ValorIcmsSt { get; set; }
 
         /// <summary>
         /// <para>Valor Total do PIS</para>
         /// <para>Tag vPIS</para>
         /// </summary>
-        public Double ValorPis { get; set; }
+        public double ValorPis { get; set; }
 
         /// <summary>
         /// <para>Valor Total dos produtos e serviços</para>
         /// <para>Tag vProd</para>
         /// </summary>
-        public Double ValorTotalProdutos { get; set; }
+        public double ValorTotalProdutos { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Frete</para>
         /// <para>Tag vFrete</para>
         /// </summary>
-        public Double ValorFrete { get; set; }
+        public double ValorFrete { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Seguro</para>
         /// <para>Tag vSeg</para>
         /// </summary>
-        public Double ValorSeguro { get; set; }
-
+        public double ValorSeguro { get; set; }
 
         /// <summary>
         /// <para>Valor Total do Desconto </para>
         /// <para>Tag vDesc</para>
         /// </summary>
-        public Double Desconto { get; set; }
+        public double Desconto { get; set; }
 
         /// <summary>
         /// <para>Outras Despesas acessórias</para>
         /// <para>Tag vOutro</para>
         /// </summary>
-        public Double OutrasDespesas { get; set; }
+        public double OutrasDespesas { get; set; }
 
         /// <summary>
         /// <para>Valor Total do IPI</para>
         /// <para>Tag vIPI</para>
         /// </summary>
-        public Double ValorIpi { get; set; }
+        public double ValorIpi { get; set; }
 
         /// <summary>
         /// <para>Valor Total do COFINS</para>
         /// <para>Tag vCOFINS</para>
         /// </summary>
-        public Double ValorCofins { get; set; }
+        public double ValorCofins { get; set; }
 
         /// <summary>
         /// <para>Valor Total da NF-e </para>
         /// <para>Tag vNF</para>
         /// </summary>
-        public Double ValorTotalNota { get; set; }
+        public double ValorTotalNota { get; set; }
 
         /// <summary>
         /// Tipo de Ambiente
@@ -193,20 +191,19 @@ namespace DanfeSharp.Model
         /// <para>Valor Total dos Serviços sob não-incidência ou não tributados pelo ICMS</para>
         /// <para>Tag vServ</para>
         /// </summary> 
-        public Double? ValorTotalServicos { get; set; }
-
+        public double? ValorTotalServicos { get; set; }
 
         /// <summary>
         /// <para>Base de Cálculo do ISS</para>
         /// <para>Tag vBC</para>
         /// </summary>
-        public Double? BaseIssqn { get; set; }
+        public double? BaseIssqn { get; set; }
 
         /// <summary>
         /// <para>Valor Total do ISS</para>
         /// <para>Tag vISS</para>
         /// </summary>
-        public Double? ValorIssqn { get; set; }
+        public double? ValorIssqn { get; set; }
         #endregion
 
         public DanfeViewModel ()
@@ -217,13 +214,12 @@ namespace DanfeSharp.Model
             Produtos = new List<ProdutoViewModel>();
             Transportadora = new TransportadoraViewModel();            
 	    }
-
         
-        public Boolean MostrarCalculoIssqn
+        public bool MostrarCalculoIssqn
         {
             get
             {
-                return !String.IsNullOrWhiteSpace(Emitente.IM) ||
+                return !string.IsNullOrWhiteSpace(Emitente.IM) ||
                     ValorTotalServicos.HasValue ||
                     BaseIssqn.HasValue ||
                     ValorIssqn.HasValue;
@@ -233,40 +229,40 @@ namespace DanfeSharp.Model
         /// <summary>
         /// Substitui o ponto e vírgula (;) por uma quebra de linha.
         /// </summary>
-        private String BreakLines(String str)
+        private string BreakLines(string str)
         {
-            return str == null ? String.Empty : str.Replace(';', '\n');
+            return str == null ? string.Empty : str.Replace(';', '\n');
         }
         
-        public String InformacoesComplementaresCompleta
+        public string InformacoesComplementaresCompleta
         {
             get
             {
                 StringBuilder sb = new StringBuilder("");
 
-                if(!String.IsNullOrWhiteSpace(InformacoesComplementares))
+                if(!string.IsNullOrWhiteSpace(InformacoesComplementares))
                 {
                     sb.Append("Inf. Contribuinte: ");
                     sb.AppendLine(BreakLines(InformacoesComplementares));
                 }
 
-                if (!String.IsNullOrWhiteSpace(InformacoesAdicionaisFisco))
+                if (!string.IsNullOrWhiteSpace(InformacoesAdicionaisFisco))
                 {
                     sb.Append("Inf. Fisco: ");
                     sb.AppendLine(BreakLines(InformacoesAdicionaisFisco));
                 }
 
                 // Verifica se o valor aproximado dos tributos já consta nas informações complementares
-                String rgValorAproximadoTributos = @"(vlr|val(or)?)(\s*)(aproximado|aprox(\.?))(\s*)(de|dos)?(\s*)(tributos)";
+                string rgValorAproximadoTributos = @"(vlr|val(or)?)(\s*)(aproximado|aprox(\.?))(\s*)(de|dos)?(\s*)(tributos)";
 
-                Boolean isValorImpresso = String.IsNullOrWhiteSpace(InformacoesComplementares) ? false : Regex.IsMatch(InformacoesComplementares, rgValorAproximadoTributos, RegexOptions.IgnoreCase);
+                bool isValorImpresso = string.IsNullOrWhiteSpace(InformacoesComplementares) ? false : Regex.IsMatch(InformacoesComplementares, rgValorAproximadoTributos, RegexOptions.IgnoreCase);
 
                 if (ValorAproximadoTributos.HasValue && !isValorImpresso)
                 {
                     sb.AppendLine("Valor Aproximado dos Tributos: " + ValorAproximadoTributos.Formatar());
                 }
 
-                if (!String.IsNullOrWhiteSpace(Destinatario.Email))
+                if (!string.IsNullOrWhiteSpace(Destinatario.Email))
                 {
                     sb.Append("Email destinatário: ");
                     sb.AppendLine(Destinatario.Email);
@@ -276,12 +272,12 @@ namespace DanfeSharp.Model
             }
         }
 
-        public static DanfeViewModel CreateFromXmlFile(String path)
+        public static DanfeViewModel CreateFromXmlFile(string path)
         {
             return DanfeViewModelCreator.CreateFromXmlFile(path);
         }
 
-        public static DanfeViewModel CreateFromXmlString(String xml)
+        public static DanfeViewModel CreateFromXmlString(string xml)
         {
             return DanfeViewModelCreator.CreateFromXmlString(xml);
         }

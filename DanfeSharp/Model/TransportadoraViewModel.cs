@@ -5,11 +5,13 @@ namespace DanfeSharp.Model
 {
     public class TransportadoraViewModel : EmpresaViewModel
     {
-        public static readonly Dictionary<int, String> ModalidadesFrete = new Dictionary<int,string>()
+        public static readonly Dictionary<int, string> ModalidadesFrete = new Dictionary<int,string>()
         {
-            {0, "Emitente"},
-            {1, "Dest/Rem"},
+            {0, "Por Conta do Rem."},
+            {1, "Por Conta do Dest."},
             {2, "Terceiros"},
+            {3, "Proprio por Conta Rem."},
+            {4, "Proprio por Conta Dest."},
             {9, "Sem frete"}
         };
 
@@ -23,65 +25,65 @@ namespace DanfeSharp.Model
         /// <para>Registro Nacional de Transportador de Carga (ANTT).</para>
         /// <para>Tag RNTC</para>
         /// </summary>
-        public String CodigoAntt { get; set; }
+        public string CodigoAntt { get; set; }
 
         /// <summary>
         /// <para>Placa do Veículo.</para>
         /// <para>Tag placa</para>
         /// </summary>
-        public String Placa { get; set; }
+        public string Placa { get; set; }
 
         /// <summary>
         /// <para>Sigla da UF do Veículo</para>
         /// <para>Tag UF</para>
         /// </summary>
-        public String VeiculoUf { get; set; }
+        public string VeiculoUf { get; set; }
 
         /// <summary>
         /// <para>Quantidade de volumes transportados.</para>
         /// <para>Tag qVol</para>
         /// </summary>
-        public Double? QuantidadeVolumes { get; set; }
+        public double? QuantidadeVolumes { get; set; }
 
         /// <summary>
         /// <para>Espécie dos volumes transportados.</para>
         /// <para>Tag esp</para>
         /// </summary>
-        public String Especie { get; set; }
+        public string Especie { get; set; }
 
         /// <summary>
         /// <para>Marca dos volumes transportados.</para>
         /// <para>Tag marca</para>
         /// </summary>
-        public String Marca { get; set; }
+        public string Marca { get; set; }
 
         /// <summary>
         /// <para>Numeração dos volumes transportados.</para>
         /// <para>Tag nVol</para>
         /// </summary>
-        public String Numeracao { get; set; }
+        public string Numeracao { get; set; }
 
         /// <summary>
         /// <para>Peso Líquido (em kg).</para>
         /// <para>Tag pesoL</para>
         /// </summary>
-        public Double? PesoLiquido { get; set; }
+        public double? PesoLiquido { get; set; }
 
         /// <summary>
         /// <para>Peso Bruto (em kg).</para>
         /// <para>Tag pesoB</para>
         /// </summary>
-        public Double? PesoBruto { get; set; }
+        public double? PesoBruto { get; set; }
 
-        public String ModalidadeFreteString
+        public string ModalidadeFreteString
         {
             get
             {
-                String result = "";
+                string result = "";
 
                 if (ModalidadesFrete.ContainsKey(ModalidadeFrete))
                 {
-                    result = String.Format("({0}) {1}", ModalidadeFrete, ModalidadesFrete[ModalidadeFrete]);
+                    result = string.Format("({0}) {1}", ModalidadeFrete, ModalidadesFrete[ModalidadeFrete]);
                 }
 
                 return result;

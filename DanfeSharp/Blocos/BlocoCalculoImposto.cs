@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DanfeSharp
 {
@@ -16,7 +15,6 @@ namespace DanfeSharp
 
         #endregion
 
-
         #region CamposLinhas2
 
         public DanfeCampo ValorFrete { get; private set; }
@@ -29,7 +27,6 @@ namespace DanfeSharp
 
         #endregion
 
-
         public BlocoCalculoImposto(DanfeDocumento danfeMaker)
             : base(danfeMaker)
         {
@@ -38,7 +35,7 @@ namespace DanfeSharp
 
         }
 
-        protected override DanfeCampo CriarCampo(string cabecalho, string corpo, XAlignmentEnum corpoAlinhamentoX = XAlignmentEnum.Right)
+        protected override DanfeCampo CriarCampo(string cabecalho, string corpo, org.pdfclown.documents.contents.composition.XAlignmentEnum corpoAlinhamentoX = org.pdfclown.documents.contents.composition.XAlignmentEnum.Right)
         {
             return base.CriarCampo(cabecalho, corpo, corpoAlinhamentoX);
         }
@@ -58,7 +55,7 @@ namespace DanfeSharp
             OutrasDespesas = CriarCampo("OUTRAS DESPESAS", Danfe.Model.OutrasDespesas.Formatar());
             ValorIpi = CriarCampo("VALOR DO IPI", Danfe.Model.ValorIpi.Formatar());
             ValorCofins = CriarCampo("VALOR DO COFINS", Danfe.Model.ValorCofins.Formatar());
-            ValorNota = CriarCampo("VALOR TOTAL DA NOTA", Danfe.Model.ValorTotalNota.Formatar(), RectangleF.Empty, XAlignmentEnum.Right, 10, true);
+            ValorNota = CriarCampo("VALOR TOTAL DA NOTA", Danfe.Model.ValorTotalNota.Formatar(), RectangleF.Empty, org.pdfclown.documents.contents.composition.XAlignmentEnum.Right, 10, true);
         }
 
         protected override void PosicionarCampos()
@@ -69,7 +66,6 @@ namespace DanfeSharp
             linha.Y = linha.Bottom;
             PosicionarLadoLado(linha, new float[] { 0, 0, 0, 0, 0, 0, ValorProdutos.Retangulo.Width }, ValorFrete, ValorSeguro, Desconto, OutrasDespesas, ValorIpi, ValorCofins, ValorNota);
         }
-
 
         public override string Cabecalho
         {

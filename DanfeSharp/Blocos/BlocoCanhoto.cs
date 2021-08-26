@@ -1,5 +1,4 @@
 ﻿using DanfeSharp.Model;
-using org.pdfclown.documents.contents.composition;
 using System;
 using System.Drawing;
 
@@ -50,11 +49,10 @@ namespace DanfeSharp
             PosicionarLadoLadoMm(ret, new float[] { 41, 0 }, DataRecebimento, AssinaturaRecebedor);
         }
 
-        protected override void ToXObjectInternal(PrimitiveComposer composer)
+        protected override void ToXObjectInternal(org.pdfclown.documents.contents.composition.PrimitiveComposer composer)
         {
-            EmpresaViewModel empresa = null;
-
-            if(Danfe.Model.TipoNF == 1)
+            EmpresaViewModel empresa;
+            if (Danfe.Model.TipoNF == 1)
             {
                 empresa = Danfe.Model.Emitente;
             }
@@ -67,21 +65,21 @@ namespace DanfeSharp
                 throw new Exception("Tipo de NF não suportado.");
             }
 
-            BlockComposer bComp = new BlockComposer(composer);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(composer);
 
             composer.SafeDrawRectangle(RetNumeracao);
             composer.SafeDrawRectangle(RetRecebemos);   
 
             composer.SetFont(Danfe.Font, 6);
-            bComp.SafeBegin(RetRecebemos.GetPaddedRectangleMm(1), XAlignmentEnum.Left, YAlignmentEnum.Middle);
-            bComp.ShowText(String.Format("RECEBEMOS DE {0} OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO.", empresa.Nome));
+            bComp.SafeBegin(RetRecebemos.GetPaddedRectangleMm(1), org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
+            bComp.ShowText(string.Format("RECEBEMOS DE {0} OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO.", empresa.Nome));
             bComp.End();
 
             // Numeração da NFe
             composer.SafeDrawRectangle(RetNumeracao);
             composer.SetFont(Danfe.FontBold, 12);
-            bComp.SafeBegin(RetNumeracao, XAlignmentEnum.Center, YAlignmentEnum.Middle);
-            bComp.ShowText(String.Format("NF-e\nNº {0}\nSérie {1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
+            bComp.SafeBegin(RetNumeracao, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
+            bComp.ShowText(string.Format("NF-e\nNº {0}\nSérie {1}", Danfe.Model.NumeroNF.ToString(Formatador.FormatoNumeroNF), Danfe.Model.Serie));
             bComp.End();
 
             composer.Stroke();
@@ -92,7 +90,6 @@ namespace DanfeSharp
             composer.DrawLine(new PointF(InternalRectangle.Left, Size.Height - MargemLinhaPontilhada), new PointF(InternalRectangle.Right, Size.Height - MargemLinhaPontilhada));
             composer.Stroke();
             composer.End();
-
         }
     }
 }

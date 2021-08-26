@@ -1,6 +1,4 @@
 ﻿using DanfeSharp.Schemas;
-using org.pdfclown.documents.contents.composition;
-using org.pdfclown.documents.contents.fonts;
 using System;
 using System.Xml.Linq;
 
@@ -31,9 +29,9 @@ namespace DanfeSharp
         /// <param name="width">Largura máxima do texto</param>
         /// <param name="text">Texto</param>
         /// <returns>Número de linhas</returns>
-        internal static int CountTextLines(Font font, double fontSize, double width, String text)
+        internal static int CountTextLines(org.pdfclown.documents.contents.fonts.Font font, double fontSize, double width, string text)
         {
-            if (String.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 return 0;
             }
@@ -55,7 +53,7 @@ namespace DanfeSharp
 
             int lines = 0;
             int index = 0, end;
-            TextFitter tf = new TextFitter(text, width, font, fontSize, false, '-');
+            org.pdfclown.documents.contents.composition.TextFitter tf = new org.pdfclown.documents.contents.composition.TextFitter(text, width, font, fontSize, false, '-');
 
             while (index < text.Length)
             {
@@ -78,7 +76,7 @@ namespace DanfeSharp
         /// <param name="width">Largura máxima do texto</param>
         /// <param name="text">Texto</param>
         /// <returns>Altura que o texto vai ocupar.</returns>
-        internal static double GetTextHeight(Font font, double fontSize, double width, String text)
+        internal static double GetTextHeight(org.pdfclown.documents.contents.fonts.Font font, double fontSize, double width, string text)
         {
             int lines = CountTextLines(font, fontSize, width, text);
             double height = font.GetLineHeight(fontSize) * lines;
@@ -91,10 +89,10 @@ namespace DanfeSharp
         /// <param name="xmlEnvio">Xml enviado ao Sefaz</param>
         /// <param name="xmlRetorno">Xml recebido do Sefaz</param>
         /// <returns>Xml de processamento da Nfe</returns>
-        public static String MontarNfeProc(String xmlEnvio, String xmlRetorno)
+        public static string MontarNfeProc(string xmlEnvio, string xmlRetorno)
         {
-            if (String.IsNullOrWhiteSpace(xmlEnvio)) throw new ArgumentException("Argumento inválido.", "xmlEnvio");
-            if (String.IsNullOrWhiteSpace(xmlRetorno)) throw new ArgumentException("Argumento inválido.", "xmlRetorno");
+            if (string.IsNullOrWhiteSpace(xmlEnvio)) throw new ArgumentException("Argumento inválido.", "xmlEnvio");
+            if (string.IsNullOrWhiteSpace(xmlRetorno)) throw new ArgumentException("Argumento inválido.", "xmlRetorno");
 
             try
             {
@@ -106,7 +104,7 @@ namespace DanfeSharp
                     throw new Exception("O elemento NFe não foi encontrado.");
                 }
 
-                String versaoNfe = nfe.Element(XName.Get("infNFe", Namespaces.NFe)).Attribute(XName.Get("versao")).Value;
+                string versaoNfe = nfe.Element(XName.Get("infNFe", Namespaces.NFe)).Attribute(XName.Get("versao")).Value;
 
                 XDocument retorno = XDocument.Parse(xmlRetorno, LoadOptions.PreserveWhitespace);
 
@@ -117,11 +115,11 @@ namespace DanfeSharp
                     throw new Exception("O elemento protNfe não foi encontrado.");
                 }
 
-                String versaoProtNfe = protNfe.Attribute(XName.Get("versao")).Value;
+                string versaoProtNfe = protNfe.Attribute(XName.Get("versao")).Value;
 
                 if (versaoNfe != versaoProtNfe)
                 {
-                    throw new Exception(String.Format("versaoNfe:{0} != versaoProtNfe:{1}", versaoNfe, versaoProtNfe));
+                    throw new Exception(string.Format("versaoNfe:{0} != versaoProtNfe:{1}", versaoNfe, versaoProtNfe));
                 }
 
                 XDocument nfeProc = new XDocument();

@@ -1,6 +1,4 @@
-﻿using org.pdfclown.documents;
-using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -20,18 +18,17 @@ namespace DanfeSharp
         public List<BlocoDanfe> BlocosInferiores { get; private set; }
 
         private DanfeDocumento _Danfe;
-        private PrimitiveComposer _Composer;
-        internal Page _Page;
+        private org.pdfclown.documents.contents.composition.PrimitiveComposer _Composer;
+        internal org.pdfclown.documents.Page _Page;
 
         public DanfePagina(DanfeDocumento danfe)
         {       
             _Danfe = danfe;
-            _Page = new Page(_Danfe.Document, _Danfe.Size);
-            _Composer = new PrimitiveComposer(_Page);
+            _Page = new org.pdfclown.documents. Page(_Danfe.Document, _Danfe.Size);
+            _Composer = new org.pdfclown.documents.contents.composition.PrimitiveComposer(_Page);
             BlocosInferiores = new List<BlocoDanfe>();
             BlocosSuperiores = new List<BlocoDanfe>();
         }
-
 
         public void AdicionarBlocoSuperior(BlocoDanfe bloco)
         {
@@ -78,7 +75,7 @@ namespace DanfeSharp
             }
         }
 
-        private void PrintMarcaDAgua(String text)
+        private void PrintMarcaDAgua(string text)
         {
             PointF p = PointF.Empty;
 
@@ -99,20 +96,20 @@ namespace DanfeSharp
             org.pdfclown.documents.contents.ExtGState state = new org.pdfclown.documents.contents.ExtGState(_Danfe.Document);
             state.FillAlpha = 0.3F;
             _Composer.ApplyState(state);
-            _Composer.ShowText(text, p, XAlignmentEnum.Center, YAlignmentEnum.Middle, 0);
+            _Composer.ShowText(text, p, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle, 0);
             _Composer.End();
         }
 
         public void PrintCreditos()
         {
-            BlockComposer bComp = new BlockComposer(_Composer);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(_Composer);
             RectangleF rect = _Danfe.InnerRect;
 
             rect.Y = rect.Bottom + Utils.Mm2Pu(0.5F);
             rect.Height = _Danfe.Size.Height - rect.Y;
 
             _Composer.SetFont(_Danfe.Font, 6);
-            bComp.SafeBegin(rect, XAlignmentEnum.Right, YAlignmentEnum.Top);
+            bComp.SafeBegin(rect, org.pdfclown.documents.contents.composition.XAlignmentEnum.Right, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             bComp.ShowText("Gerado com DanfeSharp");
             bComp.End(); 
         }
@@ -121,10 +118,10 @@ namespace DanfeSharp
         {
             // Número de folhas
             var rFolhas = GetFolhaRect();
-            BlockComposer bComp = new BlockComposer(_Composer);
-            bComp.SafeBegin(rFolhas, XAlignmentEnum.Left, YAlignmentEnum.Bottom);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(_Composer);
+            bComp.SafeBegin(rFolhas, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom);
             _Composer.SetFont(_Danfe.FontBold, BlocoDadosNFe.TamanhoFonteNumeracao);
-            bComp.ShowText(String.Format("{0}/{1}", pagina, nPaginas));
+            bComp.ShowText(string.Format("{0}/{1}", pagina, nPaginas));
             bComp.End();
         }
 
@@ -149,12 +146,9 @@ namespace DanfeSharp
             _Composer.Flush();
         }
 
-
         public float GetAlturaCorpo(RectangleF innerRectangle)
         {
             return innerRectangle.Height - BlocosSuperiores.Sum(x => x.Size.Height) - BlocosInferiores.Sum(x => x.Size.Height);
         }
-       
-
     }
 }

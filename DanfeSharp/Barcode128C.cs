@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
@@ -11,7 +10,7 @@ namespace DanfeSharp
     /// </summary>
     internal class Barcode128C
     {
-        private static byte[][] Dic;
+        private static readonly byte[][] Dic;
 
         public static readonly float MargemVertical = Utils.Mm2Pu(1);
         public static readonly float MargemHorizontal = Utils.Mm2Pu(4);
@@ -24,7 +23,7 @@ namespace DanfeSharp
         /// <summary>
         /// Código a ser codificado em barras.
         /// </summary>
-        public String Code { get; private set; }
+        public string Code { get; private set; }
 
         static Barcode128C()
         {
@@ -143,9 +142,9 @@ namespace DanfeSharp
 
         }
 
-        public Barcode128C(String code, SizeF size)
+        public Barcode128C(string code, SizeF size)
         {
-            if(String.IsNullOrWhiteSpace(code))
+            if(string.IsNullOrWhiteSpace(code))
             {
                 throw new ArgumentException("O código não pode ser vazio.", "code");
             }
@@ -228,7 +227,7 @@ namespace DanfeSharp
         {
             var xObject = new org.pdfclown.documents.contents.xObjects.FormXObject(context, Size);
 
-            PrimitiveComposer composer = new PrimitiveComposer(xObject);
+            org.pdfclown.documents.contents.composition.PrimitiveComposer composer = new org.pdfclown.documents.contents.composition.PrimitiveComposer(xObject);
             this.ToInlineObject(composer);
             composer.Flush();
 

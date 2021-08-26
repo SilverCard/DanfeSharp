@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace DanfeSharp
@@ -10,7 +9,7 @@ namespace DanfeSharp
 
         public DanfeCampo ReservadoFisco { get; set; }
         public DanfeCampo InformacoesComplementares { get; set; }
-        public const Double TamanhoFonteCorpo = 6;
+        public const double TamanhoFonteCorpo = 6;
 
         public BlocoDadosAdicionais(DanfeDocumento danfe)
             : base(danfe)
@@ -22,7 +21,7 @@ namespace DanfeSharp
 
         private float CalcularAltura()
         {
-            Double larguraTexto = Danfe.InnerRect.Width - Utils.Mm2Pu(78F);
+            double larguraTexto = Danfe.InnerRect.Width - Utils.Mm2Pu(78F);
             double alturaTexto = Utils.CountTextLines(Danfe.Font, TamanhoFonteCorpo, larguraTexto, Danfe.Model.InformacoesComplementaresCompleta) * (Danfe.Font.GetLineHeight(TamanhoFonteCorpo) + DanfeCampo.LineSpace);
             alturaTexto += Danfe.FontBold.GetLineHeight(DanfeCampo.TamanhoFonteCabecalho) + DanfeCampo.LineSpace;
             alturaTexto += DanfeCampo.PaddingSuperior + DanfeCampo.PaddingInferior;
@@ -33,7 +32,7 @@ namespace DanfeSharp
         {
 
             ReservadoFisco = CriarCampo("Reservado ao Fisco", null);
-            InformacoesComplementares = CriarCampo("Informações Complementares", Danfe.Model.InformacoesComplementaresCompleta, RectangleF.Empty, XAlignmentEnum.Left, TamanhoFonteCorpo, false, YAlignmentEnum.Top);
+            InformacoesComplementares = CriarCampo("Informações Complementares", Danfe.Model.InformacoesComplementaresCompleta, RectangleF.Empty, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, TamanhoFonteCorpo, false, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             InformacoesComplementares.MultiLinha = true;
         }
 

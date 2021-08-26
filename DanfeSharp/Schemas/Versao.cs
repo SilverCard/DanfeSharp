@@ -6,7 +6,7 @@ namespace DanfeSharp.Schemas
 {
     public class Versao
     {
-        private const String _Pattern = @"(\d+)\.(\d+)";
+        private const string _Pattern = @"(\d+)\.(\d+)";
         public int Maior { get; protected set; }
         public int Menor { get; protected set; }
 
@@ -17,9 +17,9 @@ namespace DanfeSharp.Schemas
         }
 
         [DebuggerStepThrough]
-        public static Versao Parse(String str)
+        public static Versao Parse(string str)
         {
-            if(String.IsNullOrWhiteSpace(str))
+            if(string.IsNullOrWhiteSpace(str))
             {
                 throw new ArgumentException("O parâmetro str não pode ser nulo ou vazio.","str");
             }

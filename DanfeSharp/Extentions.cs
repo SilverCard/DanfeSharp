@@ -9,7 +9,6 @@ namespace DanfeSharp
     /// </summary>
     public static class Extentions
     {
-
         public static RectangleF GetPaddedRectangleMm(this RectangleF rect, float padding)
         {
             padding = Utils.Mm2Pu(padding);
@@ -27,7 +26,6 @@ namespace DanfeSharp
             vertical = Utils.Mm2Pu(vertical);
             return rect.GetPaddedRectangle(horizontal, horizontal, vertical, vertical);
         }
-
 
         /// <summary>
         /// Pega um retângulo interno com determinado padding.
@@ -65,7 +63,7 @@ namespace DanfeSharp
         /// Verifica se a posição e os tamanhos do retângulo possuem um valor negativo.
         /// </summary>
         /// <param name="rect">Retânngulo.</param>
-        public static Boolean IsNegative(this RectangleF rect)
+        public static bool IsNegative(this RectangleF rect)
         {
             if(rect.X < 0 || rect.Y < 0 || rect.Width <= 0 || rect.Height <= 0)
             {

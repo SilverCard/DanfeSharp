@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DanfeSharp
 {
@@ -22,13 +21,12 @@ namespace DanfeSharp
             PosicionarLadoLado(InternalRectangle, InscricaoMunicipal, ValorTotalServicos, BaseCalculoIssqn, ValorIssqn);
         }
 
-
         protected override void CriarCampos()
         {
-            InscricaoMunicipal = CriarCampo("Inscrição Municipal", Danfe.Model.Emitente.IM, XAlignmentEnum.Center);
-            ValorTotalServicos = CriarCampo("Valor Total dos Serviços", Danfe.Model.ValorTotalServicos.Formatar(), XAlignmentEnum.Right);
-            BaseCalculoIssqn = CriarCampo("Base de Cálculo do ISSQN", Danfe.Model.BaseIssqn.Formatar(), XAlignmentEnum.Right);
-            ValorIssqn = CriarCampo("Valor do ISSQN", Danfe.Model.ValorIssqn.Formatar(), XAlignmentEnum.Right);
+            InscricaoMunicipal = CriarCampo("Inscrição Municipal", Danfe.Model.Emitente.IM, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            ValorTotalServicos = CriarCampo("Valor Total dos Serviços", Danfe.Model.ValorTotalServicos.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
+            BaseCalculoIssqn = CriarCampo("Base de Cálculo do ISSQN", Danfe.Model.BaseIssqn.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
+            ValorIssqn = CriarCampo("Valor do ISSQN", Danfe.Model.ValorIssqn.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
         }
 
         public override string Cabecalho

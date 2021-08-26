@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DanfeSharp
 {
@@ -49,25 +48,25 @@ namespace DanfeSharp
 
             //Campos Linha 1
             RazaoSocial = CriarCampo(Strings.RazaoSocial, transportadora.Nome);
-            FreteConta = CriarCampo("Frete port Conta", transportadora.ModalidadeFreteString, XAlignmentEnum.Center);
-            CodigoAntt = CriarCampo("Código ANTT", transportadora.CodigoAntt, XAlignmentEnum.Center);
-            PlacaVeiculo = CriarCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), XAlignmentEnum.Center);
-            UfVeiculo = CriarCampo(Strings.UF, transportadora.VeiculoUf, XAlignmentEnum.Center);
-            CnpjCpf = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(transportadora.CnpjCpf), XAlignmentEnum.Center);
+            FreteConta = CriarCampo("Frete por Conta", transportadora.ModalidadeFreteString, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            CodigoAntt = CriarCampo("Código ANTT", transportadora.CodigoAntt, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            PlacaVeiculo = CriarCampo("Placa do Veículo", Formatador.FormatarPlacaVeiculo(transportadora.Placa), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            UfVeiculo = CriarCampo(Strings.UF, transportadora.VeiculoUf, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            CnpjCpf = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCnpj(transportadora.CnpjCpf), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
 
             //Campos Linha 2
             Endereco = CriarCampo(Strings.Endereco, transportadora.EnderecoLogadrouro);
             Municipio = CriarCampo(Strings.Municipio, transportadora.Municipio);
-            EnderecoUf = CriarCampo(Strings.UF, transportadora.EnderecoUf, XAlignmentEnum.Center);
-            IE = CriarCampo(Strings.InscricaoEstadual, transportadora.Ie, XAlignmentEnum.Center);
+            EnderecoUf = CriarCampo(Strings.UF, transportadora.EnderecoUf, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            IE = CriarCampo(Strings.InscricaoEstadual, transportadora.Ie, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
 
             //Campos Linha 3
-            Quantidade = CriarCampo(Strings.Quantidade, transportadora.QuantidadeVolumes.Formatar(Formatador.FormatoNumero), XAlignmentEnum.Right);
+            Quantidade = CriarCampo(Strings.Quantidade, transportadora.QuantidadeVolumes.Formatar(Formatador.FormatoNumero), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
             Especie = CriarCampo("Espécie", transportadora.Especie);
             Marca = CriarCampo("Marca", transportadora.Marca);
             Numeracao = CriarCampo("Numeração", transportadora.Numeracao);
-            PesoBruto = CriarCampo("Peso Bruto", transportadora.PesoBruto.Formatar(), XAlignmentEnum.Right);
-            PesoLiquido = CriarCampo("Peso Líquido", transportadora.PesoLiquido.Formatar(), XAlignmentEnum.Right);
+            PesoBruto = CriarCampo("Peso Bruto", transportadora.PesoBruto.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
+            PesoLiquido = CriarCampo("Peso Líquido", transportadora.PesoLiquido.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Right);
         }
 
         protected override void PosicionarCampos()
@@ -85,7 +84,6 @@ namespace DanfeSharp
 
         }
 
-
         public override string Cabecalho
         {
             get
@@ -94,6 +92,4 @@ namespace DanfeSharp
             }
         }
     }
-
-
 }

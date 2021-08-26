@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace DanfeSharp
@@ -12,12 +11,12 @@ namespace DanfeSharp
         /// <summary>
         /// Texto do cabeçalho.
         /// </summary>
-        public String Cabecalho { get; set; }
+        public string Cabecalho { get; set; }
 
         /// <summary>
         /// Texto do corpo.
         /// </summary>
-        public String Corpo { get; set; }
+        public string Corpo { get; set; }
 
         /// <summary>
         /// Retângulo do campo, contendo o tamanho e as coordenadas.
@@ -27,27 +26,27 @@ namespace DanfeSharp
         /// <summary>
         /// Alinhamento horizontal do corpo.
         /// </summary>
-        public XAlignmentEnum CorpoAlinhamentoX { get; set; }
+        public org.pdfclown.documents.contents.composition.XAlignmentEnum CorpoAlinhamentoX { get; set; }
 
         /// <summary>
         /// Alinhamento vertical do corpo.
         /// </summary>
-        public YAlignmentEnum CorpoAlinhamentoY { get; set; }
+        public org.pdfclown.documents.contents.composition.YAlignmentEnum CorpoAlinhamentoY { get; set; }
 
         /// <summary>
         /// Tamanho da fonte do corpo.
         /// </summary>
-        public Double CorpoTamanhoFonte { get; set; }
+        public double CorpoTamanhoFonte { get; set; }
 
         /// <summary>
         /// Indica se a fonte do corpo está em negrito.
         /// </summary>
-        public Boolean IsCorpoNegrito { get; set; }
+        public bool IsCorpoNegrito { get; set; }
         
         /// <summary>
         /// Se o texto for multilinha, o seu tamanho será ajustado para caber na largura caso haja overflow.
         /// </summary>
-        public Boolean MultiLinha { get; set; }
+        public bool MultiLinha { get; set; }
 
         /// <summary>
         /// Tamanho da fonte do cabeçalho.
@@ -62,14 +61,13 @@ namespace DanfeSharp
         /// Espaço extra entre as linhas de texto
         /// </summary>
         public const float LineSpace = 1;
-
         
-        public DanfeCampo(String cabecalho, String corpo):
+        public DanfeCampo(string cabecalho, string corpo):
             this(cabecalho, corpo, RectangleF.Empty)
         {
         }
 
-        public DanfeCampo(String cabecalho, String corpo, RectangleF retangulo , XAlignmentEnum corpoAlinhamentoX = XAlignmentEnum.Left, double corpoTamanhoFonte = 10, Boolean isCorpoNegrito = false, YAlignmentEnum corpoAlinhamentoY = YAlignmentEnum.Bottom)
+        public DanfeCampo(string cabecalho, string corpo, RectangleF retangulo , org.pdfclown.documents.contents.composition.XAlignmentEnum corpoAlinhamentoX = org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, double corpoTamanhoFonte = 10, bool isCorpoNegrito = false, org.pdfclown.documents.contents.composition.YAlignmentEnum corpoAlinhamentoY = org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom)
         {
             Cabecalho = cabecalho;
             Corpo = corpo;
@@ -86,7 +84,7 @@ namespace DanfeSharp
         /// </summary>
         /// <param name="rect"></param>
         /// <param name="composer"></param>
-        private void ValidadeRectangle(RectangleF rect, PrimitiveComposer composer)
+        private void ValidadeRectangle(RectangleF rect, org.pdfclown.documents.contents.composition.PrimitiveComposer composer)
         {
             if(rect.X < 0 || rect.Y < 0 || rect.Width <= 0 || rect.Height <= 0 ||
                rect.Height > composer.Scanner.CanvasSize.Height || rect.Width > composer.Scanner.CanvasSize.Width)
@@ -104,9 +102,9 @@ namespace DanfeSharp
         /// <param name="max"></param>
         /// <param name="min"></param>
         /// <returns></returns>
-        public static double AjustarFonte(String text, org.pdfclown.documents.contents.fonts.Font fonte, double width, double max, double min = 6)
+        public static double AjustarFonte(string text, org.pdfclown.documents.contents.fonts.Font fonte, double width, double max, double min = 6)
         {
-            Double size = max;
+            double size = max;
             double w = fonte.GetWidth(text, max);
 
             if(w > width)
@@ -122,21 +120,21 @@ namespace DanfeSharp
         /// Imprime o campo no composer.
         /// </summary>
         /// <param name="comp"></param>
-        public void Print(PrimitiveComposer comp, org.pdfclown.documents.contents.fonts.Font fonte, org.pdfclown.documents.contents.fonts.Font fonteBold)
+        public void Print(org.pdfclown.documents.contents.composition.PrimitiveComposer comp, org.pdfclown.documents.contents.fonts.Font fonte, org.pdfclown.documents.contents.fonts.Font fonteBold)
         {
 
-            BlockComposer bComp = new BlockComposer(comp);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(comp);
             RectangleF pRect = Retangulo.GetPaddedRectangle(PaddingHorizontal, PaddingHorizontal, PaddingSuperior, PaddingInferior);
 
             comp.SetFont(fonteBold, TamanhoFonteCabecalho);
             ValidadeRectangle(pRect, comp);
-            bComp.SafeBegin(pRect, XAlignmentEnum.Left, YAlignmentEnum.Top);
+            bComp.SafeBegin(pRect, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             bComp.ShowText(Cabecalho.ToUpper());
             bComp.End();
 
-            bComp.LineSpace = new Length(LineSpace, Length.UnitModeEnum.Absolute);
+            bComp.LineSpace = new org.pdfclown.documents.contents.composition.Length(LineSpace, org.pdfclown.documents.contents.composition.Length.UnitModeEnum.Absolute);
 
-            if (!String.IsNullOrWhiteSpace(Corpo))
+            if (!string.IsNullOrWhiteSpace(Corpo))
             {
                 org.pdfclown.documents.contents.fonts.Font fonteCorpo = IsCorpoNegrito ? fonteBold : fonte;                
 
@@ -151,7 +149,7 @@ namespace DanfeSharp
 
                 comp.SetFont(fonteCorpo, novoTamanho);
 
-                if (CorpoAlinhamentoY == YAlignmentEnum.Top)
+                if (CorpoAlinhamentoY == org.pdfclown.documents.contents.composition.YAlignmentEnum.Top)
                 {
                     float yOffSet = (float)fonteBold.GetLineHeight(TamanhoFonteCabecalho) + LineSpace;
                     pRect.Y += yOffSet;

@@ -1,6 +1,4 @@
-﻿using org.pdfclown.documents.contents;
-using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,7 +10,7 @@ namespace DanfeSharp
         /// <summary>
         /// Valores da tabela, [Colunas, Linhas]
         /// </summary>
-        public String[,] Valores { get; set; }
+        public string[,] Valores { get; set; }
 
         public readonly float Margem = Utils.Mm2Pu(0.75F);
         public readonly float AlturaCabecalhoTabela = Utils.Mm2Pu(5);
@@ -21,12 +19,12 @@ namespace DanfeSharp
 
         private Coluna[] _Colunas = 
         {
-		    new Coluna("CÓDIGO", 15, XAlignmentEnum.Center),
-            new Coluna("DESCRIÇÃO DO PRODUTO / SERVIÇO", 0,  XAlignmentEnum.Left),
-            new Coluna("NCM/SH", 13, XAlignmentEnum.Center),
-            new Coluna("O/CST", 8, XAlignmentEnum.Center),
-            new Coluna("CFOP", 8, XAlignmentEnum.Center),
-            new Coluna("UN", 8, XAlignmentEnum.Center),
+		    new Coluna("CÓDIGO", 15, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center),
+            new Coluna("DESCRIÇÃO DO PRODUTO / SERVIÇO", 0,  org.pdfclown.documents.contents.composition.XAlignmentEnum.Left),
+            new Coluna("NCM/SH", 13, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center),
+            new Coluna("O/CST", 8, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center),
+            new Coluna("CFOP", 8, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center),
+            new Coluna("UN", 8, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center),
             new Coluna(Strings.Quantidade, 15),
             new Coluna("VALOR UNIT", 15),
             new Coluna("VALOR TOTAL", 15),
@@ -52,16 +50,16 @@ namespace DanfeSharp
             }
         }
 
-        public void PrintCabecalhos(PrimitiveComposer composer)
+        public void PrintCabecalhos(org.pdfclown.documents.contents.composition.PrimitiveComposer composer)
         {
-            BlockComposer bComp = new BlockComposer(composer);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(composer);
             composer.SetFont(_Documento.FontBold, 5);
 
             for (int i = 0; i < _Colunas.Length; i++)
             {
                 RectangleF r = _Colunas[i].Retangulo;
                 r.Height = AlturaCabecalhoTabela;
-                bComp.SafeBegin(r.GetPaddedRectangle(Margem), _Colunas[i].AlinhamentoHorizontal, YAlignmentEnum.Middle);
+                bComp.SafeBegin(r.GetPaddedRectangle(Margem), _Colunas[i].AlinhamentoHorizontal, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
                 bComp.ShowText(_Colunas[i].Cabecalho.ToUpper());
                 bComp.End();
 
@@ -70,22 +68,22 @@ namespace DanfeSharp
 
         }
 
-        private void PrintTextCell(PrimitiveComposer composer, String text, RectangleF rect, XAlignmentEnum align = XAlignmentEnum.Center)
+        private void PrintTextCell(org.pdfclown.documents.contents.composition.PrimitiveComposer composer, string text, RectangleF rect, org.pdfclown.documents.contents.composition.XAlignmentEnum align = org.pdfclown.documents.contents.composition.XAlignmentEnum.Center)
         {
-            if (!String.IsNullOrWhiteSpace(text))
+            if (!string.IsNullOrWhiteSpace(text))
             {
-                text = text.Replace(Char.ConvertFromUtf32(160), Char.ConvertFromUtf32(32));
+                text = text.Replace(char.ConvertFromUtf32(160), char.ConvertFromUtf32(32));
             }
 
-            BlockComposer bComp = new BlockComposer(composer);
-            bComp.SafeBegin(rect, align, YAlignmentEnum.Top);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(composer);
+            bComp.SafeBegin(rect, align, org.pdfclown.documents.contents.composition.YAlignmentEnum.Top);
             bComp.ShowText(text);
             bComp.End();
             CurrentY = Math.Max(CurrentY, bComp.BoundBox.Bottom);
 
         }
 
-        private Boolean RowFit(int i, RectangleF[] rects)
+        private bool RowFit(int i, RectangleF[] rects)
         {
             for (int c = 0; c < 14; c++)
             {
@@ -105,7 +103,7 @@ namespace DanfeSharp
         /// <param name="y">Lista com as posições y</param>
         /// <param name="xBegin"></param>
         /// <param name="xEnd"></param>
-        private void PrintLinhasTracejadas(PrimitiveComposer composer, List<float> y, float xBegin, float xEnd)
+        private void PrintLinhasTracejadas(org.pdfclown.documents.contents.composition.PrimitiveComposer composer, List<float> y, float xBegin, float xEnd)
         {
             if (xBegin < 0)
             {
@@ -118,7 +116,7 @@ namespace DanfeSharp
             }
 
             composer.BeginLocalState();
-            composer.SetLineDash(new LineDash(new Double[] { 3, 2 }));
+            composer.SetLineDash(new org.pdfclown.documents.contents.LineDash(new double[] { 3, 2 }));
             for (int i = 0; i < y.Count - 1; i++)
             {
                 composer.DrawLine(new PointF(xBegin, y[i]), new PointF(xEnd, y[i]));
@@ -128,7 +126,7 @@ namespace DanfeSharp
             composer.End();
         }
 
-        internal int PrintTable(PrimitiveComposer composer, RectangleF tableArea, int lInit = 0)
+        internal int PrintTable(org.pdfclown.documents.contents.composition.PrimitiveComposer composer, RectangleF tableArea, int lInit = 0)
         {
             _Colunas[1].Largura = tableArea.Width - _Colunas.Sum(x => x.Largura);
             _Colunas[0].Retangulo = new RectangleF(tableArea.Left, tableArea.Top, _Colunas[0].Largura, tableArea.Height - AlturaCabecalhoTabela);
@@ -202,12 +200,12 @@ namespace DanfeSharp
 
         private class Coluna
         {
-            public String Cabecalho { get; private set; }
+            public string Cabecalho { get; private set; }
             public float Largura { get; set; }
-            public XAlignmentEnum AlinhamentoHorizontal { get; set; }
+            public org.pdfclown.documents.contents.composition.XAlignmentEnum AlinhamentoHorizontal { get; set; }
             public RectangleF Retangulo { get; set; }
 
-            public Coluna(String cabecalho, float largura, XAlignmentEnum alinhamentoHorizontal = XAlignmentEnum.Right)
+            public Coluna(string cabecalho, float largura, org.pdfclown.documents.contents.composition.XAlignmentEnum alinhamentoHorizontal = org.pdfclown.documents.contents.composition.XAlignmentEnum.Right)
             {
                 Cabecalho = cabecalho;
                 Largura = largura;

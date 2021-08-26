@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace DanfeSharp
@@ -13,7 +12,7 @@ namespace DanfeSharp
         public BlocoFaturas(DanfeDocumento danfeMaker) : base(danfeMaker)
         {
             float nLinhas = (float)Math.Ceiling((float)danfeMaker.Model.Duplicatas.Count / (float)Colunas);
-            Size = new System.Drawing.SizeF(danfeMaker.InnerRect.Width, danfeMaker.CabecalhoBlocoAltura + nLinhas*RetanguloH + DanfeDocumento.LineWidth);
+            Size = new SizeF(danfeMaker.InnerRect.Width, danfeMaker.CabecalhoBlocoAltura + nLinhas * RetanguloH + DanfeDocumento.LineWidth);
             Initialize();
             //_PossuiBordaTopo = false;
         }
@@ -28,23 +27,22 @@ namespace DanfeSharp
 
         }
 
-        protected override void ToXObjectInternal(PrimitiveComposer comp)
+        protected override void ToXObjectInternal(org.pdfclown.documents.contents.composition.PrimitiveComposer comp)
         {
 
             var duplicatas = Danfe.Model.Duplicatas;
 
-            BlockComposer bComp = new BlockComposer(comp);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(comp);
 
             RectangleF r1 = InternalRectangle;
             r1.Height = RetanguloH;
 
             RectangleF[] colunas = r1.SplitRectangle(Colunas);
-            int colunaIndex = 0;           
+            int colunaIndex = 0;
 
-           
+
             for (int i = 0; i < duplicatas.Count; i++)
             {
-
                 if (i > 0 && i % Colunas == 0)
                 {
                     colunaIndex = 0;
@@ -58,22 +56,20 @@ namespace DanfeSharp
                 var duplicata = duplicatas[i];
                 RectangleF pRet = colunas[colunaIndex].GetPaddedRectangleMm(1);
                 comp.SetFont(Danfe.Font, 6);
-                bComp.SafeBegin(pRet, XAlignmentEnum.Left, YAlignmentEnum.Middle);
+                bComp.SafeBegin(pRet, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
                 bComp.ShowText("Número:\nVenc.:\nValor:\n");
                 bComp.End();
-               
 
                 comp.SetFont(Danfe.FontBold, 6);
 
-                bComp.SafeBegin(pRet, XAlignmentEnum.Right, YAlignmentEnum.Middle);
-                bComp.ShowText(String.Format("{0}\n{1}\n{2}\n", duplicata.Numero, duplicata.Vecimento.Formatar(), duplicata.Valor.Formatar()));
+                bComp.SafeBegin(pRet, org.pdfclown.documents.contents.composition.XAlignmentEnum.Right, org.pdfclown.documents.contents.composition.YAlignmentEnum.Middle);
+                bComp.ShowText(string.Format("{0}\n{1}\n{2}\n", duplicata.Numero, duplicata.Vecimento.Formatar(), duplicata.Valor.Formatar()));
                 bComp.End();
 
                 comp.SafeDrawRectangle(colunas[colunaIndex]);
 
-                colunaIndex++;         
+                colunaIndex++;
             }
-
             comp.Stroke();
         }
 
@@ -84,7 +80,5 @@ namespace DanfeSharp
                 return "Faturas";
             }
         }
-
-
     }
 }

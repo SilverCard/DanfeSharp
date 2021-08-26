@@ -1,5 +1,4 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,20 +9,19 @@ namespace DanfeSharp
     {
         public DanfeDocumento Danfe { get; protected set; }
         public SizeF Size { get; protected set; }
-        public virtual String Cabecalho { get; private set; }
-        protected RectangleF InternalRectangle { get; set; }       
+        public virtual string Cabecalho { get; private set; }
+        protected RectangleF InternalRectangle { get; set; }
 
         protected org.pdfclown.documents.contents.xObjects.FormXObject _RenderedObject;
 
         public HashSet<DanfeCampo> Campos { get; set; }
-        public PointF Posicao { get; set; }  
+        public PointF Posicao { get; set; }
 
+        //protected bool _PossuiBordaTopo = true;
+        //protected bool _PossuiBordaBaixo = true;
+        //protected bool _PossuiBordaEsquerda = true;
+        //protected bool _PossuiBordaDireita = true;
 
-        //protected Boolean _PossuiBordaTopo = true;
-        //protected Boolean _PossuiBordaBaixo = true;
-        //protected Boolean _PossuiBordaEsquerda = true;
-        //protected Boolean _PossuiBordaDireita = true;
-        
         public BlocoDanfe(DanfeDocumento danfeMaker)
         {
             Danfe = danfeMaker;
@@ -39,8 +37,7 @@ namespace DanfeSharp
             PosicionarCampos();
         }
 
-
-        protected virtual DanfeCampo CriarCampo(String cabecalho, String corpo, XAlignmentEnum corpoAlinhamentoX = XAlignmentEnum.Left)
+        protected virtual DanfeCampo CriarCampo(string cabecalho, string corpo, org.pdfclown.documents.contents.composition.XAlignmentEnum corpoAlinhamentoX = org.pdfclown.documents.contents.composition.XAlignmentEnum.Left)
         {
             DanfeCampo campo = new DanfeCampo(cabecalho, corpo);
             Campos.Add(campo);
@@ -48,21 +45,19 @@ namespace DanfeSharp
             return campo;
         }
 
-        protected virtual DanfeCampo CriarCampo(String cabecalho, String corpo, RectangleF retangulo, XAlignmentEnum corpoAlinhamentoX = XAlignmentEnum.Left, double corpoTamanhoFonte = 10, Boolean isCorpoNegrito = false, YAlignmentEnum corpoAlinhamentoY = YAlignmentEnum.Bottom)
+        protected virtual DanfeCampo CriarCampo(string cabecalho, string corpo, RectangleF retangulo, org.pdfclown.documents.contents.composition.XAlignmentEnum corpoAlinhamentoX = org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, double corpoTamanhoFonte = 10, bool isCorpoNegrito = false, org.pdfclown.documents.contents.composition.YAlignmentEnum corpoAlinhamentoY = org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom)
         {
             DanfeCampo campo = new DanfeCampo(cabecalho, corpo, retangulo, corpoAlinhamentoX, corpoTamanhoFonte, isCorpoNegrito, corpoAlinhamentoY);
             Campos.Add(campo);
             return campo;
         }
 
-        protected virtual void ToXObjectInternal(PrimitiveComposer composer)
+        protected virtual void ToXObjectInternal(org.pdfclown.documents.contents.composition.PrimitiveComposer composer)
         {
         }
 
         protected abstract void CriarCampos();
         protected abstract void PosicionarCampos();
-
-
 
         /// <summary>
         /// Posiciona os campos lado a lado em ordem com a mesma largura
@@ -83,7 +78,7 @@ namespace DanfeSharp
             }
         }
 
-         /// <summary>
+        /// <summary>
         /// Posiciona os campos lado a lado em ordem utilizando a largura contida no array
         /// </summary>
         /// <param name="area">Retângulo contendo a área na qual os campos irão serem posicionados.</param>
@@ -93,7 +88,7 @@ namespace DanfeSharp
         {
             for (int i = 0; i < larguras.Length; i++)
             {
-                if(larguras[i]!=0)
+                if (larguras[i] != 0)
                 {
                     larguras[i] = Utils.Mm2Pu(larguras[i]);
                 }
@@ -108,16 +103,16 @@ namespace DanfeSharp
         /// <param name="area">Retângulo contendo a área na qual os campos irão serem posicionados.</param>
         /// <param name="larguras">Larguras dos campos.</param>
         /// <param name="campos">Campos a serem posicionados.</param>
-        public static void PosicionarLadoLado(RectangleF area, float[] larguras ,  params DanfeCampo[] campos)
+        public static void PosicionarLadoLado(RectangleF area, float[] larguras, params DanfeCampo[] campos)
         {
-            if(larguras.Length != campos.Length)
+            if (larguras.Length != campos.Length)
             {
                 throw new ArgumentException("O tamanho do array das larguras deve ser igual a quantidade de campos.");
             }
 
             float sum = larguras.Sum();
 
-            if(sum > area.Width)
+            if (sum > area.Width)
             {
                 throw new ArgumentException("A soma das larguras não deve ultrapassar a largura do retângulo.");
             }
@@ -128,7 +123,7 @@ namespace DanfeSharp
 
             for (int i = 0; i < larguras.Length; i++)
             {
-                if(larguras[i] == 0)
+                if (larguras[i] == 0)
                 {
                     larguras[i] = w;
                 }
@@ -149,15 +144,15 @@ namespace DanfeSharp
         /// <summary>
         /// Imprime o cabeçalho do bloco.
         /// </summary>
-        private void PrintCabecalho(PrimitiveComposer comp)
+        private void PrintCabecalho(org.pdfclown.documents.contents.composition.PrimitiveComposer comp)
         {
-            BlockComposer bComp = new BlockComposer(comp);
+            org.pdfclown.documents.contents.composition.BlockComposer bComp = new org.pdfclown.documents.contents.composition.BlockComposer(comp);
 
             RectangleF rect = new RectangleF(0, 0, Size.Width, Danfe.CabecalhoBlocoAltura);
-            rect = rect.GetPaddedRectangleMm(0, 0, 1, 0.3F);  
+            rect = rect.GetPaddedRectangleMm(0, 0, 1, 0.3F);
 
             comp.SetFont(Danfe.FontBold, 5);
-            bComp.SafeBegin(rect, XAlignmentEnum.Left, YAlignmentEnum.Bottom);
+            bComp.SafeBegin(rect, org.pdfclown.documents.contents.composition.XAlignmentEnum.Left, org.pdfclown.documents.contents.composition.YAlignmentEnum.Bottom);
             bComp.ShowText(Cabecalho.ToUpper());
             bComp.End();
 
@@ -169,11 +164,11 @@ namespace DanfeSharp
         /// </summary>
         public virtual org.pdfclown.documents.contents.xObjects.XObject ToXObject()
         {
-            if(_RenderedObject == null)
+            if (_RenderedObject == null)
             {
                 _RenderedObject = new org.pdfclown.documents.contents.xObjects.FormXObject(Danfe.Document, Size);
 
-                PrimitiveComposer composer = new PrimitiveComposer(_RenderedObject);
+                org.pdfclown.documents.contents.composition.PrimitiveComposer composer = new org.pdfclown.documents.contents.composition.PrimitiveComposer(_RenderedObject);
                 var obj = composer.BeginLocalState();
                 composer.SetLineWidth(DanfeDocumento.LineWidth);
 
@@ -200,7 +195,6 @@ namespace DanfeSharp
             return _RenderedObject;
         }
 
-
         private RectangleF GetHeaderInnerRectangle()
         {
             return new RectangleF(DanfeDocumento.LineWidth / 2F, DanfeDocumento.LineWidth / 2F, Size.Width - DanfeDocumento.LineWidth, Size.Height - DanfeDocumento.LineWidth);
@@ -213,17 +207,17 @@ namespace DanfeSharp
             if (PossuiCabecalho)
             {
                 y += Danfe.CabecalhoBlocoAltura;
-            }         
+            }
 
 
             return new RectangleF(DanfeDocumento.LineWidth / 2F, DanfeDocumento.LineWidth / 2F + y, Size.Width - DanfeDocumento.LineWidth, Size.Height - DanfeDocumento.LineWidth - y);
         }
 
-        public Boolean PossuiCabecalho
+        public bool PossuiCabecalho
         {
             get
             {
-                return !String.IsNullOrWhiteSpace(Cabecalho);
+                return !string.IsNullOrWhiteSpace(Cabecalho);
             }
         }
 
@@ -235,5 +229,4 @@ namespace DanfeSharp
             }
         }
     }
-
 }

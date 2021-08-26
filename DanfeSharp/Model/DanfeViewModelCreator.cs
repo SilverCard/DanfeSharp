@@ -14,7 +14,7 @@ namespace DanfeSharp.Model
             EmpresaViewModel model = new EmpresaViewModel();
 
             model.Nome = empresa.xNome;
-            model.CnpjCpf = !String.IsNullOrWhiteSpace(empresa.CNPJ) ? empresa.CNPJ : empresa.CPF;
+            model.CnpjCpf = !string.IsNullOrWhiteSpace(empresa.CNPJ) ? empresa.CNPJ : empresa.CPF;
             model.Ie = empresa.IE;
             model.IeSt = empresa.IEST;
 
@@ -41,7 +41,7 @@ namespace DanfeSharp.Model
             return model;
         }   
        
-        internal static DanfeViewModel CreateFromXmlString(String xml)
+        internal static DanfeViewModel CreateFromXmlString(string xml)
         {
             ProcNFe nfe = null;
             XmlSerializer serializer = new XmlSerializer(typeof(ProcNFe));
@@ -61,9 +61,9 @@ namespace DanfeSharp.Model
             }
         }
 
-        internal static DanfeViewModel CreateFromXmlFile(String path)
+        internal static DanfeViewModel CreateFromXmlFile(string path)
         {
-            if(String.IsNullOrWhiteSpace(path))
+            if(string.IsNullOrWhiteSpace(path))
             {
                 throw new ArgumentException("O arquivo Xml precisa ser especificado.");
             }
@@ -90,7 +90,7 @@ namespace DanfeSharp.Model
                 if(e.InnerException is XmlException)
                 {
                     XmlException ex = (XmlException)e.InnerException;
-                    throw new Exception(String.Format("Não foi possível interpretar o Xml. Linha {0} Posição {1}.", ex.LineNumber, ex.LinePosition));
+                    throw new Exception(string.Format("Não foi possível interpretar o Xml. Linha {0} Posição {1}.", ex.LineNumber, ex.LinePosition));
                 }
 
                 throw new XmlException("O Xml não parece ser uma NF-e processada.", e);
@@ -116,7 +116,7 @@ namespace DanfeSharp.Model
                 model.DataHoraEmissao = ide.dEmi;
                 model.DataSaidaEntrada = ide.dSaiEnt;    
 
-                if(!String.IsNullOrWhiteSpace(ide.hSaiEnt))
+                if(!string.IsNullOrWhiteSpace(ide.hSaiEnt))
                 {
                     model.HoraSaidaEntrada = TimeSpan.Parse(ide.hSaiEnt);
                 }
@@ -142,8 +142,6 @@ namespace DanfeSharp.Model
             {
                 throw new Exception("Somente o tpEmis==1 está implementado.");
             }
-
-
 
             model.TipoAmbiente = (int)ide.tpAmb;
             model.NumeroNF = ide.nNF;
@@ -256,7 +254,7 @@ namespace DanfeSharp.Model
             {
                 transportadoraModel.Nome = transportadora.xNome;
                 transportadoraModel.EnderecoUf = transportadora.UF;
-                transportadoraModel.CnpjCpf = !String.IsNullOrWhiteSpace(transportadora.CNPJ) ? transportadora.CNPJ : transportadora.CPF;
+                transportadoraModel.CnpjCpf = !string.IsNullOrWhiteSpace(transportadora.CNPJ) ? transportadora.CNPJ : transportadora.CPF;
                 transportadoraModel.EnderecoLogadrouro = transportadora.xEnder;
                 transportadoraModel.Municipio = transportadora.xMun;
                 transportadoraModel.Ie = transportadora.IE;           }
@@ -283,7 +281,7 @@ namespace DanfeSharp.Model
 
             var infoProto = procNfe.protNFe.infProt;
 
-            model.ProtocoloAutorizacao = String.Format("{0} - {1}", infoProto.nProt, infoProto.dhRecbto);
+            model.ProtocoloAutorizacao = string.Format("{0} - {1}", infoProto.nProt, infoProto.dhRecbto);
 
             ExtrairDatas(model, infNfe);
 

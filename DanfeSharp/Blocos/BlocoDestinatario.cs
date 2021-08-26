@@ -1,21 +1,16 @@
-﻿using org.pdfclown.documents.contents.composition;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace DanfeSharp
 {
     class BlocoDestinatario : BlocoDanfe
     {
-
         public DanfeCampo Nome { get; set; }
         public DanfeCampo CnpjCpf { get; set; }
         public DanfeCampo DataEmissao { get; set; }
-
-
         public DanfeCampo Endereco { get; set; }
         public DanfeCampo Bairro { get; set; }
         public DanfeCampo Cep { get; set; }
         public DanfeCampo DataEntradaSaida { get; set; }
-
         public DanfeCampo Municipio { get; set; }
         public DanfeCampo Fone { get; set; }
         public DanfeCampo Uf { get; set; }
@@ -28,24 +23,23 @@ namespace DanfeSharp
             Initialize();
         }
 
-
         protected override void CriarCampos()
         {
             var destinatario = Danfe.Model.Destinatario;
             Nome = CriarCampo("Nome / Razão Social", destinatario.Nome);
-            CnpjCpf = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCpfCnpj(destinatario.CnpjCpf), XAlignmentEnum.Center);
-            DataEmissao = CriarCampo("Data de emissão", Danfe.Model.DataHoraEmissao.Formatar(), XAlignmentEnum.Center);
+            CnpjCpf = CriarCampo(Strings.CnpjCpf, Formatador.FormatarCpfCnpj(destinatario.CnpjCpf), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            DataEmissao = CriarCampo("Data de emissão", Danfe.Model.DataHoraEmissao.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
 
             Endereco = CriarCampo(Strings.Endereco, destinatario.EnderecoLinha1);
             Bairro = CriarCampo("Bairro", destinatario.EnderecoBairro);
-            Cep = CriarCampo("CEP", Formatador.FormatarCEP(destinatario.EnderecoCep), XAlignmentEnum.Center);
-            DataEntradaSaida = CriarCampo("Data entrada/saída", Danfe.Model.DataSaidaEntrada.Formatar() , XAlignmentEnum.Center );
+            Cep = CriarCampo("CEP", Formatador.FormatarCEP(destinatario.EnderecoCep), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            DataEntradaSaida = CriarCampo("Data entrada/saída", Danfe.Model.DataSaidaEntrada.Formatar() , org.pdfclown.documents.contents.composition.XAlignmentEnum.Center );
 
             Municipio = CriarCampo(Strings.Municipio, destinatario.Municipio);
-            Fone = CriarCampo("Fone/Fax", Formatador.FormatarTelefone(destinatario.Telefone), XAlignmentEnum.Center);
-            Uf = CriarCampo(Strings.UF, destinatario.EnderecoUf , XAlignmentEnum.Center);
-            Ie = CriarCampo(Strings.InscricaoEstadual, destinatario.Ie, XAlignmentEnum.Center);
-            Hora = CriarCampo("Hora Entrada/Saída", Danfe.Model.HoraSaidaEntrada.Formatar(), XAlignmentEnum.Center);
+            Fone = CriarCampo("Fone/Fax", Formatador.FormatarTelefone(destinatario.Telefone), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            Uf = CriarCampo(Strings.UF, destinatario.EnderecoUf , org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            Ie = CriarCampo(Strings.InscricaoEstadual, destinatario.Ie, org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
+            Hora = CriarCampo("Hora Entrada/Saída", Danfe.Model.HoraSaidaEntrada.Formatar(), org.pdfclown.documents.contents.composition.XAlignmentEnum.Center);
         }
 
         protected override void PosicionarCampos()

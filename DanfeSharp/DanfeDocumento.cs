@@ -1,6 +1,4 @@
 ﻿using DanfeSharp.Model;
-using org.pdfclown.documents;
-using org.pdfclown.documents.contents.fonts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +19,7 @@ namespace DanfeSharp
         /// <summary>
         /// Document do PDF Clown.
         /// </summary>
-        internal Document Document;
+        internal org.pdfclown.documents.Document Document;
 
         /// <summary>
         /// Tamanho do DANFE.
@@ -41,12 +39,12 @@ namespace DanfeSharp
         /// <summary>
         /// Fonte do DANFE.
         /// </summary>
-        public StandardType1Font Font { get; private set; }
+        public org.pdfclown.documents.contents.fonts.StandardType1Font Font { get; private set; }
         
         /// <summary>
         /// Fonte em negrito do DANFE.
         /// </summary>
-        public StandardType1Font FontBold { get; private set; }
+        public org.pdfclown.documents.contents.fonts.StandardType1Font FontBold { get; private set; }
 
         public readonly float CampoAltura = Utils.Mm2Pu(6.75F);
         public readonly float CabecalhoBlocoAltura = Utils.Mm2Pu(3);
@@ -74,7 +72,7 @@ namespace DanfeSharp
         /// <summary>
         /// Indica se o DANFE foi gerado.
         /// </summary>
-        public Boolean FoiGerado { get; private set; }
+        public bool FoiGerado { get; private set; }
 
         internal org.pdfclown.documents.contents.xObjects.XObject _Logo = null;
 
@@ -92,8 +90,8 @@ namespace DanfeSharp
             Model = model;
             Size = new SizeF(Utils.Mm2Pu(A4Tamanho.Width), Utils.Mm2Pu(A4Tamanho.Height));
 
-            Font = new StandardType1Font(Document, StandardType1Font.FamilyEnum.Times, false, false);
-            FontBold = new StandardType1Font(Document, StandardType1Font.FamilyEnum.Times, true, false);
+            Font = new org.pdfclown.documents.contents.fonts.StandardType1Font(Document, org.pdfclown.documents.contents.fonts.StandardType1Font.FamilyEnum.Times, false, false);
+            FontBold = new org.pdfclown.documents.contents.fonts.StandardType1Font(Document, org.pdfclown.documents.contents.fonts.StandardType1Font.FamilyEnum.Times, true, false);
 
             InnerRect = new RectangleF(0, 0, Utils.Mm2Pu(A4Tamanho.Width), Utils.Mm2Pu(A4Tamanho.Height)).GetPaddedRectangleMm(5);
             Paginas = new List<DanfePagina>();
@@ -107,7 +105,7 @@ namespace DanfeSharp
         {
             var info = Document.Information;
             info.CreationDate = DateTime.Now;
-            info.Creator = String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp" );
+            info.Creator = string.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp" );
             info.Title = "DANFE (Documento auxiliar da NFe)";
         }
 
@@ -134,14 +132,14 @@ namespace DanfeSharp
         /// Salva o DANFE em arquivo.
         /// </summary>
         /// <param name="path">Caminho do arquivo.</param>
-        public void Salvar(String path)
+        public void Salvar(string path)
         {
             VerificarGerado();
 
             _File.Save(path, org.pdfclown.files.SerializationModeEnum.Standard);
         }
 
-        private org.pdfclown.documents.contents.xObjects.XObject GetJpegLogo(String path)
+        private org.pdfclown.documents.contents.xObjects.XObject GetJpegLogo(string path)
         {
             org.pdfclown.documents.contents.entities.Image img = org.pdfclown.documents.contents.entities.Image.Get(path);
 
@@ -154,7 +152,7 @@ namespace DanfeSharp
             return logo;
         }
 
-        private org.pdfclown.documents.contents.xObjects.XObject GetPdfLogo(String path)
+        private org.pdfclown.documents.contents.xObjects.XObject GetPdfLogo(string path)
         {
             org.pdfclown.files.File pdfFile = new org.pdfclown.files.File(path);
 
@@ -162,9 +160,9 @@ namespace DanfeSharp
             return logo;
         }
 
-        public void AdicionarLogo(String logoPath)
+        public void AdicionarLogo(string logoPath)
         {
-            if(String.IsNullOrWhiteSpace(logoPath))
+            if(string.IsNullOrWhiteSpace(logoPath))
             {
                 throw new ArgumentNullException("logoPath");
             }
@@ -264,7 +262,7 @@ namespace DanfeSharp
             FoiGerado = true;
         }
 
-        public Boolean PossuiLogo
+        public bool PossuiLogo
         {
             get
             {
